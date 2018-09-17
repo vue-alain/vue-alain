@@ -261,6 +261,7 @@
               <h4 :style="{ marginTop: 8, marginBottom: 32 }">
                 销售额
               </h4>
+              <!---->
               <av-g2-pie
                 hasLegend
                 subTitle="销售额"
@@ -269,8 +270,9 @@
                 style="height:248px"
                 :lineWidth="4"
               />
+              
             </a-card>
-           <!-- -->
+          
           </a-col>
     </a-row>
   
@@ -286,7 +288,7 @@
               v-for="(shop) in offlineData"
               :key="shop.name">
                 <div slot="tab">
-                  <a-row :gutter="8" style="width: 138, margin: '8px 0'">
+                  <a-row :gutter="8" style="width: 200px, margin: '8px 0px'">
         <a-col :span="12">
           <av-number-info
             :title="shop.name"
@@ -296,8 +298,10 @@
             
           />
         </a-col>
-        <a-col :span="12">
-          <av-g2-pie2></av-g2-pie2>
+        <a-col :span="12" style="padding-top: 36px">
+          <!--
+          <av-g2-pie style="height:64px" :height="64" :percent="shop.cvr * 100" :inner="0.55" :tooltip="false"></av-g2-pie>
+          -->
         </a-col>
          <!--
            
