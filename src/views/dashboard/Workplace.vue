@@ -1,26 +1,24 @@
 <template>
-  <div id="app" :class="{'aside-collapsed':isCollapse}">
-    <router-view/>
+  <div class="about">
+    <h1>This is an 仪表盘 page</h1>
+
   </div>
 </template>
 
-<style lang="less">
-
-</style>
 
 <script  lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-
 import { State, Mutation, namespace } from 'vuex-class';
 const appModule = namespace('app');
 
 @Component({
-  components: {
-  },
+    components: {
+    },
 })
-export default class App extends Vue {
+export default class Dashboard extends Vue {
 
-  @appModule.State('isCollapse')
-  private isCollapse!: boolean;
+    constructor() {
+        super();
+    }
 }
 </script>

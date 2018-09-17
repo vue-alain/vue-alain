@@ -1,0 +1,162 @@
+
+
+.header{
+  background-color: @header-bg;
+  position: fixed;
+  z-index: @zindex + 10;
+  width: 100%;
+  box-shadow: 0 1px 10px rgba(0,0,0,.2);
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  padding: 0px @header-padding;
+  height: @header-hg;
+  .logo{
+    margin-left: -@header-padding;
+    width: @aside-wd;
+    transition: width .2s @layout-ease;
+
+    a{
+      display: block;
+      text-align: center;
+    }
+
+    img{
+      vertical-align: middle;
+      max-width: 100%;
+      animation: 1s fadeIn;
+      &.expanded{
+        display: inline;
+      }
+  
+      &.collapsed {
+        display: none;
+      }
+    }
+  }
+}
+
+.top-nav-wrap{
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-nav{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  >li{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .item{
+    display: block;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 100%;
+    padding: 8px 2px;
+    min-width: 50px;
+    transition: background-color .3s;
+    cursor: pointer;
+    outline: none;
+    color: #fff!important;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2) !important;
+    }
+    i{
+      font-size: 18px;
+      line-height: 100%;
+    }
+  }
+}
+
+.vue-avatar{
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 50%;
+  font-family: "Monospaced Number","Chinese Quote",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+  background: #ccc;
+  color: #fff;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50%;
+
+  img{
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+
+.header-search{
+  flex: 1;
+  margin: 0 24px;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .el-input__inner{
+    background-color: rgba(255,255,255,.2);
+    
+    border: none;
+
+    
+    
+  }
+
+  .el-input__inner::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #FFF;
+  }
+  
+  .el-input__inner:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #FFF;
+  }
+  .el-input__inner::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #FFF;
+  }
+  .el-input__inner:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #FFF;
+  }
+
+  .el-input__prefix{
+    color: #fff;
+  }
+}
+
+.has-ad-rt .content {
+  margin-top: 112px;
+}
+
+// Collapsed
+.aside-collapsed {
+  .header {
+    .logo {
+      width: 64px;
+      img {
+        &.collapsed {
+          display: inline;
+        }
+        &.expanded {
+          display: none;
+        }
+      }
+    }
+  }
+}

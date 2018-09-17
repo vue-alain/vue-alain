@@ -10,12 +10,22 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "@antv/data-set": "^0.9.6",
+    "@types/numeral": "^0.0.25",
+    "ant-design-vue": "^1.1.0",
+    "date-fns": "^1.29.0",
+    "font-awesome": "^4.7.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "numeral": "^2.0.6",
     "register-service-worker": "^1.0.0",
+    "viser-vue": "^2.3.2",
     "vue": "^2.5.17",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-class": "^0.3.1"
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
