@@ -85,6 +85,7 @@ export default class Pie extends Vue {
         as: 'percent',
       });
       return dv1.rows;
+      
     }
 
     private pieStyle: any = {
