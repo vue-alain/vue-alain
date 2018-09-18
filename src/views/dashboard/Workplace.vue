@@ -195,8 +195,7 @@ export default class Workplace extends Vue {
             {
                 description: '凛冬将至',
                 href: '',
-                id: 'xxx5',
-                logo: 'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png',
+                id: 'xxx5',logo: 'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png',
                 member: '高逼格设计天团',
                 memberLink: '',
                 title: 'BootStrapper',

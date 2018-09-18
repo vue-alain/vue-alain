@@ -20,7 +20,9 @@
       <div class="page-header__main">
         <div class="page-header__row">
           <h1 class="page-header__title">
-            <slot name="title">{{title}}</slot>
+            <slot name="title">
+              {{title}}
+            </slot>
           </h1>
           <div v-if="action" class="page-header__action">
             <slot name="action" class="page-header__action"></slot>
@@ -28,7 +30,9 @@
         </div>
         <div class="page-header__row">
           <div class="page-header__desc" >
-            <slot name="content"></slot>
+            <slot name="content">
+              {{content}}
+            </slot>
           </div>
           <div v-if="extra" class="page-header__extra">
             <slot name="extra"></slot>
@@ -194,14 +198,18 @@ export default class PageHeader extends Vue {
 
     private breadcrumb: boolean = false;
 
-    private logo: boolean = true;
+    private logo: boolean = false;
 
     private action: boolean = true;
 
     @Prop({type: Boolean, default: true})
     private extra: boolean = true;
 
-    private title: string = '';
+    @Prop({type: String, default: null})
+    private title!: string;
+
+    @Prop({type: String, default: null})
+    private content!: string;
 
     private titleTpl: string = '';
 }
