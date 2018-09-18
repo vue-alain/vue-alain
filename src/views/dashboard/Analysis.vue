@@ -261,16 +261,25 @@
               <h4 :style="{ marginTop: 8, marginBottom: 32 }">
                 销售额
               </h4>
-              <!---->
+              
               <av-g2-pie
                 hasLegend
+                hasLabel
+                hasTooltip
                 subTitle="销售额"
                 :total="this.pieTotal"
                 :data="salesPieData"
                 style="height:248px"
+                :height="400"
                 :lineWidth="4"
               />
-              
+              <!--
+              <av-g2-pie
+                      :percent="75"
+                      style="height:64px"
+                      :inner="0.55"
+                      :height="256"
+                    />-->
             </a-card>
           
           </a-col>
@@ -283,73 +292,35 @@
           style="margin-top: 32px"
         >
           <a-tabs defaultActiveKey="Stores 0" @change="handleTabChange">
-            <!--tab={<CustomTab data={shop} currentTabKey={activeKey} />} -->
             <a-tab-pane 
               v-for="(shop) in offlineData"
               :key="shop.name">
-                <div slot="tab">
-                  <a-row :gutter="8" style="width: 200px, margin: '8px 0px'">
-        <a-col :span="12">
-          <av-number-info
-            :title="shop.name"
-            subTitle="转化率"
-            :gap="2"
-            :total="`${shop.cvr * 100}%`"
-            
-          />
-        </a-col>
-        <a-col :span="12" style="padding-top: 36px">
-          <!--
-          <av-g2-pie style="height:64px" :height="64" :percent="shop.cvr * 100" :inner="0.55" :tooltip="false"></av-g2-pie>
-          -->
-        </a-col>
-         <!--
-           
-        <a-col :span="12" style="padding-top: 36px">
-         
-            :theme="activeKey !== shop.name && 'light'"
-          <Pie
-            animate={false}
-            color={currentKey !== data.name && '#BDE4FF'}
-            inner={0.55}
-            tooltip={false}
-            margin={[0, 0, 0, 0]}
-            percent={data.cvr * 100}
-            height={64}
-          />
-        </a-col>
-        -->
-      </a-row>
-                  <!--
-                  {{shop.name}}
-                  -->
-                </div>
-                <av-g2-timeline-chart style="height:400px"></av-g2-timeline-chart>
-                
-              </a-tab-pane>
-            <!--
-            {offlineData.map(shop => (
-              <TabPane tab={<CustomTab data={shop} currentTabKey={activeKey} />} key={shop.name}>
-                <div style={{ padding: '0 24px' }}>
-                  <TimelineChart
-                    height={400}
-                    data={offlineChartData}
-                    titleMap={{
-                      y1: formatMessage({ id: 'app.analysis.traffic' }),
-                      y2: formatMessage({ id: 'app.analysis.payments' }),
-                    }}
-                  />
-                </div>
-              </TabPane>
-              
-            ))}
-            -->
+              <div slot="tab">
+                <a-row :gutter="8" style="width: 150px, margin: '8px 0px'">
+                  <a-col :span="12">
+                    <av-number-info
+                      :title="shop.name"
+                      subTitle="转化率"
+                      :gap="2"
+                      :total="`${shop.cvr * 100}%`"
+                    />
+                  </a-col>
+                  <a-col :span="12" style="padding-top: 36px">
+                    <av-g2-pie
+                      :percent="shop.cvr * 100"
+                      :color="activeKey !== shop.name?'#BDE4FF':null"
+                      style="height:64px"
+                      :inner="0.55"
+                      :height="128"
+                    />
+                  </a-col>
+                </a-row>
+              </div>
+              <av-g2-timeline-chart style="height:400px"></av-g2-timeline-chart>
+            </a-tab-pane>
           </a-tabs>
         </a-card>
-  
-  
-  
-  
+
   </div>
 </template>
 

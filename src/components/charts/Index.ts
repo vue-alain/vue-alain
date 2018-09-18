@@ -7,7 +7,6 @@ import RankingList from './rankinglist/Index.vue';
 import Trend from './trend/Index.vue';
 import ChartCard from './chartcard/Index.vue';
 import Pie from './pie/Index.vue';
-import G2Pie from './g2pie/Index.vue';
 import TimelineChart from './timelinechart/Index.vue';
 
 import numeral from 'numeral';
@@ -25,7 +24,6 @@ export default {
         Vue.component('av-g2-trend', Trend);
         Vue.component('av-g2-chart-card', ChartCard);
         Vue.component('av-g2-pie', Pie);
-        Vue.component('av-g2-pie2', G2Pie);
         Vue.component('av-g2-timeline-chart', TimelineChart);
         Object.defineProperty( Vue.prototype, '$yuan', { value: yuan } );
         Object.defineProperty( Vue.prototype, '$numeral', { value: numeral } );
