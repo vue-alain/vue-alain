@@ -192,17 +192,17 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component({})
 export default class PageHeader extends Vue {
 
-    private breadcrumb:boolean=false;
+    private breadcrumb: boolean = false;
 
-    private logo:boolean=true;
+    private logo: boolean = true;
 
-    private action:boolean=true;
+    private action: boolean = true;
 
-    @Prop({type: Boolean,default: true})
+    @Prop({type: Boolean, default: true})
     private extra: boolean = true;
 
-    private title:string='';
+    private title: string = '';
 
-    private titleTpl:string='';
+    private titleTpl: string = '';
 }
 </script>

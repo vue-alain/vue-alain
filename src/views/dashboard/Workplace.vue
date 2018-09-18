@@ -81,9 +81,9 @@
               class="active-card mb-lg"
               title="动态"
             >
-            <!---->
+            
               <a-list size="large">
-                <div class="activitiesList">
+                <div class="activities">
                     {this.renderActivities()}
                 </div>
               </a-list>
@@ -150,67 +150,67 @@ export default class Workplace extends Vue {
         super();
     }
 
-    get notice(){
+    get notice() {
         return [
             {
-                description:"那是一种内在的东西，他们到达不了，也无法触及的",
-                href:"",
-                id:"xxx1",
-                logo:"https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png",
-                member:"科学搬砖组",
-                memberLink:"",
-                title:"Alipay",
-                updatedAt:"2018-09-16T13:03:20.729Z",
+                description: '那是一种内在的东西，他们到达不了，也无法触及的',
+                href: '',
+                id: 'xxx1',
+                logo: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
+                member: '科学搬砖组',
+                memberLink: '',
+                title: 'Alipay',
+                updatedAt: '2018-09-16T13: 03: 20.729Z',
             },
             {
-                description:"希望是一个好东西，也许是最好的，好东西是不会消亡的",
-                href:"",
-                id:"xxx2",
-                logo:"https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png",
-                member:"全组都是吴彦祖",
-                memberLink:"",
-                title:"Angualr",
-                updatedAt:"2018-09-16T13:03:20.729Z",
+                description: '希望是一个好东西，也许是最好的，好东西是不会消亡的',
+                href: '',
+                id: 'xxx2',
+                logo: 'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png',
+                member: '全组都是吴彦祖',
+                memberLink: '',
+                title: 'Angualr',
+                updatedAt: '2018-09-16T13: 03: 20.729Z',
             },
             {
-                description:"城镇中有那么多的酒馆，她却偏偏走进了我的酒馆",
-                href:"",
-                id:"xxx3",
-                logo:"https://gw.alipayobjects.com/zos/rmsportal/dURIMkkrRFpPgTuzkwnB.png",
-                member:"中二少女团",
-                memberLink:"",
-                title:"Antd",
-                updatedAt:"2018-09-16T13:03:20.729Z",
+                description: '城镇中有那么多的酒馆，她却偏偏走进了我的酒馆',
+                href: '',
+                id: 'xxx3',
+                logo: 'https://gw.alipayobjects.com/zos/rmsportal/dURIMkkrRFpPgTuzkwnB.png',
+                member: '中二少女团',
+                memberLink: '',
+                title: 'Antd',
+                updatedAt: '2018-09-16T13: 03: 20.729Z',
             },
             {
-                description:"那时候我只会想自己想要什么，从不想自己拥有什么",
-                href:"",
-                id:"xxx4",
-                logo:"https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png",
-                member:"程序员日常",
-                memberLink:"",
-                title:"Antd Pro",
-                updatedAt:"2018-09-16T13:03:20.729Z",
+                description: '那时候我只会想自己想要什么，从不想自己拥有什么',
+                href: '',
+                id: 'xxx4',
+                logo: 'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png',
+                member: '程序员日常',
+                memberLink: '',
+                title: 'Antd Pro',
+                updatedAt: '2018-09-16T13: 03: 20.729Z',
             },
             {
-                description:"凛冬将至",
-                href:"",
-                id:"xxx5",
-                logo:"https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png",
-                member:"高逼格设计天团",
-                memberLink:"",
-                title:"BootStrapper",
-                updatedAt:"2018-09-16T13:03:20.729Z",
+                description: '凛冬将至',
+                href: '',
+                id: 'xxx5',
+                logo: 'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png',
+                member: '高逼格设计天团',
+                memberLink: '',
+                title: 'BootStrapper',
+                updatedAt: '2018-09-16T13: 03: 20.729Z',
             },
             {
-                description:"生命就像一盒巧克力，结果往往出人意料",
-                href:"",
-                id:"xxx6",
-                logo:"https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png",
-                member:"骗你来学计算机",
-                memberLink:"",
-                title:"React",
-                updatedAt:"2018-09-16T13:03:20.729Z",
+                description: '生命就像一盒巧克力，结果往往出人意料',
+                href: '',
+                id: 'xxx6',
+                logo: 'https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png',
+                member: '骗你来学计算机',
+                memberLink: '',
+                title: 'React',
+                updatedAt: '2018-09-16T13:03:20.729Z',
             },
         ];
     }
