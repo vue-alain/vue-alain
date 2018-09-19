@@ -38,11 +38,9 @@ export default class StepForm extends Vue {
     }
 
     get divAttrs() {
-      return { 
-        width:'200px',
-        height:'200px',
-        //height:100px, 
-        //width:200px, 
+      return {
+        width: '200px',
+        height: '200px',
       };
     }
 

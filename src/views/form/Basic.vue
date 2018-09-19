@@ -139,9 +139,9 @@
 </template>
 
 <style lang="less">
-.optional{
-    color: rgba(0,0,0,.45);
-    font-style: normal;
+.optional {
+  color: rgba(0, 0, 0, 0.45);
+  font-style: normal;
 }
 </style>
 
@@ -149,57 +149,48 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 
-@Component({
-    components: {
-    },
-})
+@Component({})
 export default class BasicForm extends Vue {
-
   private formItemLayout: any = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 7 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 12 },
-        md: { span: 10 },
-      },
-    };
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 7 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 12 },
+      md: { span: 10 },
+    },
+  };
 
   private submitFormLayout: any = {
-      wrapperCol: {
-        xs: { span: 24, offset: 0 },
-        sm: { span: 10, offset: 7 },
-      },
-    };
+    wrapperCol: {
+      xs: { span: 24, offset: 0 },
+      sm: { span: 10, offset: 7 },
+    },
+  };
 
-    private form: any = null;
+  private form: any = null;
 
   private submitting: boolean = false;
 
-    constructor() {
-        super();
+  constructor() {
+    super();
+  }
+
+  get isPublic2() {
+    if (this.form == null) {
+      return false;
     }
+    const value = this.form.getFieldValue('public');
 
-    get isPublic2(){
-      
-      if(this.form==null){
-        return false;
-      }
-      var value = this.form.getFieldValue('public');
+    return value === '2';
+  }
 
-      return value === '2';
-    }
-
-    private handleSubmit(e: any): void {
-
-      e.preventDefault();
-      this.form.validateFieldsAndScroll((err, values) => {
-        if (!err) {
-          
-        }
-      });
-    }
+  private handleSubmit(e: any): void {
+    e.preventDefault();
+    this.form.validateFieldsAndScroll((err: any, values: any) => {
+    });
+  }
 }
 </script>
