@@ -1,5 +1,5 @@
 <template>
-   <div class="clsString" v-bind="restProps">
+  <div class="clsString" v-bind="restProps">
       <div class="icon">
         <a-icon v-if="type==='error'" class="error" type="close-circle" theme="filled" />
         <a-icon v-if="type==='success'"  class="success" type="check-circle" theme="filled" />
@@ -9,18 +9,15 @@
         <slot name="description">
         </slot>
       </div>
-      
       <div class="extra">
         <slot name="extra">
         </slot>
       </div>
-      
-<div class="actions"><slot name="actions">
-        
-      </slot></div>
-      
-
+    <div class="actions">
+      <slot name="actions">
+      </slot>
     </div>
+  </div>
 </template>
 
 <style lang="less" scoped>
