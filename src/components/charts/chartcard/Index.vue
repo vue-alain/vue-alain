@@ -21,7 +21,7 @@
 </template>
 
 <style scoped lang="less">
- .chart-card-header{
+  .chart-card-header{
     position: relative;
     overflow: hidden;
     width: 100%;

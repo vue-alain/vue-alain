@@ -1,9 +1,9 @@
 <template>
   <div class="mini-chart">
     <div class="chart-content" :style="{height: 46}">
-      <v-chart :force-fit="true" 
-      :height="height" 
-      :data="data" 
+      <v-chart :force-fit="true"
+      :height="height"
+      :data="data"
       :padding="[36, 5, 18, 5]">
         <v-tooltip />
         <v-bar position="x*y" />

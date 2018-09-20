@@ -1,8 +1,8 @@
 <template>
-   <div class="mini-chart">
+  <div class="mini-chart">
     <div class="chart-content" :style="{height: 46}">
       <v-chart :force-fit="true" :height="height"
-       :data="data" :padding="[36, 5, 18, 5]">
+        :data="data" :padding="[36, 5, 18, 5]">
         <v-tooltip />
         <v-smooth-line v-if="line" position="x*y" :size="2" />
         <v-smooth-area position="x*y" :color="color" />

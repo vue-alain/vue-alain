@@ -7,7 +7,6 @@
         <v-pie position="percent" :color="pieColor" :vStyle="pieStyle" :label="hasLabel?labelConfig:[]" />
         <v-coord type="theta" :radius="0.75" :innerRadius="0.6" />
     </v-chart>
-    
 
 </template>
 
@@ -27,6 +26,7 @@
 <script  lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import {format} from 'date-fns';
+
 const DataSet = require('@antv/data-set');
 
 const scale = [{

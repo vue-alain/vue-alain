@@ -189,6 +189,7 @@ export default class BasicForm extends Vue {
 
   private handleSubmit(e: any): void {
     e.preventDefault();
+
     this.form.validateFieldsAndScroll((err: any, values: any) => {
     });
   }
