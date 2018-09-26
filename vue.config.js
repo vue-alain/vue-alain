@@ -1,3 +1,6 @@
+
+const mockRouter = require('./_mock/index.ts');
+
 module.exports = {
   
     transpileDependencies:[
@@ -12,5 +15,12 @@ module.exports = {
                 javascriptEnabled: true,
             }
         }
+    },
+    devServer: {
+        before: app=>{
+            //app.use('/api',mockRouter);
+            // require('./_mock/index.ts');
+            // mockRouter
+        },//require('_mock/index'),
     },
   }

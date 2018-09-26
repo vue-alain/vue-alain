@@ -16,8 +16,15 @@ import '@/assets/theme/styles/index.less';
 import {preloaderFinished} from './util/preloader';
 preloaderFinished();
 
+import mock from './_mock/index';
+mock.init();
+
 import Charts from '@/components/charts/Index';
 import Components from '@/components/Index';
+
+import Startup from '@/core/Startup';
+import AxiosInterceptor from '@/core/AxiosInterceptor';
+// AxiosInterceptor.init();
 
 Vue.use(Antd);
 Vue.use(Viser);
@@ -27,16 +34,21 @@ Vue.use(Components);
 
 Vue.config.productionTip = false;
 
+
+
 const app = new Vue({
   router,
   store,
   render: (h) => h(App),
 });
 
-/**
- * 1s 后正常启动程序，可将定时器修改为请求网络资源
- */
-setTimeout(() => {
-  app.$mount('#app');
-  ( window as any ).appBootstrap();
-}, 1000);
+Startup.bootstrap().then(
+  (res: any) => {
+    app.$mount('#app');
+    ( window as any ).appBootstrap();
+
+    store.commit('app/setApp', res.data.app);
+
+  },
+);
+

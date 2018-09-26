@@ -116,22 +116,23 @@
               -->
             </div>
             <av-standard-table
-              :columns="columns"
               :dataSource="dataSource"
               :selectedRows="selectedRows"
-              @change="onchange"
+              :needTotalColumns="['callNo']"
+              :loading="tableLoading"
+              @tableChange="handlerTableChange"
+              @selectChange="handlerSelectChange"
             >
-              <!--
               <template slot="columns">
                 <a-table-column
-                  dataIndex="name"
-                  key="name"
+                  dataIndex="title"
+                  key="title"
                   title="规则名称"
                 >
                 </a-table-column>
                 <a-table-column
-                  dataIndex="desc"
-                  key="desc"
+                  dataIndex="description"
+                  key="description"
                   title="描述"
                 >
                 </a-table-column>
@@ -180,10 +181,33 @@
                   </template>
                 </a-table-column>
               </template>
-              -->
             </av-standard-table>
           </div>
     </a-card>
+
+    <a-modal
+      title="新建规则"
+      destroyOnClose
+      :visible="visibleCreateModal"
+      @ok="handleCreateModalOk"
+      @cancel="handleCreateModalCancel"
+    >
+      <!---->
+      <a-form style="margin-top: 8px" :autoFormCreate="(form)=>{this.createForm = form}">
+        <a-form-item :labelCol="{ span: 5 }" :wrapperCol="{ span: 15 }"
+              label="描述"
+              fieldDecoratorId="description"
+              :fieldDecoratorOptions="{rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}"
+              >
+          <a-input placeholder="请输入" />
+        </a-form-item>
+      </a-form>
+    </a-modal>
+
+    <update-task-form
+      :visible.sync="updateTaskFormVisible"
+      :record="updateRecord"
+    ></update-task-form>
 
   </div>
 </template>
@@ -192,13 +216,19 @@
 <script  lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
+
 import moment from 'moment';
+import axios from 'axios';
+
+import UpdateTaskForm from './components/UpdateTaskForm.vue';
 
 const statusMap = ['default', 'processing', 'success', 'error'];
 const status = ['关闭', '运行中', '已上线', '异常'];
 
 @Component({
-  components: {},
+  components: {
+    UpdateTaskForm,
+  },
 })
 export default class QueryList extends Vue {
   private searchForm: any;
@@ -210,31 +240,23 @@ export default class QueryList extends Vue {
 
   private expandForm: boolean = false;
 
-  private columns: any[] = [
-    {
-      title: '规则名称',
-      dataIndex: 'name',
-    },
-    {
-      title: '描述',
-      dataIndex: 'desc',
-    },
-    {
-      title: '服务调用次数',
-      dataIndex: 'callNo',
-      sorter: true,
-      align: 'right',
-      needTotal: true,
-      customRender: (text: any) => `<span>{{text}} 万</span>`,
-      /*
-      scopedSlots: {
-        customRender: 'callNo' ,
-      },*/
-    },
-  ];
-
   private selectedRowKeys: any[] = [];
+
   private selectedRows: any[] = [];
+
+  private tableLoading: boolean = false;
+
+  private moment: any = moment;
+
+  private dataSource: any [] = [];
+
+  private visibleCreateModal: boolean = false;
+
+  private updateTaskFormVisible: boolean = false;
+
+  private createForm: any = null;
+
+  private updateRecord: any = {};
 
   constructor() {
     super();
@@ -269,31 +291,9 @@ export default class QueryList extends Vue {
       ];
   }
 
-  private moment: any = moment;
-
-  get dataSource() {
-    const dataSource: any[] = [];
-    for (let i = 0; i < 100; i++) {
-      dataSource.push({
-      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png',
-      callNo: Math.floor(Math.random() * 1000),
-      createdAt: '2017-07-19T00:00:00.000Z',
-      desc: '这是一段描述',
-      disabled: i  <= 3,
-      href: 'https://ant.design',
-      key: i,
-      name: `TradeCode ${i}`,
-      owner: `曲丽丽${i}`,
-      progress: 83,
-      status: Math.floor(Math.random() * 4),
-      title: `一个任务名称 ${i}`,
-      updatedAt: '2017-07-19T00:00:00.000Z',
-      });
-    }
-    return dataSource;
+  private handleModalVisible(isVisible: boolean): void {
+    this.visibleCreateModal = isVisible;
   }
-
-  private handleModalVisible(isVisible: boolean): void {}
 
   private toggleForm(): void {
     this.expandForm = !this.expandForm;
@@ -303,13 +303,55 @@ export default class QueryList extends Vue {
 
   private handleSearch(): void {}
 
-  private onchange(): void{}
+  private handlerTableChange(pagination: any, filter: any, sorter: any): void {
 
-  private handleUpdateModalVisible(visible: boolean, record: any): void{
-      console.log('handleUpdateModalVisible');
-      console.log(visible);
-      console.log(record);
+  }
+
+  private handleUpdateModalVisible(visible: boolean, record: any): void {
+    this.updateTaskFormVisible = true;
+    this.updateRecord = record;
+  }
+
+  private handleCreateModalOk() {
+    this.createForm.validateFields((err: any, fieldsValue: any) => {
+      if (err) {
+        return;
+      }
+      const description = this.createForm.getFieldValue('description');
+      axios.post('/saveRule', {desc: description}).then((res: any) => {
+        this.createForm.resetFields();
+        this.visibleCreateModal = false;
+      });
+    });
+  }
+
+  private handleCreateModalCancel(): any {
+    this.visibleCreateModal = false;
+  }
+
+  private handlerSelectChange(arr1: any, arr2: any) {
+  }
+
+  private mounted() {
+    this.tableLoading = true;
+    axios.get('/rule').then((res) => {
+      this.dataSource = res.data;
+    })
+    .finally(() => {
+      this.tableLoading = false;
+    });
 
   }
 }
 </script>
+
+<style lang="less">
+.tableList {
+  .tableListOperator {
+    margin-bottom: 16px;
+    button {
+      margin-right: 8px;
+    }
+  }
+}
+</style>
