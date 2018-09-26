@@ -181,8 +181,14 @@ export default class UpdateTaskForm extends Vue {
             axios.post('/updateRule', {...this.formVals})
                 .then(() => {
                     this.updateVisible(false);
+                    this.onOk();
                 });
             });
+
+    }
+
+    @Emit('ok')
+    private onOk() {
 
     }
 

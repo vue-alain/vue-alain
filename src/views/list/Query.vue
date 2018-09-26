@@ -207,6 +207,7 @@
     <update-task-form
       :visible.sync="updateTaskFormVisible"
       :record="updateRecord"
+      @ok="handleUpdateOk"
     ></update-task-form>
 
   </div>
@@ -321,8 +322,13 @@ export default class QueryList extends Vue {
       axios.post('/saveRule', {desc: description}).then((res: any) => {
         this.createForm.resetFields();
         this.visibleCreateModal = false;
+        this.loadRuleData();
       });
     });
+  }
+
+  private handleUpdateOk(){
+    this.loadRuleData();
   }
 
   private handleCreateModalCancel(): any {
@@ -333,14 +339,18 @@ export default class QueryList extends Vue {
   }
 
   private mounted() {
-    this.tableLoading = true;
-    axios.get('/rule').then((res) => {
-      this.dataSource = res.data;
-    })
-    .finally(() => {
-      this.tableLoading = false;
-    });
+    this.loadRuleData();
 
+  }
+
+  private loadRuleData(){
+      this.tableLoading = true;
+      axios.get('/rule').then((res) => {
+        this.dataSource = res.data;
+      })
+      .finally(() => {
+        this.tableLoading = false;
+      });
   }
 }
 </script>

@@ -18,6 +18,7 @@ module.exports = {
     },
     devServer: {
         before: app=>{
+            require('./_mock/index.ts');
             //app.use('/api',mockRouter);
             // require('./_mock/index.ts');
             // mockRouter

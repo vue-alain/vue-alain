@@ -1,5 +1,7 @@
 import MockAdapter from 'axios-mock-adapter';
 
+import Mock from 'mockjs';
+
 const list: any[] = [];
 
 for (let i = 0; i < 46; i += 1) {
@@ -74,24 +76,24 @@ function update(rule: any) {
     });
 }
 
-export function rulemock(mock: MockAdapter) {
-    mock
-    .onGet('/rule').reply((config: any) => {
-        // `config` is the axios config and contains things like the url
-        // return an array in the form of [status, data, headers]
-        return [200, list];
-    });
+const rulesMock = Mock.mock('/rule', 'get', (opt: any) => {
+    return list;
+});
 
-    mock.onPost('/saveRule').reply((config: any) => {
-        const postData = JSON.parse(config.data);
-        saveRule(postData.desc);
-        return [200, {}];
-    });
+const saveRuleMock = Mock.mock('/saveRule', 'post', (opt: any) => {
+    const postData = JSON.parse(opt.body);
+    saveRule(postData.desc);
+    return {};
+});
 
-    mock.onPost('/updateRule').reply((config: any) => {
-        const postData = JSON.parse(config.data);
-        update(postData);
-        return [200, {}];
-    });
-}
+const updateRuleMock = Mock.mock('/updateRule', 'post', (opt: any) => {
+    const postData = JSON.parse(opt.body);
+    update(postData);
+    return {};
+});
 
+export default {
+    rulesMock,
+    saveRuleMock,
+    updateRuleMock,
+};

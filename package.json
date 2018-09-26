@@ -12,6 +12,7 @@
   "dependencies": {
     "@antv/data-set": "^0.9.6",
     "@types/axios-mock-adapter": "^1.10.0",
+    "@types/mockjs": "^1.0.1",
     "@types/numeral": "^0.0.25",
     "ant-design-vue": "^1.1.0",
     "axios": "^0.18.0",

@@ -16,8 +16,7 @@ import '@/assets/theme/styles/index.less';
 import {preloaderFinished} from './util/preloader';
 preloaderFinished();
 
-import mock from './_mock/index';
-mock.init();
+import './_mock/index';
 
 import Charts from '@/components/charts/Index';
 import Components from '@/components/Index';
