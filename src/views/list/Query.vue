@@ -1,6 +1,6 @@
 <template>
   <div>
-    <av-page-header title="基础表单">
+    <av-page-header title="查询表格">
       <div slot="breadcrumb">
         <a-breadcrumb>
           <a-breadcrumb-item>
@@ -327,7 +327,7 @@ export default class QueryList extends Vue {
     });
   }
 
-  private handleUpdateOk(){
+  private handleUpdateOk() {
     this.loadRuleData();
   }
 
@@ -343,7 +343,7 @@ export default class QueryList extends Vue {
 
   }
 
-  private loadRuleData(){
+  private loadRuleData() {
       this.tableLoading = true;
       axios.get('/rule').then((res) => {
         this.dataSource = res.data;

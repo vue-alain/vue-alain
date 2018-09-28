@@ -18,7 +18,7 @@ import axios from 'axios';
 })
 export default class CardList extends Vue {
 
-  private mounted(){
+  private mounted() {
   }
 
 }

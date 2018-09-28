@@ -1,5 +1,4 @@
 
-const mockRouter = require('./_mock/index.ts');
 
 module.exports = {
   
@@ -18,7 +17,7 @@ module.exports = {
     },
     devServer: {
         before: app=>{
-            require('./_mock/index.ts');
+            
             //app.use('/api',mockRouter);
             // require('./_mock/index.ts');
             // mockRouter
