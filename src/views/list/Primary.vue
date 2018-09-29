@@ -39,7 +39,7 @@
             <a-input-search class="extraContentSearch" placeholder="请输入" @search="handleSearch" />
           </div>
         </template>
-        <a-button type="dashed" style="width:100%;margin-bottom:8px" icon="plus" @click="showModal">
+        <a-button type="dashed" style="width:100%;margin-bottom:8px" icon="plus" @click="newModal">
             添加
         </a-button>
         <a-list size="large" rowKey="id" :loading="loading" :pagination="paginationProps" :dataSource="list">
@@ -80,7 +80,11 @@
             </a-list-item>
         </a-list>
     </a-card>
-  <component v-bind:is="currentTabComponent"></component>
+  <base-list-modal
+      :visible.sync="baselistmodal"
+      :record="newRecoard"
+      @close="handleListModalClose"
+    ></base-list-modal>
 </div>
 </template>
 
@@ -105,6 +109,7 @@ import axios from 'axios';
 @Component({
     components: {
         Info,
+        BaseListModal,
     },
 })
 export default class PrimaryList extends Vue {
@@ -113,7 +118,9 @@ export default class PrimaryList extends Vue {
 
     private moment: any = moment;
 
-    private currentTabComponent: any = null;
+    private baselistmodal: boolean = false;
+
+    private newRecoard: any = {};
 
     private paginationProps: any = {
         showSizeChanger: true,
@@ -125,7 +132,7 @@ export default class PrimaryList extends Vue {
     private list: any[] = [];
 
     private showModal() {
-      this.currentTabComponent = BaseListModal;
+      this.baselistmodal = true;
     }
 
     private mounted() {
@@ -148,14 +155,27 @@ export default class PrimaryList extends Vue {
     private handleEditAndDelete(key: any, item: any): void {
       // console.log(key);
       // console.log(item);
+      this.showEditModal(item);
+    }
+
+    private newModal(): void {
+      this.baselistmodal = true;
+      this.newRecoard = {};
     }
 
     private showEditModal(item: any): void {
-
+      this.baselistmodal = true;
+      this.newRecoard = item;
+      console.log(item);
     }
 
     private handleSearch(value: any) {
       // console.log(value);
+    }
+
+    private handleListModalClose(isok: any) {
+      console.log('handleListModalClose');
+      console.log('isok', isok);
     }
 }
 </script>

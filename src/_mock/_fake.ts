@@ -111,7 +111,7 @@ function fakeList(count: number) {
   return list;
 }
 
-let sourceData;
+let sourceData: any;
 
 function getFakeList(opt: any) {
   const param = _.replace(opt.url, '/api/fake_list?', '');
@@ -124,8 +124,46 @@ function getFakeList(opt: any) {
   return sourceData;
 }
 
+function saveFakeList(opt: any) {
+  const body = JSON.parse(opt.body);
+  const id = body.id;
+  let result: any = sourceData;
+
+  if(id === undefined) {
+    result.unshift({
+      body,
+      id: `fake-list-${result.length}`,
+      createdAt: new Date().getTime(),
+    });
+  } else {
+    result.forEach((item: any, i: any) => {
+      if (item.id === id) {
+        result[i] = Object.assign(item, body);
+      }
+    });
+  }
+  return {};
+}
+
+function deleteFakeList(opt: any) {
+  const body = JSON.parse(opt.body);
+
+  const { id } = body.id;
+
+  let result: any = sourceData;
+
+  result = result.filter((item: any) => item.id !== id);
+
+  return {};
+}
+
 const fakeListMock = Mock.mock(RegExp('/api/fake_list' + '.*'), 'get', getFakeList);
+
+const saveFakeListMock = Mock.mock(RegExp('/api/save_fake_list'), 'post', saveFakeList);
+const deleteFakeListMock = Mock.mock(RegExp('/api/delete_fake_list'), 'delete', deleteFakeList);
 
 export default {
   fakeListMock,
+  saveFakeListMock,
+  deleteFakeListMock,
 };
