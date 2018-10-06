@@ -166,7 +166,7 @@ export default class PrimaryList extends Vue {
     private showEditModal(item: any): void {
       this.baselistmodal = true;
       this.newRecoard = item;
-      console.log(item);
+      // console.log(item);
     }
 
     private handleSearch(value: any) {
@@ -174,8 +174,8 @@ export default class PrimaryList extends Vue {
     }
 
     private handleListModalClose(isok: any) {
-      console.log('handleListModalClose');
-      console.log('isok', isok);
+      // console.log('handleListModalClose');
+      // console.log('isok', isok);
     }
 }
 </script>

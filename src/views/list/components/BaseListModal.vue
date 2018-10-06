@@ -64,7 +64,7 @@ export default class BaseListModal extends Vue {
 
     @Prop({
         type: Object,
-        default () {
+        default() {
             return {};
         },
     })

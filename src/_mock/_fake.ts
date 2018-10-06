@@ -127,9 +127,9 @@ function getFakeList(opt: any) {
 function saveFakeList(opt: any) {
   const body = JSON.parse(opt.body);
   const id = body.id;
-  let result: any = sourceData;
+  const result: any = sourceData;
 
-  if(id === undefined) {
+  if (id === undefined) {
     result.unshift({
       body,
       id: `fake-list-${result.length}`,
