@@ -29,3 +29,8 @@ yarn run test:unit
 ```
 yarn run test:e2e
 ```
+
+## 截图
+![](/_screenshot/main1.png)
+![](/_screenshot/main2.png)
+![](/_screenshot/main3.png)
