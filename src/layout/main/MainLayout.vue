@@ -41,9 +41,10 @@ export default class MainLayout extends Vue {
   private copyright: string = '2018 vue alain';
 
   private linkList: any = [
-      {link: 'https://pro.ant.design', name: 'Pro首页'},
-      {link: 'https://github.com/iczer/vue-antd-admin', icon: 'github'},
+      {link: 'https://pro.ant.design', name: 'Antd Pro首页'},
+      {link: 'https://github.com/vue-alain/vue-alain', icon: 'github'},
       {link: 'https://ant.design', name: 'Ant Design'},
+      {link: 'https://vuecomponent.github.io/ant-design-vue/docs/vue/introduce-cn/', name: 'Vue Ant Design'},
     ];
 
   constructor() {
