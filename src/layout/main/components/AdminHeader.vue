@@ -18,10 +18,9 @@
             </i>
           </div>
         </li>
-       
         <!-- Github Page  -->
         <li>
-          <a class="item" href="//github.com/cipchk/ng-alain" target="_blank">
+          <a class="item" href="//github.com/vue-alain/vue-alain" target="_blank">
             <i class="fa fa-github"></i>
           </a>
         </li>
