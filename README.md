@@ -1,35 +1,16 @@
 # vue-alain
 使用 `vue-cli 3.0` , `typescript`,`vue antd` 实现的中后台框架!
 
-## Project setup
-```
-yarn install
-```
+## 使用过程
+1. `git clone https://github.com/vue-alain/vue-alain.git`
+2. `cd vue-alain`
+3. `yarn install`
+4. `yarn serve`
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+浏览器输入`http://localhost:8080`
 
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Run your unit tests
-```
-yarn run test:unit
-```
-
-### Run your end-to-end tests
-```
-yarn run test:e2e
-```
+### 编译
+使用`yarn build`可能会报错，使用`node .\node_modules\@vue\cli-service\bin\vue-cli-service.js build`编译
 
 ## 截图
 ![](/_screenshot/main1.png)
