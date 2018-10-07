@@ -1,5 +1,5 @@
 <template>
-<div class="descriptionList large" v-bind="restProps">
+<div class="descriptionList" :class="size" v-bind="restProps">
     <div v-if="title" class="title">{{title}}</div>
 
     <a-row :gutter="32">

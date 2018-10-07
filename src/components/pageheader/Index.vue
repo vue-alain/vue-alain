@@ -14,7 +14,7 @@
       -->
     </slot>
     <div class="page-header__detail">
-      <div v-if="logo" class="page-header__logo">
+      <div class="page-header__logo">
         <slot name="logo"></slot>
       </div>
       <div class="page-header__main">
@@ -24,7 +24,7 @@
               {{title}}
             </slot>
           </h1>
-          <div v-if="action" class="page-header__action">
+          <div class="page-header__action">
             <slot name="action" class="page-header__action"></slot>
           </div>
         </div>
@@ -45,12 +45,10 @@
 </template>
 
 <style lang="less">
+@import '../../assets/theme/styles/index.less';
+
 @page-header-bg: #fff;//#fafbfc;// #fff;
-@border-width-base: 1px;
-@border-style-base: solid;
-@border-color-split: #efe3e5;
-@heading-color:rgba(0,0,0,.85);
-@layout-gutter: 10px;
+
 
  .page-header {
   display: block;
@@ -80,14 +78,13 @@
     flex: 0 1 auto;
     margin-right: 16px;
     padding-top: 1px;
-    /*
     img {
       width: 28px;
       height: 28px;
       border-radius: @border-radius-base;
       display: block;
     }
-    */
+    
   }
   &__title {
     font-size: 20px;

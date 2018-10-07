@@ -1,6 +1,10 @@
 <template>
 <a-col v-bind="colResponsive">
-    <div v-if="term" class="term">{{term}}</div>
+
+    <div class="term">
+        <span v-if="term">{{term}}</span>
+        <slot class="term" name="term"></slot>
+    </div>
     <div class="detail">
         <slot></slot>
     </div>
