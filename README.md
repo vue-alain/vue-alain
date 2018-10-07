@@ -1,4 +1,5 @@
 # vue-alain
+使用 `vue-cli 3.0` , `typescript`,`vue antd` 实现的中后台框架!
 
 ## Project setup
 ```
