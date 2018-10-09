@@ -1,4 +1,3 @@
-
 html {
   direction: ltr;
   height: 100%; // http://updates.html5rocks.com/2013/12/300ms-tap-delay-gone-away
@@ -7,17 +6,23 @@ html {
 
 html,
 body,
-#app {
+app-root {
   // overflow-x: hidden;
   height: 100%;
 }
 
 body {
-  margin:0;
-  font-size: 14px;
-  line-height: 1.5;
-  color:  @text-color;//rgba(0,0,0,.65);
-  background-color: @content-bg !important ;// #f5f7fa !important;
+  color: @text-color;
+  background-color: @content-bg !important;
+}
+
+.progress-bar-container {
+  height: 10px;
+  position: absolute;
+  top: -10px;
+  right: 0;
+  left: 0;
+  z-index: @zindex + 10;
 }
 
 .wrapper {
@@ -27,7 +32,6 @@ body {
   min-height: 100%;
   overflow-x: hidden;
   .unwrap {
-    
     margin-right: -@content-padding;
     margin-left: -@content-padding;
     @media (max-width: @screen-md-max) {
@@ -37,24 +41,11 @@ body {
   }
 }
 
-.layout-aside{
-  margin-top: @header-hg;
-}
-
-
-.content{
+.content {
   margin: @header-hg @content-padding @content-padding @content-padding;
 }
 
-/*
-.footer{
-  height:32px;
-  border-top: 1px solid #d9d9d9;
-}
-*/
-
-
-.content__title{
+.content__title {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,11 +53,11 @@ body {
   padding: @content-padding;
   padding-top: @content-padding - 12;
   padding-bottom: @content-padding - 12;
-  margin-right:  -@content-padding;
-  margin-left:  -@content-padding;
-  margin-bottom:  @content-padding;
+  margin-right: -@content-padding;
+  margin-left: -@content-padding;
+  margin-bottom: @content-padding;
   background-color: @content-heading-bg;
-  border-bottom: 1px solid  @content-heading-border;
+  border-bottom: 1px solid @content-heading-border;
   > h1 {
     font-size: 18px;
     font-weight: normal;
@@ -74,7 +65,7 @@ body {
     > small {
       display: block;
       font-size: 12px;
-      color: #999090;
+      color: @muted-color;
     }
   }
 }
@@ -82,31 +73,14 @@ body {
 // Desktop
 @media (min-width: @screen-md-min) {
   .content {
-    margin-left: @aside-wd + @content-padding;
+    margin-left: (@aside-wd + @content-padding);
   }
-/*
-  .footer{
-    margin-left: @aside-wd;
-  }
-*/
-}
-
-@media (min-width: @screen-md-min) {
   .aside-collapsed {
     .sidebar {
       width: @aside-collapsed-wd;
     }
     .content {
-      margin-left:  88px;
+      margin-left: (@aside-collapsed-wd + @content-padding);
     }
-/*
-    .footer{
-      margin-left:  64px;
-    }
-    */
   }
-
 }
-
-
-

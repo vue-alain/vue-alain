@@ -1,18 +1,25 @@
+@import "./_freak";
+@import "./mixins/index";
+@import "./_functions";
 
-// Layout
-/*
-@import "./layout.less";
-@import "./header.less";
-@import "./aside.less";
-@import "./scrollbar.less";
-*/
+// antd patch
+@import "./antd/index";
 
 // Core CSS
-@import "./type.less";
+@import "./router";
+@import "./type";
 
 // Layout
-@import "./layout.less";
-@import "./header.less";
-@import "./aside.less";
+@import "./layout";
+@import "./header";
+@import "./aside";
+@import "./scrollbar";
 
-@import './login.less';
+// widgets
+@import "./widgets/index";
+
+// @delon
+@import "./delon/index";
+
+// Other
+@import "./utils/index";
