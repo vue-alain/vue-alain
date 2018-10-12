@@ -180,46 +180,10 @@
     </a-card>
     <a-card class="tabsCard" :bordered="false" :tabList="operationTabList" @tabChange="handleOperationTabChange">
         <a-table v-if="operationkey === 'tab1'" :pagination="false" :loading="false" :dataSource="advancedOperation1" :columns="columns">
-             <template slot="status" slot-scope="text" href="javascript:;">
-                 <a-badge v-if="text ===  'agree'" status = "success" text = "成功" />
-                 <a-badge v-else status = "error" text = "驳回" />
-             </template>
-            <!--columns
-            <a-table-column dataIndex="type" key="type" title="操作类型"></a-table-column>
-            <a-table-column dataIndex="name" key="name" title="操作人"></a-table-column>
-            <a-table-column dataIndex="status" key="status" title="执行结果">
-                <template slot-scope="text">
-                  <a-badge v-if="text === 'agree'" status = "success" text = "成功" />
-                  <a-badge v-else status = "error" text = "驳回" />
-                </template>
-            </a-table-column>
-            <a-table-column dataIndex="updatedAt" key="updatedAt" title="操作时间"></a-table-column>
-            <a-table-column dataIndex="memo" key="memo" title="备注"></a-table-column>
-            -->
         </a-table>
-        <a-table v-if="operationkey === 'tab2'" :pagination="false" :loading="false" :dataSource="advancedOperation2">
-            <a-table-column dataIndex="type" key="type" title="操作类型"></a-table-column>
-            <a-table-column dataIndex="name" key="name" title="操作人"></a-table-column>
-            <a-table-column dataIndex="status" key="status" title="执行结果">
-                <template slot-scope="text">
-                  <a-badge v-if="text === 'agree'" status = "success" text = "成功" />
-                  <a-badge v-else status = "error" text = "驳回" />
-                </template>
-            </a-table-column>
-            <a-table-column dataIndex="updatedAt" key="updatedAt" title="操作时间"></a-table-column>
-            <a-table-column dataIndex="memo" key="memo" title="备注"></a-table-column>
+        <a-table v-if="operationkey === 'tab2'" :pagination="false" :loading="false" :dataSource="advancedOperation2" :columns="columns">
         </a-table>
-        <a-table v-if="operationkey === 'tab3'" :pagination="false" :loading="false" :dataSource="advancedOperation3">
-            <a-table-column dataIndex="type" key="type" title="操作类型"></a-table-column>
-            <a-table-column dataIndex="name" key="name" title="操作人"></a-table-column>
-            <a-table-column dataIndex="status" key="status" title="执行结果">
-                <template slot-scope="text">
-                  <a-badge v-if="text === 'agree'" status = "success" text = "成功" />
-                  <a-badge v-else status = "error" text = "驳回" />
-                </template>
-            </a-table-column>
-            <a-table-column dataIndex="updatedAt" key="updatedAt" title="操作时间"></a-table-column>
-            <a-table-column dataIndex="memo" key="memo" title="备注"></a-table-column>
+        <a-table v-if="operationkey === 'tab3'" :pagination="false" :loading="false" :dataSource="advancedOperation3" :columns="columns">
         </a-table>
     </a-card>
 
@@ -289,20 +253,7 @@ export default class AdvancedDetail extends Vue {
             title: '执行结果',
             dataIndex: 'status',
             key: 'status',
-            scopedSlots: { customRender: 'status' },
-            /*
-            customRender(text:any){
-                console.log('customRender');
-                // return Vue.compile('<a>dddd</a>');
-                return <a></a>;
-            }
-            
-            customRender: (text: any) =>{
-                if (text ===  'agree'){
-                    return <a-badge status = "success" text = "成功" />;
-                }
-                return <a-badge status = "error"text = "驳回" />;
-            }*/
+            customRender: this.statusRender,
         },
         {
             title: '操作时间',
@@ -328,6 +279,16 @@ export default class AdvancedDetail extends Vue {
     private handleOperationTabChange(key: string) {
         this.operationkey = key;
     }
+
+    private statusRender(text: string) {
+        if (text ===  'agree'){
+            // tslint:disable-next-line:no-angle-bracket-type-assertion
+            return <a-badge status = 'success' text = '成功' />;
+        }
+        // tslint:disable-next-line:no-angle-bracket-type-assertion
+        return <a-badge status = 'error' text = '驳回' />;
+    }
+
 
 }
 </script>
