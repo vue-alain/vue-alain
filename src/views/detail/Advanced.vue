@@ -281,7 +281,7 @@ export default class AdvancedDetail extends Vue {
     }
 
     private statusRender(text: string) {
-        if (text ===  'agree'){
+        if (text ===  'agree') {
             // tslint:disable-next-line:no-angle-bracket-type-assertion
             return <a-badge status = 'success' text = '成功' />;
         }

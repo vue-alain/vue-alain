@@ -146,7 +146,7 @@ export default class BasicDetail extends Vue {
         key: 'amount',
         align: 'right',
         customRender: this.goodsAmountRender,
-    }, ];
+    } ];
 
     private progressColumns = [
     {
@@ -200,19 +200,18 @@ export default class BasicDetail extends Vue {
         });
     }
 
-    private renderContent(value: string, row: any, index: number) {
-
+    private renderContent(value: any, row: any, index: number) {
         const obj = {
             children: value,
             attrs: {
                 colSpan: 1,
             },
         };
-        if (value === '总计') {
+        if (row.id === '总计') {
             obj.attrs.colSpan = 0;
         }
         return obj;
-    };
+    }
 
     private goodsIdRender(text: any, record: any, index: any) {
         if (record.id !== '总计') {
@@ -240,11 +239,11 @@ export default class BasicDetail extends Vue {
         return <span style = 'font-weight:600' > {text} </span>;
     }
 
-    private progressStateRender(text: string, record: any, index: any){
-        if(text === 'success'){
-            return <a-badge status="success" text="成功" />;
+    private progressStateRender(text: string, record: any, index: any) {
+        if (text === 'success') {
+            return <a-badge status = 'success' text = '成功' />;
         }
-        return <a-badge status="processing" text="进行中" />;
+        return <a-badge status = 'processing' text = '进行中' />;
     }
 }
 </script>
