@@ -33,25 +33,8 @@
         <a-divider style="margin-bottom: 32px" />
         <div class="title">退货商品</div>
         <!--:columns="goodsColumns"-->
-        <a-table style="margin-bottom: 24px" :pagination="false" :loading="loading" :dataSource="goodsData" rowKey="id">
-            <a-table-column dataIndex="id" key="id" title="商品编号">
-                <template slot-scope="text,record,index">
-                    <a href="" v-if="text!='总计'">{{text}}</a>
-                    <template v-else>
-                        <span style="font-weight: 600px">总计</span>
-                    </template>
-                </template>
-            </a-table-column>
+        <a-table style="margin-bottom: 24px" :pagination="false" :loading="loading" :dataSource="goodsData" rowKey="id" :columns="goodsColumns">
             <!--
-            <a-table-column dataIndex="id" key="id" title="商品编号" :colSpan="id!='总计'?0:4">
-              <template slot-scope="text,record,index">
-                <a href="" v-if="text!='总计'">{{text}}</a>
-                <template v-else >
-                  <span style="font-weight: 600px">总计</span>
-                </template>
-              </template>
-            </a-table-column>
-            -->
             <a-table-column dataIndex="name" key="name" title="商品名称">
             </a-table-column>
             <a-table-column dataIndex="barcode" key="barcode" title="商品条码">
@@ -63,7 +46,7 @@
             <a-table-column dataIndex="amount" key="amount" title="金额">
             </a-table-column>
 
-            <!--
+            
           columns={goodsColumns}
             <a-table-column
                   dataIndex="title"
@@ -74,8 +57,9 @@
                 -->
         </a-table>
         <div class="title">退货进度</div>
-        <a-table style="margin-bottom: 16px" :pagination="false" :loading="loading" :dataSource="basicProgress">
+        <a-table style="margin-bottom: 16px" :pagination="false" :loading="loading" :dataSource="basicProgress" :columns="progressColumns">
             <!-- columns={progressColumns}-->
+            <!--
             <a-table-column dataIndex="time" key="time" title="时间">
             </a-table-column>
             <a-table-column dataIndex="rate" key="rate" title="当前进度">
@@ -85,38 +69,14 @@
                 <template slot-scope="text,record">
                     <a-badge v-if="text==='success'" status="success" text="成功" />
                     <a-badge v-else status="processing" text="进行中" />
-                    <!--
-                    <a @click="handleUpdateModalVisible(true, record)">配置</a>
-                    <a-divider type="vertical" />
-                    <a href="">订阅警报</a>
-                    -->
                 </template>
             </a-table-column>
             <a-table-column dataIndex="operator" key="operator" title="操作员ID">
             </a-table-column>
             <a-table-column dataIndex="cost" key="cost" title="耗时">
             </a-table-column>
-        </a-table>
-    </a-card>
-
-    <a-card>
-
-        <!--:columns="democolumns"-->
-        <a-table :dataSource="data" bordered :columns="democolumns">
-          <!--
-            <a-table-column dataIndex="name" key="name" title="name" >
-            </a-table-column>
-            <a-table-column dataIndex="tel" key="tel" title="tel">
-            </a-table-column>
             -->
-            <template slot="name" slot-scope="text, record, index">
-                <a href="javascript:;" v-if="index!=4">{{text}}--{{record.name}}--{{index}}</a>
-                <template v-else>
-                  ddd
-                </template>
-            </template>
         </a-table>
-
     </a-card>
 
 </div>
@@ -158,121 +118,64 @@ export default class BasicDetail extends Vue {
         title: '商品编号',
         dataIndex: 'id',
         key: 'id',
-        customRender: (text: any, row: any, index: any /**/ ) => {
-            // return <a></a>;
-            // return <a href=""></a>;
-            // return <a href=""></a>;
-            /*
-            if ( text !== '总计') {
-              return <a href="">{text}</a>;
-            }
-            /*
-            if (index < basicGoods.length) {
-              return <a href="">{text}</a>;
-            }
-            return {
-              children: <span style={{ fontWeight: 600 }}>总计</span>,
-              props: {
-                colSpan: 4,
-              },
-            };
-            */
-        },
+        customRender: this.goodsIdRender,
+    }, {
+        title: '商品名称',
+        dataIndex: 'name',
+        key: 'name',
+        customRender: this.renderContent,
+    }, {
+        title: '商品条码',
+        dataIndex: 'barcode',
+        key: 'barcode',
+        customRender: this.renderContent,
+    }, {
+        title: '单价',
+        dataIndex: 'price',
+        key: 'price',
+        customRender: this.renderContent,
+    }, {
+        title: '数量（件）',
+        dataIndex: 'num',
+        key: 'num',
+        align: 'right',
+        customRender: this.goodsNumRender,
+    }, {
+        title: '金额',
+        dataIndex: 'amount',
+        key: 'amount',
+        align: 'right',
+        customRender: this.goodsAmountRender,
     }, ];
 
-    private data = [{
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        tel: '0571-22098909',
-        phone: 18889898989,
-        address: 'New York No. 1 Lake Park',
-    }, {
-        key: '2',
-        name: 'Jim Green',
-        tel: '0571-22098333',
-        phone: 18889898888,
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    }, {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        tel: '0575-22098909',
-        phone: 18900010002,
-        address: 'Sidney No. 1 Lake Park',
-    }, {
-        key: '4',
-        name: 'Jim Red',
-        age: 18,
-        tel: '0575-22098909',
-        phone: 18900010002,
-        address: 'London No. 2 Lake Park',
-    }, {
-        key: '5',
-        name: 'Jake White',
-        age: 18,
-        tel: '0575-22098909',
-        phone: 18900010002,
-        address: 'Dublin No. 2 Lake Park',
-    }];
-
-    private democolumns = [{
-        title: 'Name',
-        dataIndex: 'name',
-        scopedSlots: {
-            customRender: 'name'
-        },
-        // customRender: 'name',
-        /*
-        customRender: (text, row, index) => {
-          if (index < 4) {
-            return <a href="javascript:;">{text}</a>;
-          }
-          return {
-            children: <a href="javascript:;">{text}</a>,
-            attrs: {
-              colSpan: 5,
-            },
-          };
-        },
-        */
-    }, {
-        title: 'Age',
-        dataIndex: 'age',
-        // customRender: renderContent,
-    }, {
-        title: 'Home phone',
-        colSpan: 2,
-        dataIndex: 'tel',
-        /*
-        customRender: (value, row, index) => {
-          const obj = {
-            children: value,
-            attrs: {},
-          };
-          if (index === 2) {
-            obj.attrs.rowSpan = 2;
-          }
-          // These two are merged into above cell
-          if (index === 3) {
-            obj.attrs.rowSpan = 0;
-          }
-          if (index === 4) {
-            obj.attrs.colSpan = 0;
-          }
-          return obj;
-        },*/
-    }, {
-        title: 'Phone',
-        colSpan: 0,
-        dataIndex: 'phone',
-        // customRender: renderContent,
-    }, {
-        title: 'Address',
-        dataIndex: 'address',
-        //  customRender: renderContent,
-    }];
+    private progressColumns = [
+    {
+        title: '时间',
+        dataIndex: 'time',
+        key: 'time',
+    },
+    {
+        title: '当前进度',
+        dataIndex: 'rate',
+        key: 'rate',
+    },
+    {
+        title: '状态',
+        dataIndex: 'status',
+        key: 'status',
+        customRender: this.progressStateRender,
+    },
+    {
+        title: '操作员ID',
+        dataIndex: 'operator',
+        key: 'operator',
+    },
+    {
+        title: '耗时',
+        dataIndex: 'cost',
+        key: 'cost',
+    },
+    ];
 
     private mounted(): void {
         axios.get('/api/profile/basic').then((res: any) => {
@@ -296,6 +199,53 @@ export default class BasicDetail extends Vue {
             }
         });
     }
+
+    private renderContent(value: string, row: any, index: number) {
+
+        const obj = {
+            children: value,
+            attrs: {
+                colSpan: 1,
+            },
+        };
+        if (value === '总计') {
+            obj.attrs.colSpan = 0;
+        }
+        return obj;
+    };
+
+    private goodsIdRender(text: any, record: any, index: any) {
+        if (record.id !== '总计') {
+            return <a href = '#' > {text} </a>;
+        }
+        return {
+            children: <span style = 'font-weight:600' > 总计 </span>,
+            attrs: {
+                colSpan: 4,
+            },
+        };
+    }
+
+    private goodsNumRender(text: any, record: any, index: any) {
+        if (record.id !== '总计') {
+            return text;
+        }
+        return <span style = 'font-weight:600' > {text} </span>;
+    }
+
+    private goodsAmountRender(text: string, record: any, index: any) {
+        if (record.id !== '总计') {
+            return text;
+        }
+        return <span style = 'font-weight:600' > {text} </span>;
+    }
+
+    private progressStateRender(text: string, record: any, index: any){
+        if(text === 'success'){
+            return <a-badge status="success" text="成功" />;
+        }
+        return <a-badge status="processing" text="进行中" />;
+    }
 }
 </script>
 
@@ -309,4 +259,3 @@ export default class BasicDetail extends Vue {
     margin-bottom: 16px;
 }
 </style>
-

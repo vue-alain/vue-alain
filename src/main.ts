@@ -24,8 +24,6 @@ import Components from '@/components/Index';
 import Startup from '@/core/Startup';
 import AxiosInterceptor from '@/core/AxiosInterceptor';
 
-import createElement from '@/plugin/createElement';
-// AxiosInterceptor.init();
 
 Vue.use(Antd);
 Vue.use(Viser);
