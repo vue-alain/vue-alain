@@ -117,19 +117,6 @@
                     </a-button>
                   </a-dropdown>
                 </span>
-
-                <!--
-              {selectedRows.length > 0 && (
-                <span>
-                  <Button>批量操作</Button>
-                  <Dropdown overlay={menu}>
-                    <Button>
-                      更多操作 <Icon type="down" />
-                    </Button>
-                  </Dropdown>
-                </span>
-              )}
-              -->
             </div>
             <av-standard-table :dataSource="dataSource" :selectedRows="selectedRows" :columns="columns" :loading="tableLoading" @tableChange="handlerTableChange" @selectChange="handlerSelectChange">
             </av-standard-table>
