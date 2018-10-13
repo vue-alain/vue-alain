@@ -6,6 +6,7 @@ import listrouter from './list.router';
 import formrouter from './form.router';
 import detailrouter from './detail.router';
 import widgetsrouter from './widgets.router';
+import passportrouter from './passport.router';
 
 
 Vue.use(Router);
@@ -20,5 +21,6 @@ export default new Router({
     formrouter,
     detailrouter,
     widgetsrouter,
+    passportrouter,
   ],
 });

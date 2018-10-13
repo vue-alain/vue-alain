@@ -16,7 +16,7 @@
         </div>
         -->
 
-    <a-menu slot="overlay">
+    <a-menu slot="overlay" @click="handleCommand">
         <a-menu-item>
 
             <i class="fa fa-user-o"></i>
@@ -27,7 +27,7 @@
 
             个人设置</a-menu-item>
         <a-menu-divider />
-        <a-menu-item divided name="logout">
+        <a-menu-item divided key="logout">
 
             <i class="fa fa-sign-out"></i>
 
@@ -45,18 +45,18 @@ import {
 
 @Component({})
 export default class HeaderUser extends Vue {
-    private handleCommand(command: string) {
-        switch (command) {
-            case 'logout':
-                this.logout();
-                break;
-            default:
-                return;
-        }
+
+    private menuCommand: any = {
+        logout:  this.logout,
+    };
+
+    private handleCommand(e: any) {
+        this.menuCommand[e.key]();
     }
 
+    // 退出登录，需要做其他事情
     private logout() {
-        // this.$router.push('/passport/login');
+        this.$router.push('/passport/login');
     }
 }
 </script>
