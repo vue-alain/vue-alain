@@ -9,8 +9,7 @@
                     {{item.title}}
                     总计&nbsp;
                     <span style="font-weight: 600">
-                      <!--{item.render ? item.render(item.total) : item.total}-->
-                      {{item.total}}
+                      {{item.customRender ? item.customRender(item.total) : item.total}}
                     </span>
                     </span>
                     <a @click="cleanSelectedKeys" style="margin-left: 24px">
@@ -20,30 +19,30 @@
                 </template>
             </a-alert>
         </div>
-        <a-table :loading="loading" :dataSource="dataSource" :rowSelection="rowSelection" @change="handleTableChange">
+        <a-table :loading="loading" :dataSource="dataSource" :rowSelection="rowSelection" @change="handleTableChange" :columns="columns">
+            <!--
             <slot name="columns"></slot>
+            -->
         </a-table>
     </div>
 </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .standardTable {
+    :global {
+        .ant-table-pagination {
+            margin-top: 24px;
+        }
+    }
 
     .tableAlert {
         margin-bottom: 16px;
     }
 }
-</style><style lang="less">
-.standardTable {
-    .ant-table-pagination {
-        margin-top: 24px;
-    }
-
-}
 </style>
 
-<script lang="ts">
+<script lang="tsx">
 import {
     Component,
     Prop,
@@ -51,9 +50,6 @@ import {
     Emit,
 } from 'vue-property-decorator';
 import * as _ from 'lodash';
-
-const statusMap = ['default', 'processing', 'success', 'error'];
-const status = ['关闭', '运行中', '已上线', '异常'];
 
 @Component({})
 export default class StandardTable extends Vue {
@@ -104,12 +100,6 @@ export default class StandardTable extends Vue {
     })
     private selectedRows!: any[];
 
-    @Prop({
-        type: Array,
-        default: () => [],
-    })
-    private needTotalColumns!: any[];
-
     get paginationProps(): any {
         return {
             showSizeChanger: true,
@@ -128,25 +118,29 @@ export default class StandardTable extends Vue {
 
     private handleRowSelectChange(selectedRowKeys: any, selectedRows: any): void {
         this.selectedRowKeys = selectedRowKeys;
-        this.needTotalList = this.needTotalColumns.map((item: any) => {
-            return {
-                item,
-                total: _.sumBy(selectedRows, item),
-            };
-        });
+
+        this.needTotalList = this.needTotalList.map((item: any) => ({
+            ...item,
+            total: _.sumBy(selectedRows, item.dataIndex),
+        }));
         this.onSelectChange(selectedRowKeys, selectedRows);
 
     }
 
     private mounted() {
-        this.needTotalList = this.needTotalColumns.map((item: any) => {
-            return {
-                item,
-                total: _.sumBy(this.selectedRows, item),
-            };
-        });
+        this.needTotalList = this.initTotalList(this.columns);
     }
-
+    private initTotalList(columns: any[]) {
+        const totalList: any[] = [];
+        columns.forEach((column: any) => {
+            if (column.needTotal) {
+                totalList.push({ ...column,
+                    total: 0
+                });
+            }
+        });
+        return totalList;
+    }
     @Emit('selectChange')
     private onSelectChange(selectedRowKeys: any, selectedRows: any) {
 
