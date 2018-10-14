@@ -126,6 +126,7 @@ import {
     Mutation,
     namespace,
 } from 'vuex-class';
+const userModule = namespace('user');
 
 import axios from 'axios';
 
@@ -149,6 +150,11 @@ export default class PassportLayout extends Vue {
         super();
     }
 
+    @userModule.Mutation('loginSuccess')
+    private loginSuccess(param: any) {
+
+    }
+
     private handleLoginSubmit(e: any) {
         e.preventDefault();
         this.loginForm.validateFields((err: any, values: any) => {
@@ -160,6 +166,7 @@ export default class PassportLayout extends Vue {
                         this.error = resData.error;
                         return;
                     }
+                    this.loginSuccess({token: resData.token});
                     this.$router.push('/');
                 })
                 .finally(() =>  {

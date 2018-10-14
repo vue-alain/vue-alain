@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import Router, {Route} from 'vue-router';
 import dashboardrouter from './dashboard.router';
 
 import listrouter from './list.router';
@@ -23,6 +23,17 @@ const router = new Router({
     widgetsrouter,
     passportrouter,
   ],
+});
+
+router.beforeResolve((to: Route, from: Route, next: any) => {
+  if (to.meta && to.meta.routerGuard) {
+    // 需要路由守护
+    if (store.state.user.token == undefined) {
+      next('/passport/login');
+      return;
+    }
+  }
+  next();
 });
 
 router.beforeEach( ( to, from, next ) => {
