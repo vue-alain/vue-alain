@@ -1,6 +1,7 @@
 <template>
 <div class="aside">
-    <a-menu mode="inline" :inlineCollapsed="isCollapse" v-model="currentRouteName" :openKeys.sync="openMenus">
+    <!--:openKeys.sync="openMenus"-->
+    <a-menu mode="inline" :inlineCollapsed="isCollapse" v-model="currentRouteName" >
         <template v-for="menuitem in menuData">
             <a-menu-item :key="menuitem.name" v-if="menuitem.children==null">
                 <router-link :to="menuitem.name">

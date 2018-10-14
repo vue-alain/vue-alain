@@ -138,7 +138,7 @@ export default class PassportLayout extends Vue {
 
     private loading: boolean = false;
 
-    private error:string ='';
+    private error: string = '';
 
     private loginModel: any = {
         username: null,
@@ -149,18 +149,22 @@ export default class PassportLayout extends Vue {
         super();
     }
 
-    private handleLoginSubmit() {
+    private handleLoginSubmit(e: any) {
+        e.preventDefault();
         this.loginForm.validateFields((err: any, values: any) => {
             if (!err) {
+                this.loading = true;
                 axios.post('/login', this.loginModel).then( (res: any) => {
                     const resData = res.data;
-                    if( resData.error) {
+                    if ( resData.error) {
                         this.error = resData.error;
                         return;
                     }
+                    this.$router.push('/');
+                })
+                .finally(() =>  {
+                    this.loading = false;
                 });
-
-                this.$router.push('/');
             }
         });
     }
