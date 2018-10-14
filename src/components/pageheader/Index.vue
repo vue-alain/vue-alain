@@ -52,7 +52,7 @@
 
  .page-header {
   display: block;
-  background-color: @page-header-bg;
+  background-color: #fafbfc;//@page-header-bg;
   padding: 16px 32px 0 32px;
   border-bottom: @border-width-base @border-style-base @border-color-split;
     margin-right: -24px;
@@ -84,7 +84,6 @@
       border-radius: @border-radius-base;
       display: block;
     }
-    
   }
   &__title {
     font-size: 20px;

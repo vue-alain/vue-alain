@@ -48,7 +48,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({})
 export default class FooterToolbar extends Vue {
-  @Prop({ type: Object, default: {} })
+  @Prop({ type: Object, default: ()  => { return {}; } })
   private toolbarStyle!: any;
 }
 </script>

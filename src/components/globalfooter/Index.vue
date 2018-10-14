@@ -34,8 +34,8 @@ export default class GlobalFooter extends Vue {
 
     @Prop({
         type: Array,
-        default () {
-            return []
+        default: () => {
+            return [];
         },
     })
     private links!: any[];

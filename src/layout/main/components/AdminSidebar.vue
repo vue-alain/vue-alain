@@ -68,6 +68,13 @@ export default class AdminSidebar extends Vue {
         return router.options.routes;
     }
 
+
+/*
+    get currentRouteName(): any[] {
+        return  [this.$route.name];
+    }
+    */
+
     private mounted() {
         this.currentRouteName = [this.$route.name];
         // 查找需要展开的open menu
@@ -84,9 +91,14 @@ export default class AdminSidebar extends Vue {
         this.openMenus = _.map(opens, 'name');
     }
 
-    @Watch('openMenus')
-    private openMenusChange(){
-        console.log(this.openMenus);
+    @Watch('$route')
+    private watchRouteName(newVal: any, oldVal: any){
+        this.currentRouteName = [newVal.name];
+        /*
+        this.currentRouteName = [this.$route.name];
+        console.log(newVal);
+        console.log(oldVal);
+        */
     }
 }
 </script>

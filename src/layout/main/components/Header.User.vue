@@ -3,19 +3,10 @@
     <div class="item">
 
         <div class="d-flex align-items-center px-sm">
-            <!---->
             <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" nzSize="small" class="mr-sm"></a-avatar>
             Admin
         </div>
     </div>
-    <!--
-        <div>
-            <img src="@/assets/tmp/img/avatar.jpg"/>
-            </div>
-            Admin
-        </div>
-        -->
-
     <a-menu slot="overlay" @click="handleCommand">
         <a-menu-item>
 
@@ -54,7 +45,9 @@ export default class HeaderUser extends Vue {
         this.menuCommand[e.key]();
     }
 
-    // 退出登录，需要做其他事情
+    /**
+     * 退出登录，需要做其他事情
+     */
     private logout() {
         this.$router.push('/passport/login');
     }
