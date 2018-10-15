@@ -321,6 +321,13 @@
           </a-tabs>
         </a-card>
 
+    <a-card class="offlineCard" style="margin-top: 32px" title="echarts图标测试">
+      <ve-line 
+      :data="chartData" 
+      :settings="chartSettings" 
+      :extend="extendSettings" 
+      :legend-visible="false"></ve-line>
+    </a-card>
   </div>
 </template>
 
@@ -330,6 +337,20 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import moment from 'moment';
 
 import { getTimeDistance } from '@/util/util';
+import {format} from 'date-fns';
+
+const miniChartData: any[] = [];
+
+const beginDay = new Date().getTime();
+
+const fakeY = [7, 5, 4, 2, 4, 7, 5, 6, 5, 9, 6, 3, 1, 5, 3, 6, 5];
+
+for (let i = 0; i < fakeY.length; i += 1) {
+  miniChartData.push({
+    x: format(new Date(beginDay + 1000 * 60 * 60 * 24 * i), 'YYYY-MM-DD'),
+    y: fakeY[i],
+  });
+}
 
 const rankingListData = [];
 for (let i = 0; i < 7; i += 1) {
@@ -350,6 +371,42 @@ export default class Analysis extends Vue {
   private salesType: string = 'all';
 
   private activeKey: string = 'Stores 0';
+
+  private chartSettings = {
+        area: true,
+        scale:[true,true],
+      };
+
+  private extendSettings ={
+    xAxis:{
+      show:false
+    },
+    yAxis:{
+      show:false
+    },
+    series (v:any) {
+          v.forEach((i: any ) => {
+            i.symbol = false;
+            i.showSymbol = false;
+            i.showAllSymbol = false;
+            i.lineStyle={
+              opacity:0
+            };
+            i.itemStyle={
+              color:'rgba(151, 95, 228,0.75)'
+            };
+            i.areaStyle={
+              opacity:0.75
+            };
+          });
+          return v;
+        }
+  }
+
+  private chartData= {
+          columns: ['x', 'y'],
+          rows: miniChartData
+        };
 
   constructor() {
     super();
