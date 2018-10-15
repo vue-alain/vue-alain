@@ -10,6 +10,7 @@ import 'ant-design-vue/dist/antd.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 import Viser from 'viser-vue';
+import VCharts from 'v-charts';
 
 import '@/assets/theme/styles/index.less';
 
@@ -29,6 +30,7 @@ Vue.use(Antd);
 Vue.use(Viser);
 Vue.use(Charts);
 Vue.use(Components);
+Vue.use(VCharts);
 // Vue.use(createElement);
 
 
