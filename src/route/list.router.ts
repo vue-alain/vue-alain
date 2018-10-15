@@ -7,6 +7,7 @@ const router = {
     meta: {
         title: '列表页',
         icon: 'table',
+        routerGuard: true,
     },
     children: [{
       path: 'query',
@@ -14,6 +15,7 @@ const router = {
       component: () => import(/* webpackChunkName: "list" */ '@/views/list/Query.vue'),
       meta: {
         title: '查询表格',
+        routerGuard: true,
       },
     },
     {
@@ -22,6 +24,7 @@ const router = {
       component: () => import(/* webpackChunkName: "list" */ '@/views/list/Primary.vue'),
       meta: {
         title: '标准表格',
+        routerGuard: true,
       },
     },
     {
@@ -30,6 +33,7 @@ const router = {
       component: () => import(/* webpackChunkName: "list" */ '@/views/list/Card.vue'),
       meta: {
         title: '卡片列表',
+        routerGuard: true,
       },
     }],
   };
