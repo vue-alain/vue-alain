@@ -26,17 +26,19 @@ const router = new Router({
 });
 
 router.beforeResolve((to: Route, from: Route, next: any) => {
-  console.log(from);
+  
+  /*
   if (to.meta && to.meta.routerGuard) {
     // 需要路由守护
     if (store.state.user.token == undefined) {
       let loginurl='?redirect=${from.path}';
       next({name:'/passport/login',query:{
         redirect:to.path
-      }}/*`/passport/login${loginurl}`*/);
+      }});
       return;
     }
   }
+  */
   next();
 });
 

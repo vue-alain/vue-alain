@@ -27,7 +27,7 @@
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <div>
-            <av-g2-mini-area color="rgb(151, 95, 228)" />
+            <av-g2-mini-area color="rgb(151, 95, 228)" :data="chartData" />
           </div>
           <div slot="footer">日访问量<span> 123,4</span></div>
         </av-g2-chart-card>
@@ -273,6 +273,7 @@
                 :height="400"
                 :lineWidth="4"
               />
+              
               <!--
               <av-g2-pie
                       :percent="75"
@@ -296,7 +297,7 @@
               v-for="(shop) in offlineData"
               :key="shop.name">
               <div slot="tab">
-                <a-row :gutter="8" style="width: 150px, margin: '8px 0px'">
+                <a-row :gutter="8" class="row">
                   <a-col :span="12">
                     <av-number-info
                       :title="shop.name"
@@ -309,9 +310,8 @@
                     <av-g2-pie
                       :percent="shop.cvr * 100"
                       :color="activeKey !== shop.name?'#BDE4FF':null"
-                      style="height:64px"
                       :inner="0.55"
-                      :height="128"
+                      :height="64"
                     />
                   </a-col>
                 </a-row>
@@ -322,11 +322,25 @@
         </a-card>
 
     <a-card class="offlineCard" style="margin-top: 32px" title="echarts图标测试">
-      <ve-line 
-      :data="chartData" 
-      :settings="chartSettings" 
-      :extend="extendSettings" 
-      :legend-visible="false"></ve-line>
+      <a-row>
+        <a-col :span="12">
+          <av-g2-pie
+                      :percent="50"
+                      :inner="0.55"
+                      :width="400"
+                      :height="400"
+                    />
+                    </a-col>  
+        <a-col  :span="12">
+<av-g2-pie
+                      :percent="50"
+                      :inner="0.55"
+                      :height="64"
+                    />
+
+        </a-col>
+      </a-row>
+      
     </a-card>
   </div>
 </template>
@@ -372,41 +386,8 @@ export default class Analysis extends Vue {
 
   private activeKey: string = 'Stores 0';
 
-  private chartSettings = {
-        area: true,
-        scale:[true,true],
-      };
-
-  private extendSettings ={
-    xAxis:{
-      show:false
-    },
-    yAxis:{
-      show:false
-    },
-    series (v:any) {
-          v.forEach((i: any ) => {
-            i.symbol = false;
-            i.showSymbol = false;
-            i.showAllSymbol = false;
-            i.lineStyle={
-              opacity:0
-            };
-            i.itemStyle={
-              color:'rgba(151, 95, 228,0.75)'
-            };
-            i.areaStyle={
-              opacity:0.75
-            };
-          });
-          return v;
-        }
-  }
-
-  private chartData= {
-          columns: ['x', 'y'],
-          rows: miniChartData
-        };
+  
+  private chartData: any[] = miniChartData;
 
   constructor() {
     super();
@@ -675,6 +656,26 @@ get salesTypeDataOffline(): any[] {
     ];
    }
 
+   get pieChartData() {
+     return {
+       columns: ['item', 'count'],
+          rows: [
+           {item: '家用电器', count: 4544}
+,
+{item: '食用酒水', count: 3321}
+,
+{item: '个护健康', count: 3113}
+,
+{item: '服饰箱包', count: 2341}
+,
+{item: '母婴产品', count: 1231}
+,
+{item: '其他', count: 1231}
+          ]
+     }
+          
+        }
+
   private isActive(type: string) {
     const value = getTimeDistance(type);
     if (!this.rangePickerValue[0] || !this.rangePickerValue[1]) {
@@ -727,6 +728,16 @@ get salesTypeDataOffline(): any[] {
     position: absolute;
     left: 24px;
     bottom: 15px;
+  }
+}
+
+.offlineCard{
+  .mixin() {
+    width:200px;
+  }
+  .row{
+    width:200px !important;
+    margin: '8px 0px' !important;
   }
 }
 
