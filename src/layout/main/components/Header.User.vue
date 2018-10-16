@@ -33,6 +33,12 @@ import {
     Prop,
     Vue,
 } from 'vue-property-decorator';
+import {
+    State,
+    Mutation,
+    namespace,
+} from 'vuex-class';
+const userModule = namespace('user');
 
 @Component({})
 export default class HeaderUser extends Vue {
@@ -45,10 +51,17 @@ export default class HeaderUser extends Vue {
         this.menuCommand[e.key]();
     }
 
+    @userModule.Mutation('loginSuccess')
+    private loginSuccess(param: any) {
+
+    }
+
     /**
      * 退出登录，需要做其他事情
      */
     private logout() {
+        this.$ls.remove('token');
+        this.loginSuccess({token:null})
         this.$router.push('/passport/login');
     }
 }

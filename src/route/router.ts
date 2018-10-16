@@ -27,7 +27,7 @@ const router = new Router({
 
 router.beforeResolve((to: Route, from: Route, next: any) => {
 
-  /*
+  /**/
   if (to.meta && to.meta.routerGuard) {
     // 需要路由守护
     if (store.state.user.token == undefined) {
@@ -38,7 +38,6 @@ router.beforeResolve((to: Route, from: Route, next: any) => {
       return;
     }
   }
-  */
   next();
 });
 

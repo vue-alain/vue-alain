@@ -170,6 +170,7 @@ export default class PassportLayout extends Vue {
                         return;
                     }
                     this.loginSuccess({token: resData.token});
+                    this.$ls.set('token',resData.token);
                     this.$router.push('/');
                 })
                 .finally(() =>  {

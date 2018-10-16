@@ -15,6 +15,8 @@ import VCharts from 'v-charts';
 
 import Vuei18n from 'vue-i18n';
 
+import Storage from 'vue-ls';
+
 import '@/assets/theme/styles/index.less';
 
 import {preloaderFinished} from './util/preloader';
@@ -41,6 +43,12 @@ Vue.use(Components);
 Vue.use(VCharts);
 
 Vue.use(Vuei18n);
+
+Vue.use(Storage, {
+  namespace: 'vuealain_',
+  name: 'ls',
+  storage: 'local',
+});
 
 const messages = {
   zh_CN: { title: '中文', key: 'zh_CN', values: zh_CN },
@@ -71,6 +79,15 @@ Startup.bootstrap().then(
     ( window as any ).appBootstrap();
 
     store.commit('app/setApp', res.data.app);
+
+    const initToken = app.$ls.get('token');
+    console.log(initToken);
+    if( initToken!=null) {
+      store.commit('user/loginSuccess', {token: initToken});
+      // console.log(initToken);
+    }
+    
+    // store.commit('user/loginSuccess', {token: 'admin'});
 
   },
 );
