@@ -89,12 +89,12 @@ export default class Pie extends Vue {
     private scale: any[] = scale;
 
 
-    get chartHeight(){
+    get chartHeight() {
       return `${this.height}px`;
     }
 
-    get chartWidth(){
-      if(this.width ==null){
+    get chartWidth() {
+      if (this.width == null) {
         return 'auto';
       }
       return `${this.width}px`;
@@ -110,27 +110,26 @@ export default class Pie extends Vue {
         },
     }];
 
-    get extendSettings(){
-      let setting:any ={};
+    get extendSettings() {
+      const setting: any = {};
       return setting;
     }
 
     get chartSettings() {
       const chartColor = this.color;
-      let setting: any ={
-        
+      const setting: any = {
         label: {
           show: !this.isPercent,
         },
       };
 
-      if(this.isPercent){
-        setting.radius =[10,20];
-        setting.offsetY = this.height/2;
-        setting.itemStyle={
-          color(params:any){
+      if (this.isPercent) {
+        setting.radius = [10, 20];
+        setting.offsetY = this.height / 2;
+        setting.itemStyle = {
+          color(params: any) {
             return params.data.name === '占比' ? chartColor || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5';
-          }
+          },
         };
       }
 
@@ -154,8 +153,8 @@ export default class Pie extends Vue {
       }
       return {
           columns: ['item', 'count'],
-          rows: source
-     }
+          rows: source,
+      };
       /*
       const dv1 = new DataSet.View().source(source);
       dv1.transform({

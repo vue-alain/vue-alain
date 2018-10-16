@@ -85,7 +85,7 @@ export default class MiniBar extends Vue {
 
     private padding = [36, 5, 30, 5];
 
-    get scale(){
+    get scale() {
       return {
         x: {
           type: 'cat',
@@ -96,7 +96,7 @@ export default class MiniBar extends Vue {
       };
     }
 
-    get tooltip(){
+    get tooltip() {
       return [
         'x*y',
         (x: any, y: any) => ({
@@ -106,7 +106,7 @@ export default class MiniBar extends Vue {
       ];
     }
 
-    get chartHeight(){
+    get chartHeight() {
       return this.height + 54;
     }
 }

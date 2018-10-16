@@ -83,9 +83,9 @@ padding={[0, padding[1] + 20, 0, padding[3]]}
 </style>
 
 <script  lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-const DataSet = require("@antv/data-set");
+const DataSet = require('@antv/data-set');
 
 const sourceData = [
   /*
@@ -121,7 +121,7 @@ const sourceData = [
   { x: 1536949120634, y1: 103, y2: 19 },
   { x: 1536950920634, y1: 23, y2: 95 },
   { x: 1536952720634, y1: 97, y2: 28 },
-  { x: 1536954520634, y1: 36, y2: 102 }
+  { x: 1536954520634, y1: 36, y2: 102 },
 ];
 
 /*
@@ -137,10 +137,10 @@ const data = dv.rows;
 
 const scale = [
   {
-    dataKey: "x",
+    dataKey: 'x',
     min: 0,
-    max: 1
-  }
+    max: 1,
+  },
 ];
 
 @Component({})
@@ -152,24 +152,24 @@ export default class TimelineChart extends Vue {
     type: Object,
     default() {
       return {
-        y1: "y1",
-        y2: "y2"
+        y1: 'y1',
+        y2: 'y2',
       };
-    }
+    },
   })
   private titleMap!: any;
- 
+
   get originDv(): any[] {
     return sourceData;
   }
 
   get timeScale() {
     return {
-      dataKey: "x",
-      type: "time",
+      dataKey: 'x',
+      type: 'time',
       tickInterval: 60 * 60 * 1000,
-      mask: "HH:mm",
-      range: [0, 1]
+      mask: 'HH:mm',
+      range: [0, 1],
     };
   }
 
@@ -185,64 +185,22 @@ export default class TimelineChart extends Vue {
     if (data[0] && data[0].y1 && data[0].y2) {
       max = Math.max(
         [...data].sort((a, b) => b.y1 - a.y1)[0].y1,
-        [...data].sort((a, b) => b.y2 - a.y2)[0].y2
+        [...data].sort((a, b) => b.y2 - a.y2)[0].y2,
       );
     }
     return max;
   }
 
-  private start=0;
-  private end = 0;
-  private buildDataSet() {
-    const start = this.start;
-    const end = this.end;
-    return new DataSet({
-        state: {
-          start: start,
-          end:end
-        }
-      });
-  }
-
-  private  dv(ds:any) {
-    const data = sourceData;
-    const self = this;
-    const dv = ds.createView();
-    dv.source(data)
-      .transform({
-        type: "filter",
-        callback: (obj: any) => {
-          const date = obj.x;
-          return date <= ds.state.end && date >= ds.state.start;
-        }
-      })
-      .transform({
-        type: "map",
-        callback(row: any) {
-          const newRow = { ...row };
-          newRow[self.titleMap.y1] = row.y1;
-          newRow[self.titleMap.y2] = row.y2;
-          return newRow;
-        }
-      })
-      .transform({
-        type: "fold",
-        fields: [self.titleMap.y1, self.titleMap.y2], // 展开字段集
-        key: "key", // key字段
-        value: "value" // value字段
-      });
-
-    return dv;
-  }
-
+  private start: any = 0;
+  private end: any = 0;
   private scale = scale;
   private height = 400;
   private borderWidth = 2;
-  private style = { stroke: "#fff", lineWidth: 1 };
+  private style = { stroke: '#fff', lineWidth: 1 };
 
-  private padding = [60, 20, 40, 40];
+  private padding: any[] = [60, 20, 40, 40];
 
-  private chartDataSet = {
+  private chartDataSet: any = {
   };
 
   private handleSliderChange(opts: any) {
@@ -252,23 +210,67 @@ export default class TimelineChart extends Vue {
     this.bindChart();
   }
 
-  private buildData(){
+  private buildData() {
 
     const ds = this.buildDataSet();
     const dv = this.dv(ds);
     return {
-      ds,dv
-    }
+      ds,
+      dv,
+    };
   }
 
-  private bindChart(){
+  private bindChart() {
     const source = this.buildData();
-    this.chartDataSet= source.dv;
+    this.chartDataSet = source.dv;
   }
 
-  private mounted(){
-    this.start =sourceData[0].x;
-    this.end=sourceData[sourceData.length - 1].x;
+  private buildDataSet() {
+    const start = this.start;
+    const end = this.end;
+    return new DataSet({
+        state: {
+          [start]: start,
+          [end]: end,
+        },
+      });
+  }
+
+  private  dv(ds: any) {
+    const data = sourceData;
+    const self = this;
+    const dv = ds.createView();
+    dv.source(data)
+      .transform({
+        type: 'filter',
+        callback: (obj: any) => {
+          const date = obj.x;
+          return date <= ds.state.end && date >= ds.state.start;
+        },
+      })
+      .transform({
+        type: 'map',
+        callback(row: any) {
+          const newRow = { ...row };
+          newRow[self.titleMap.y1] = row.y1;
+          newRow[self.titleMap.y2] = row.y2;
+          return newRow;
+        },
+      })
+      .transform({
+        type: 'fold',
+        fields: [self.titleMap.y1, self.titleMap.y2], // 展开字段集
+        key: 'key', // key字段
+        value: 'value', // value字段
+      });
+
+    return dv;
+  }
+
+
+  private mounted() {
+    this.start = sourceData[0].x;
+    this.end = sourceData[sourceData.length - 1].x;
     this.bindChart();
   }
 

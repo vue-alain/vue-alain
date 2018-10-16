@@ -58,45 +58,48 @@ export default class MiniArea extends Vue {
     @Prop({type: Array, default: () => []})
     private data!: any[];
 
-    get chartHeight(){
+    get chartHeight() {
       return `${this.height}px`;
     }
 
     private chartSettings = {
-        height:this.height,
-        area: true,
-        scale:[true,true],
-      };
+      height: this.height,
+      area: true,
+      scale: [true, true],
+    };
 
-  get extendSettings(){
+  get extendSettings() {
     const hasLine = this.line;
     const chartColor = this.color;
     const borderColor = this.borderColor;
     return {
-      xAxis:{
-      show:false
+      xAxis: {
+      show: false,
     },
-    yAxis:{
-      show:false
+    yAxis: {
+      show: false,
     },
-    series (v:any) {
+    series(v: any) {
           v.forEach((i: any ) => {
             i.symbol = false;
             i.showSymbol = false;
             i.showAllSymbol = false;
-            i.lineStyle={
-              opacity: hasLine?1:0,
-              color:borderColor
+
+            i.lineStyle = {
+              opacity: hasLine ? 1 : 0,
+              color: borderColor,
             };
-            i.itemStyle={
-              color:chartColor
+
+            i.itemStyle = {
+              color: chartColor,
             };
-            i.areaStyle={
-              opacity:1
+
+            i.areaStyle = {
+              opacity: 1,
             };
           });
           return v;
-        }
+        },
     };
   }
 

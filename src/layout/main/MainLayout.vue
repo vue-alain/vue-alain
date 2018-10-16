@@ -86,16 +86,15 @@ export default class MainLayout extends Vue {
   }
 
   @reuseTabModule.Action('remove')
-  private reuseTabClose(param: any){
+  private reuseTabClose(param: any) {
 
   }
 
   @Watch('reuseTabTo')
   private watchReuseTabTo(newVal: string, oldVal: string) {
-    if(newVal!==undefined || newVal!==''){
+    if (newVal !== undefined || newVal !== '') {
       this.$router.push(newVal);
     }
-    
   }
 
 }

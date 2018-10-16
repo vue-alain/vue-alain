@@ -47,7 +47,18 @@
               </div>
               <a-menu slot="overlay">
                 <a-menu-item>全屏</a-menu-item>
-                <a-menu-item>切换语言</a-menu-item>
+                <a-menu-item>
+                  <a-dropdown>
+                    <a class="ant-dropdown-link" href="#">
+                      语言 <a-icon type="down" />
+                    </a>
+                    <a-menu slot="overlay" @click="localeChange">
+                      <a-menu-item v-for="(locale) in localeList()" :key="locale.key">
+                        <a href="javascript:;">{{locale.title}}</a>
+                      </a-menu-item>
+                    </a-menu>
+                  </a-dropdown>
+                </a-menu-item>
               </a-menu>
             </a-dropdown>
           
@@ -65,6 +76,8 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 import { State, Mutation, namespace } from 'vuex-class';
+
+import * as _ from 'lodash';
 
 const appModule = namespace('app');
 
@@ -89,6 +102,19 @@ export default class AdminHeader extends Vue {
 
   private handlerCollapsedSidebar( ): void {
     this.collapse();
+  }
+
+  private localeList() {
+    return _.map(this.$i18n.messages, (item: any) => {
+      return {title: item.title, key: item.key};
+    });
+  }
+
+  private localeChange(e: any) {
+    this.$i18n.locale = e.key;
+  }
+
+  private mounted() {
   }
 }
 </script>

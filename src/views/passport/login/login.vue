@@ -150,8 +150,7 @@ export default class PassportLayout extends Vue {
         super();
     }
 
-    private mounted(){
-        console.log(this.$route.params);
+    private mounted() {
     }
 
     @userModule.Mutation('loginSuccess')
@@ -171,7 +170,6 @@ export default class PassportLayout extends Vue {
                         return;
                     }
                     this.loginSuccess({token: resData.token});
-                    
                     this.$router.push('/');
                 })
                 .finally(() =>  {

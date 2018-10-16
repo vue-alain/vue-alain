@@ -141,12 +141,12 @@
 import {
     Component,
     Prop,
-    Vue
+    Vue,
 } from 'vue-property-decorator';
 import {
     State,
     Mutation,
-    namespace
+    namespace,
 } from 'vuex-class';
 
 import moment from 'moment';
@@ -167,11 +167,11 @@ export default class QueryList extends Vue {
 
     private searchFormLayout: any = {
         labelCol: {
-            span: 5
+            span: 5,
         },
         wrapperCol: {
             span: 18,
-            offset: 1
+            offset: 1,
         },
     };
 
@@ -305,7 +305,7 @@ export default class QueryList extends Vue {
             }
             const description = this.createForm.getFieldValue('description');
             axios.post('/saveRule', {
-                desc: description
+                desc: description,
             }).then((res: any) => {
                 this.createForm.resetFields();
                 this.visibleCreateModal = false;
@@ -323,16 +323,14 @@ export default class QueryList extends Vue {
     }
 
     private handlerSelectChange(arr1: any, arr2: any) {
-      this.selectedRows = arr2;
+        this.selectedRows = arr2;
     }
 
     private handleMenuClick(e: any) {
-        console.log(e.key);
     }
 
     private mounted() {
         this.loadRuleData();
-
     }
 
     private loadRuleData() {
@@ -370,8 +368,8 @@ export default class QueryList extends Vue {
             <a onClick = {
                 () => this.handleUpdateModalVisible(true, record)
             } > 配置 </a>
-            <a-divider type = "vertical" />
-            <a href = "" > 订阅警报 </a>
+            <a-divider type = 'vertical' />
+            <a href = '' > 订阅警报 </a>
             </div>;
     }
 

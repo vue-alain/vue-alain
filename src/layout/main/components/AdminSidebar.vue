@@ -93,7 +93,7 @@ export default class AdminSidebar extends Vue {
     }
 
     @Watch('$route')
-    private watchRouteName(newVal: any, oldVal: any){
+    private watchRouteName(newVal: any, oldVal: any) {
         this.currentRouteName = [newVal.name];
         /*
         this.currentRouteName = [this.$route.name];

@@ -45,16 +45,13 @@ export default class GlobalFooter extends Vue {
             return;
         }
         if (item.blankTarget) {
-            //this.win.open(item.href);
             ( window as any ).open(item.href);
             return;
         }
         if (/^https?:\/\//.test(item.href)) {
             ( window as any ).location.href = item.href;
-            //this.win.location.href = item.href;
         } else {
             this.$router.push(item.href);
-            //this.router.navigateByUrl(item.href);
         }
     }
 }

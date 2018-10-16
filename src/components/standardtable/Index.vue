@@ -135,7 +135,7 @@ export default class StandardTable extends Vue {
         columns.forEach((column: any) => {
             if (column.needTotal) {
                 totalList.push({ ...column,
-                    total: 0
+                    total: 0,
                 });
             }
         });

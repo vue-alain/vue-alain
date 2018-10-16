@@ -371,7 +371,6 @@ export default class Analysis extends Vue {
 
   private activeKey: string = 'Stores 0';
 
-  
   private chartData: any[] = miniChartData;
 
   constructor() {
@@ -641,25 +640,19 @@ get salesTypeDataOffline(): any[] {
     ];
    }
 
-   get pieChartData() {
-     return {
-       columns: ['item', 'count'],
-          rows: [
-           {item: '家用电器', count: 4544}
-,
-{item: '食用酒水', count: 3321}
-,
-{item: '个护健康', count: 3113}
-,
-{item: '服饰箱包', count: 2341}
-,
-{item: '母婴产品', count: 1231}
-,
-{item: '其他', count: 1231}
-          ]
-     }
-          
-        }
+  get pieChartData() {
+    return {
+        columns: ['item', 'count'],
+        rows: [
+          {item: '家用电器', count: 4544},
+          {item: '食用酒水', count: 3321},
+          {item: '个护健康', count: 3113},
+          {item: '服饰箱包', count: 2341},
+          {item: '母婴产品', count: 1231},
+          {item: '其他', count: 1231},
+        ],
+    };
+  }
 
   private isActive(type: string) {
     const value = getTimeDistance(type);

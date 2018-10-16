@@ -36,7 +36,7 @@ export default class ReuseTab extends Vue {
 
     @Prop({
         type: Array,
-        default () {
+        default() {
             return [];
         },
     })
@@ -58,11 +58,11 @@ export default class ReuseTab extends Vue {
             // console.log('只有一个路由标签，不能删除');
             return;
         }
-        this.onCloseTab(event,index,close);
+        this.onCloseTab(event, index, close);
     }
 
     @Emit('closeTab')
-    private onCloseTab(event: any, index: any, close: boolean){
+    private onCloseTab(event: any, index: any, close: boolean) {
 
     }
 
