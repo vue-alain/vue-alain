@@ -128,6 +128,8 @@ import {
 } from 'vuex-class';
 const userModule = namespace('user');
 
+import qs from "qs";
+
 import axios from 'axios';
 
 @Component({
@@ -151,6 +153,11 @@ export default class PassportLayout extends Vue {
     }
 
     private mounted() {
+        console.log(this.getRedirect());
+    }
+
+    private getRedirect() {
+        return this.$route.query.redirect;
     }
 
     @userModule.Mutation('loginSuccess')
@@ -170,9 +177,13 @@ export default class PassportLayout extends Vue {
                         return;
                     }
                     this.loginSuccess({token: resData.token});
-
                     this.$ls.set('token',resData.token);
-                    this.$router.push('/');
+                    const redirect = this.getRedirect();
+                    if (redirect!= null) {
+                        this.$router.push(redirect);
+                    } else {
+                        this.$router.push('/');
+                    }
                 })
                 .finally(() =>  {
                     this.loading = false;
