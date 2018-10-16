@@ -61,7 +61,7 @@ export default class HeaderUser extends Vue {
      */
     private logout() {
         this.$ls.remove('token');
-        this.loginSuccess({token:null})
+        this.loginSuccess({token: null});
         this.$router.push('/passport/login');
     }
 }

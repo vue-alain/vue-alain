@@ -29,15 +29,14 @@ router.beforeResolve((to: Route, from: Route, next: any) => {
 
 
   const state: any = store.state;
-  const user = state.user;
+  const user: any = state.user;
 
   /**/
   if (to.meta && to.meta.routerGuard) {
     // 需要路由守护
-    if (user.token == undefined) {
-      let loginurl='?redirect=${from.path}';
-      next({name:'/passport/login',query:{
-        redirect:to.path
+    if (user.token === undefined) {
+      next({name: '/passport/login', query: {
+        redirect: to.path,
       }});
       return;
     }
