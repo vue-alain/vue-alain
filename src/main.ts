@@ -7,6 +7,7 @@ import './registerServiceWorker';
 
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import './shims-ant-design-vue-type';
 
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -14,6 +15,7 @@ import Viser from 'viser-vue';
 import VCharts from 'v-charts';
 
 import Vuei18n from 'vue-i18n';
+import './shims-vue-ls-type';
 
 import Storage from 'vue-ls';
 
@@ -81,14 +83,9 @@ Startup.bootstrap().then(
     store.commit('app/setApp', res.data.app);
 
     const initToken = app.$ls.get('token');
-    console.log(initToken);
-    if( initToken!=null) {
+    if ( initToken != null) {
       store.commit('user/loginSuccess', {token: initToken});
-      // console.log(initToken);
     }
-    
-    // store.commit('user/loginSuccess', {token: 'admin'});
-
   },
 );
 

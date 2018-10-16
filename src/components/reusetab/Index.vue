@@ -56,6 +56,7 @@ export default class ReuseTab extends Vue {
     private close(event: any, index: any, close: boolean) {
         if  (this.list.length === 1 ) {
             // console.log('只有一个路由标签，不能删除');
+            this.$message.error('只有一个路由标签，不能删除');
             return;
         }
         this.onCloseTab(event, index, close);
