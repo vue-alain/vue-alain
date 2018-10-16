@@ -1,7 +1,7 @@
 const user = {
     namespaced: true,
     state: {
-      token:null,
+      token: null,
     },
     mutations: {
       loginSuccess(state: any, param: any) {

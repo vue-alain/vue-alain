@@ -26,7 +26,7 @@ const router = new Router({
 });
 
 router.beforeResolve((to: Route, from: Route, next: any) => {
-  
+
   /*
   if (to.meta && to.meta.routerGuard) {
     // 需要路由守护

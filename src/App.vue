@@ -1,5 +1,5 @@
 <template>
-  <a-locale-provider :locale="locale">
+  <a-locale-provider :locale="currentLocale">
     <div id="app" :class="{'aside-collapsed':isCollapse}">
       <router-view/>
     </div>
@@ -27,5 +27,12 @@ export default class App extends Vue {
 
   @appModule.State('isCollapse')
   private isCollapse!: boolean;
+
+  get currentLocale() {
+    return this.$i18n.messages[this.$i18n.locale].values;
+  }
+
+  private mounted() {
+  }
 }
 </script>
