@@ -1,6 +1,6 @@
 <template>
   <div class="mini-chart">
-    <div class="chart-content" :style="{height: 46}">
+    <div class="chart-content">
       <ve-line 
       :height="chartHeight"
       :data="chartData" 
@@ -23,50 +23,19 @@
 
 .mini-chart {
     position: relative;
-    width: 100%
-  }
-  .mini-chart .chart-content{
-    position: absolute;
-    bottom: -28px;
     width: 100%;
-  }
+    .chart-content{
+      position: absolute;
+      bottom: -28px;
+      width: 100%;
+    }
+}
 
 </style>
 
 <script  lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import {format} from 'date-fns';
-
-const data: any[] = [];
-
-const beginDay = new Date().getTime();
-
-const fakeY = [7, 5, 4, 2, 4, 7, 5, 6, 5, 9, 6, 3, 1, 5, 3, 6, 5];
-
-for (let i = 0; i < fakeY.length; i += 1) {
-  data.push({
-    x: format(new Date(beginDay + 1000 * 60 * 60 * 24 * i), 'YYYY-MM-DD'),
-    y: fakeY[i],
-  });
-}
-
-const tooltip = [
-  'x*y',
-  (x: any, y: any) => ({
-    name: x,
-    value: y,
-  }),
-];
-
-const scale = [{
-  dataKey: 'x',
-  min: 2,
-}, {
-  dataKey: 'y',
-  title: '时间',
-  min: 1,
-  max: 22,
-}];
 
 @Component({
   components: {
@@ -77,8 +46,11 @@ export default class MiniArea extends Vue {
     @Prop({ type: Number, default: 64})
     private height!: number;
 
-    @Prop({ type: String, default: 'rgba(151, 95, 228,0.75)'})
+    @Prop({ type: String, default: '#cceafe'})
     private color!: string;
+
+    @Prop({ type: String, default: '#1089ff'})
+    private borderColor!: string;
 
     @Prop({ type: Boolean, default: false})
     private line!: boolean;
@@ -91,7 +63,7 @@ export default class MiniArea extends Vue {
     }
 
     private chartSettings = {
-        height:46,
+        height:this.height,
         area: true,
         scale:[true,true],
       };
@@ -99,6 +71,7 @@ export default class MiniArea extends Vue {
   get extendSettings(){
     const hasLine = this.line;
     const chartColor = this.color;
+    const borderColor = this.borderColor;
     return {
       xAxis:{
       show:false
@@ -112,13 +85,14 @@ export default class MiniArea extends Vue {
             i.showSymbol = false;
             i.showAllSymbol = false;
             i.lineStyle={
-              opacity: hasLine===true?0.75:0
+              opacity: hasLine?1:0,
+              color:borderColor
             };
             i.itemStyle={
               color:chartColor
             };
             i.areaStyle={
-              opacity:0.75
+              opacity:1
             };
           });
           return v;
@@ -129,7 +103,7 @@ export default class MiniArea extends Vue {
   get chartData() {
     return {
       columns: ['x', 'y'],
-      rows: data,
+      rows: this.data,
     };
   }
   /*

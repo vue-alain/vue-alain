@@ -1,13 +1,27 @@
 <template>
-  <div class="mini-chart">
-    <div class="chart-content" :style="{height: 46}">
+  <div class="mini-chart" :style="{ height:height }">
+    <div class="chart-content">
+      <!---->
       <v-chart :force-fit="true"
-      :height="height"
+      :height="chartHeight"
       :data="data"
       :padding="[36, 5, 18, 5]">
         <v-tooltip />
         <v-bar position="x*y" />
       </v-chart>
+      <!--
+      <v-chart
+            :scale="scale"
+            :height="chartHeight"
+            :forceFit="forceFit"
+            :data="data"
+            :padding="padding"
+            
+          >
+            <v-tooltip :showTitle="false" :crosshairs="false" />
+            <v-series gemo="interval" type="bar" position="x*y" :color="color" :tooltip="tooltip" />
+        </v-chart>
+        -->
     </div>
   </div>
 </template>
@@ -57,10 +71,43 @@ const scale = [{
 })
 export default class MiniBar extends Vue {
 
-    @Prop({type: Number, default: 100})
+    @Prop({type: Number, default: 46})
     private height!: number;
 
     @Prop({type: Array, default: () => data})
     private data!: any[];
+
+    @Prop({type: Boolean, default: false})
+    private forceFit!: boolean;
+
+    @Prop({type: String, default: '#1890FF'})
+    private color!: string;
+
+    private padding = [36, 5, 30, 5];
+
+    get scale(){
+      return {
+        x: {
+          type: 'cat',
+        },
+        y: {
+          min: 0,
+        },
+      };
+    }
+
+    get tooltip(){
+      return [
+        'x*y',
+        (x: any, y: any) => ({
+          name: x,
+          value: y,
+        }),
+      ];
+    }
+
+    get chartHeight(){
+      return this.height + 54;
+    }
 }
 </script>

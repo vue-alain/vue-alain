@@ -27,7 +27,7 @@
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <div>
-            <av-g2-mini-area color="rgb(151, 95, 228)" :data="chartData" />
+            <av-g2-mini-area color="#975FE4" :data="chartData" />
           </div>
           <div slot="footer">日访问量<span> 123,4</span></div>
         </av-g2-chart-card>
@@ -37,9 +37,7 @@
           <a-tooltip title="指标说明" slot="action">
             <a-icon type="info-circle-o" />
           </a-tooltip>
-          <div>
-            <av-g2-mini-bar />
-          </div>
+          <av-g2-mini-bar :height="46"/>
           <div slot="footer">转化率 <span>60%</span></div>
         </av-g2-chart-card>
       </a-col>
@@ -316,30 +314,17 @@
                   </a-col>
                 </a-row>
               </div>
-              <av-g2-timeline-chart style="height:400px"></av-g2-timeline-chart>
+              <av-g2-timeline-chart 
+              :titleMap="{
+                      y1: '客流量',
+                      y2: '支付笔数',
+                    }"
+              ></av-g2-timeline-chart>
             </a-tab-pane>
           </a-tabs>
         </a-card>
 
     <a-card class="offlineCard" style="margin-top: 32px" title="echarts图标测试">
-      <a-row>
-        <a-col :span="12">
-          <av-g2-pie
-                      :percent="50"
-                      :inner="0.55"
-                      :width="400"
-                      :height="400"
-                    />
-                    </a-col>  
-        <a-col  :span="12">
-<av-g2-pie
-                      :percent="50"
-                      :inner="0.55"
-                      :height="64"
-                    />
-
-        </a-col>
-      </a-row>
       
     </a-card>
   </div>
@@ -701,44 +686,6 @@ get salesTypeDataOffline(): any[] {
 </script>
 
 
-<style lang="less" scoped>
-@import "./Analysis.less";
-</style>
-
 <style lang="less">
-    .ant-tabs-bar{
-      padding-left:16px;
-    }
-
-.ant-tabs-extra-content{
-    line-height:55px;
-    padding-right: 24px;
-}
-
-.salesBar{
-  padding: 0 0 32px 32px;
-}
-
-.salesRank{
-  padding: 0 32px 32px 72px;
-}
-
-.salesCardExtra{
-  .salesTypeRadio {
-    position: absolute;
-    left: 24px;
-    bottom: 15px;
-  }
-}
-
-.offlineCard{
-  .mixin() {
-    width:200px;
-  }
-  .row{
-    width:200px !important;
-    margin: '8px 0px' !important;
-  }
-}
-
+@import "./Analysis.less";
 </style>

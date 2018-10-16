@@ -12,16 +12,16 @@
 
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 
 .mini-chart {
     position: relative;
-    width: 100%
-  }
-  .mini-chart .chart-content{
+    width: 100%;
+    .chart-content{
     position: absolute;
     bottom: -28px;
     width: 100%;
+  }
   }
 </style>
 
