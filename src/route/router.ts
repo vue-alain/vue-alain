@@ -45,12 +45,10 @@ router.beforeResolve((to: Route, from: Route, next: any) => {
 });
 
 router.beforeEach( ( to, from, next ) => {
-  // store.dispatch('routerLoad', { loading: true });
   next();
 });
 
 router.afterEach( ( to: any, from: any) => {
-  // store.dispatch('routerLoad', { loading: false }) 
   const tabInfo: any = {
     name: to.name,
     closable: true,
