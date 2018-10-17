@@ -4,6 +4,7 @@ const router = {
     path: '',
     component: MainLayout,
     redirect: '/analysis',
+    name: '/',
     meta: {
         title: '工作台',
         icon: 'dashboard',

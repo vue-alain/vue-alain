@@ -3,15 +3,16 @@
 <a-layout class="wrapper">
     <admin-header></admin-header>
   <a-layout>
+    <!--
     <div class="aside">
       <div class="d-block py-lg">
         <av-sidebar-nav :list="menulist"></av-sidebar-nav>
       </div>
     </div>
-    
-    <!--
-    <admin-sidebar></admin-sidebar>
     -->
+    
+    <admin-sidebar></admin-sidebar>
+    
     <a-layout>
       <a-layout-content class="content">
         <reuse-tab :list="tabList"
@@ -74,43 +75,6 @@ export default class MainLayout extends Vue {
     return this.reuseTabSource;
   }
 
-  private menulist: any[] = [
-    {
-      "text": "主导航",
-      "i18n": "menu.main",
-      "group": true,
-      "hideInBreadcrumb": true,
-      "children": [
-        {
-          "text": "仪表盘",
-          "i18n": "menu.dashboard",
-          "icon": "anticon anticon-dashboard",
-          "children": [
-            {
-              "text": "仪表盘V1",
-              "link": "/dashboard/v1",
-              "i18n": "menu.dashboard.v1"
-            },
-            {
-              "text": "分析页",
-              "link": "/dashboard/analysis",
-              "i18n": "menu.dashboard.analysis"
-            },
-            {
-              "text": "监控页",
-              "link": "/dashboard/monitor",
-              "i18n": "menu.dashboard.monitor"
-            },
-            {
-              "text": "工作台",
-              "link": "/dashboard/workplace",
-              "i18n": "menu.dashboard.workplace"
-            }
-          ]
-        },
-      ]
-    }
-  ] ;
 
   constructor() {
     super();
