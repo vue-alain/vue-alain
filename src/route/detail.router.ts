@@ -7,6 +7,7 @@ const router = {
     meta: {
         title: '详情页',
         icon: 'profile',
+        i18n: `menu.profile`,
     },
     children: [{
       path: 'basic',
@@ -14,6 +15,7 @@ const router = {
       component: () => import(/* webpackChunkName: "detail" */ '@/views/detail/Basic.vue'),
       meta: {
         title: '基础详情页',
+        i18n: `menu.profile.basic`,
       },
     },
     {
@@ -22,6 +24,7 @@ const router = {
       component: () => import(/* webpackChunkName: "detail" */ '@/views/detail/Advanced.vue'),
       meta: {
         title: '高级详情页',
+        i18n: `menu.profile.advanced`,
       },
     }],
   };

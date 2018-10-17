@@ -51,17 +51,19 @@
             <a-menu-item :key="menuitem.name" v-if="menuitem.children==null">
                 <router-link :to="menuitem.name">
                     <a-icon :type="menuitem.meta.icon" />
-                    <span>{{menuitem.meta.title}}</span>
+                    <span>{{displayMenuTitle(menuitem)}}</span>
                 </router-link>
             </a-menu-item>
             <a-sub-menu :key="menuitem.name" v-else-if="menuitem.children!=null">
                 <template slot="title">
                     <a-icon :type="menuitem.meta.icon" />
-                    <span>{{menuitem.meta.title}}</span>
+                    <span>
+                        {{displayMenuTitle(menuitem)}}
+                    </span>
                 </template>
                 <a-menu-item :key="child.name" v-for="child in menuitem.children">
                     <router-link :to="child.name">
-                        {{child.meta.title}}
+                        {{displayMenuTitle(child)}}
                     </router-link>
                 </a-menu-item>
             </a-sub-menu>
@@ -148,6 +150,13 @@ export default class AdminSidebar extends Vue {
         const name = this.$route.name;
         const openKey = this.parentMenuName(name);
         this.handleOpenChange([openKey]);
+    }
+
+    private displayMenuTitle(menu: any){
+        if(menu.meta.i18n){
+            return this.$t(menu.meta.i18n);
+        }
+        return menu.meta.title;
     }
 
     @Watch('$route')

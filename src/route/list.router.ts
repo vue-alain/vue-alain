@@ -8,6 +8,7 @@ const router = {
         title: '列表页',
         icon: 'table',
         routerGuard: true,
+        i18n: `menu.list`,
     },
     children: [{
       path: 'query',
@@ -16,6 +17,7 @@ const router = {
       meta: {
         title: '查询表格',
         routerGuard: true,
+        i18n: `menu.list.searchtable`,
       },
     },
     {
@@ -25,6 +27,7 @@ const router = {
       meta: {
         title: '标准表格',
         routerGuard: true,
+        i18n: `menu.list.basiclist`,
       },
     },
     {
@@ -34,6 +37,7 @@ const router = {
       meta: {
         title: '卡片列表',
         routerGuard: true,
+        i18n: `menu.list.cardlist`,
       },
     }],
   };

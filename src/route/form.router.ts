@@ -7,6 +7,7 @@ const router = {
     meta: {
         title: '表单页',
         icon: 'form',
+        i18n: `menu.form`,
     },
     children: [{
       path: 'basic',
@@ -14,6 +15,7 @@ const router = {
       component: () => import(/* webpackChunkName: "form" */ '@/views/form/Basic.vue'),
       meta: {
         title: '基础表单',
+        i18n: `menu.form.basicform`,
       },
     },
     {
@@ -22,6 +24,7 @@ const router = {
       component: () => import(/* webpackChunkName: "form" */ '@/views/form/Step.vue'),
       meta: {
         title: '分步表单',
+        i18n: `menu.form.stepform`,
       },
     },
     {
@@ -30,6 +33,7 @@ const router = {
       component: () => import(/* webpackChunkName: "form" */ '@/views/form/Advanced.vue'),
       meta: {
         title: '高级表单',
+        i18n: `menu.form.advancedform`,
       },
     }],
   };
