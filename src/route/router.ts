@@ -50,20 +50,17 @@ router.beforeEach( ( to, from, next ) => {
 });
 
 router.afterEach( ( to: any, from: any) => {
-  // store.dispatch('routerLoad', { loading: false });
-
-  const tabInfo = {
+  // store.dispatch('routerLoad', { loading: false }) 
+  const tabInfo: any = {
     name: to.name,
     closable: true,
     path: to.name,
     title: to.meta.title,
     activeName: from.name,
+    i18n: to.meta.i18n || null,
   };
 
   store.dispatch('reuseTab/add', tabInfo);
-  if (to.meta.title) {
-    document.title = `vue-alain:${to.meta.title}`;
-  }
 });
 
 

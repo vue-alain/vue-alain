@@ -11,7 +11,7 @@
 </style>
 
 <script  lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
 
 import { State, Mutation, namespace } from 'vuex-class';
@@ -29,7 +29,7 @@ export default class App extends Vue {
   private isCollapse!: boolean;
 
   get currentLocale() {
-    const messages: any =this.$i18n.messages[this.$i18n.locale];
+    const messages: any = this.$i18n.messages[this.$i18n.locale];
     return messages;
   }
 

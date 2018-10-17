@@ -41,7 +41,7 @@ import AdminHeader from './components/AdminHeader.vue';
 import AdminSidebar from './components/AdminSidebar.vue';
 import AdminFooter from './components/AdminFooter.vue';
 
-
+import * as _ from 'lodash';
 
 @Component({
   components: {
@@ -72,9 +72,14 @@ export default class MainLayout extends Vue {
     ];
 
   get tabList() {
+    _.forEach(this.reuseTabSource, (item: any) => {
+      if ( item.i18n ) {
+        item.title = this.$t(item.i18n);
+      }
+      return item;
+    });
     return this.reuseTabSource;
   }
-
 
   constructor() {
     super();
