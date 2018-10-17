@@ -88,6 +88,8 @@ import {
 } from 'vuex-class';
 const appModule = namespace('app');
 
+import routerService from '@/core/RouterService.ts';
+
 import * as _ from 'lodash';
 
 /**
@@ -153,6 +155,7 @@ export default class AdminSidebar extends Vue {
     }
 
     private displayMenuTitle(menu: any){
+        // return routerService.displayMenuTitle(menu);
         if(menu.meta.i18n){
             return this.$t(menu.meta.i18n);
         }
