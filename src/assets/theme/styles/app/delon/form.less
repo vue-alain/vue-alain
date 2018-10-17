@@ -9,7 +9,7 @@
   }
   // 固定 label
   &-fixed {
-    display: flex;
+    display: flex !important;
     nz-form-control,
     .ant-form-item-control-wrapper {
       flex: 1;
@@ -50,7 +50,7 @@
   .checkbox-grid-list {
     width: 100%;
     display: block;
-    @media (min-width: 575px) {
+    @media (min-width: @mobile-min) {
       nz-col {
         margin-top: 8px;
       }
@@ -80,6 +80,15 @@
     }
     .ant-btn + .ant-btn {
       margin-left: 0;
+    }
+  }
+  // fix select width when inline mode
+  .ant-form-inline {
+    .ant-form-item {
+      display: inline-flex;
+      > .ant-form-item-control-wrapper {
+        flex: 1 0 0;
+      }
     }
   }
 }

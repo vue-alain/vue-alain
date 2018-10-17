@@ -1,6 +1,6 @@
 <template>
 <a-dropdown>
-    <div class="item">
+    <div class="alain-default__nav-item">
 
         <div class="d-flex align-items-center px-sm">
             <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" nzSize="small" class="mr-sm"></a-avatar>

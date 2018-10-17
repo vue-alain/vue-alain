@@ -1,6 +1,6 @@
 <template>
 
-    <div class="item">
+    <div class="alain-default__nav-item">
       <a-popover trigger="click" placement="bottomRight">
     <template slot="content">
       <a-spin :spinning="loadding">

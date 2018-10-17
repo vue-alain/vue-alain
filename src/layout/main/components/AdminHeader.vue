@@ -1,15 +1,15 @@
 <template>
-  <a-layout-header class="header">
-    <div class="logo">
+  <div class="alain-default__header">
+    <div class="alain-default__header-logo">
       <a>
-        <img class="expanded" src="@/assets/logo-full.svg" style="max-height:40px;" />
-        <img class="collapsed" src="@/assets/logo.svg"  style="max-height:30px;" />
+        <img class="alain-default__header-logo-expanded" src="@/assets/logo-full.svg" style="max-height:40px;" />
+        <img class="alain-default__header-logo-collapsed" src="@/assets/logo.svg"  style="max-height:30px;" />
       </a>
     </div>
-    <div class="top-nav-wrap">
-      <ul class="top-nav">
+    <div class="alain-default__nav-wrap">
+      <ul class="alain-default__nav">
         <li>
-          <div class="item"
+          <div class="alain-default__nav-item"
                @click="handlerCollapsedSidebar()" >
             <i :class="{
                 'fa fa-outdent':!isCollapse,
@@ -20,18 +20,18 @@
         </li>
         <!-- Github Page  -->
         <li>
-          <a class="item" href="//github.com/vue-alain/vue-alain" target="_blank">
+          <a class="alain-default__nav-item" href="//github.com/vue-alain/vue-alain" target="_blank">
             <i class="fa fa-github"></i>
           </a>
         </li>
         <!-- Lock Page -->
         <li class="hidden-xs">
-          <div class="item" >
+          <div class="alain-default__nav-item" >
             <i class="fa fa-lock"></i>
           </div>
         </li>
       </ul>
-      <ul class="top-nav">
+      <ul class="alain-default__nav">
     <li class="hidden-xs">
             <header-search></header-search>
           </li>
@@ -68,7 +68,7 @@
           </li>
       </ul>
     </div>
-  </a-layout-header>
+  </div>
 
 </template>
 

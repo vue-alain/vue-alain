@@ -2,7 +2,7 @@
   // 搜索框与表格
   @sf-and-st-white-spacing: @layout-gutter * 2;
 
-  nz-sf + simple-table {
+  sf + st {
     margin-top: @sf-and-st-white-spacing;
   }
 
@@ -12,7 +12,9 @@
   .ant-btn + .ant-btn,
   .ant-btn + nz-popconfirm,
   nz-popconfirm + .ant-btn,
-  nz-popconfirm + nz-popconfirm {
+  nz-popconfirm + nz-popconfirm,
+  .ant-btn + nz-button-group,
+  nz-popconfirm + nz-button-group {
     margin-left: @button-and-button-white-spacing;
   }
   .ant-btn-group {

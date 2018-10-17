@@ -1,9 +1,9 @@
 <template>
 
-<a-layout class="wrapper">
+<a-layout class="alain-default alain-default__fixed">
     <admin-header></admin-header>
   <a-layout>
-    <div class="aside">
+    <div class="alain-default__aside">
       <div class="d-block py-lg">
         <av-sidebar-nav :list="menulist"></av-sidebar-nav>
       </div>
@@ -13,7 +13,7 @@
     <admin-sidebar></admin-sidebar>
     -->
     <a-layout>
-      <a-layout-content class="content">
+      <a-layout-content class="alain-default__content">
         <reuse-tab :list="tabList"
         :pos="$route.name"
         @changePath="handleChangePath"

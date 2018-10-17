@@ -1,6 +1,6 @@
 <template>
   <a-locale-provider :locale="currentLocale">
-    <div id="app" :class="{'aside-collapsed':isCollapse}">
+    <div id="app" :class="{'alain-default__collapsed':isCollapse}">
       <router-view/>
     </div>
   </a-locale-provider>

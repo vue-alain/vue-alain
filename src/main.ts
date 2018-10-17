@@ -19,7 +19,8 @@ import './shims-vue-ls-type';
 
 import Storage from 'vue-ls';
 
-import '@/assets/theme/styles/index.less';
+import '@/style.less';
+
 
 import {preloaderFinished} from './util/preloader';
 preloaderFinished();

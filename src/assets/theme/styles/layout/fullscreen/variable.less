@@ -5,3 +5,19 @@
 @alain-fullscreen-content-padding-vertical:     0;
 @alain-fullscreen-content-padding-horizontal:   @layout-gutter * 2;
 
+
+
+@full-content-prefix: ~'.full-content';
+
+@{full-content-prefix} {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  &__body {
+    overflow: hidden;
+  }
+  &__opened {
+  }
+  &__hidden-title {
+  }
+}
