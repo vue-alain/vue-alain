@@ -50,11 +50,11 @@
                 <a-menu-item>
                   <a-dropdown>
                     <a class="ant-dropdown-link" href="#">
-                      语言 <a-icon type="down" />
+                      {{$t(`navBar.lang`)}} <a-icon type="down" />
                     </a>
                     <a-menu slot="overlay" @click="localeChange">
                       <a-menu-item v-for="(locale) in localeList()" :key="locale.key">
-                        <a href="javascript:;">{{locale.title}}</a>
+                        <a href="javascript:;">{{$t(`lang.${locale.key}`)}}</a>
                       </a-menu-item>
                     </a-menu>
                   </a-dropdown>
@@ -105,9 +105,15 @@ export default class AdminHeader extends Vue {
   }
 
   private localeList() {
-    return _.map(this.$i18n.messages, (item: any) => {
-      return {title: item.title, key: item.key};
+
+    return _.map(_.keys(this.$i18n.messages),(item: any) =>{
+      return { key: item}
     });
+    /*
+    return _.map(this.$i18n.messages, (item: any) => {
+      return {key: item.locale};
+    });
+    */
   }
 
   private localeChange(e: any) {

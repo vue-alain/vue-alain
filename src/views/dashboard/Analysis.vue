@@ -2,7 +2,7 @@
   <div>
 <a-row style="margin: 0 -12px">
       <a-col :sm="24" :md="12" :xl="6" style="padding: 12px 12px 24px;">
-        <av-g2-chart-card title="总销售额" total="￥ 189,345">
+        <av-g2-chart-card :title="$t('app.analysis.total-sales')" total="￥ 189,345">
           <a-tooltip title="指标说明" slot="action">
             <a-icon type="info-circle-o" />
           </a-tooltip>
@@ -675,6 +675,11 @@ get salesTypeDataOffline(): any[] {
   private handleRangePickerChange(value: any) {
     this.rangePickerValue = value;
   }
+
+  private mounted(){
+    console.log(this.$t(`Modal.okText`));
+  }
+
 }
 </script>
 

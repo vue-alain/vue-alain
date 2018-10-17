@@ -53,8 +53,8 @@ Vue.use(Storage, {
 });
 
 const messages = {
-  zh_CN: { title: '中文', key: 'zh_CN', values: zh_CN },
-  en_US: { title: 'English', key: 'en_US', values: en_US },
+  'zh_CN': zh_CN, // { title: '中文', key: 'zh_CN', values: zh_CN },
+  'en_US': en_US, // { title: 'English', key: 'en_US', values: en_US },
 };
 
 const i18n = new Vuei18n({

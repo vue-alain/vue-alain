@@ -29,7 +29,8 @@ export default class App extends Vue {
   private isCollapse!: boolean;
 
   get currentLocale() {
-    return this.$i18n.messages[this.$i18n.locale].values;
+    const messages: any =this.$i18n.messages[this.$i18n.locale];
+    return messages;
   }
 
   private mounted() {
