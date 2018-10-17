@@ -2,6 +2,7 @@
 <a-dropdown>
     <div class="item">
         <a-icon type="global" />
+        <span>{{$t(`lang.${this.$i18n.locale}`)}}</span>
     </div>
     <a-menu slot="overlay" @click="localeChange">
         <a-menu-item v-for="(locale) in localeList()" :key="locale.key">

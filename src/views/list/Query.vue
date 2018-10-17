@@ -1,19 +1,19 @@
 <template>
 <div>
-    <av-page-header title="查询表格">
+    <av-page-header :title="$t(`menu.list.searchtable`)">
         <div slot="breadcrumb">
             <a-breadcrumb>
                 <a-breadcrumb-item>
-                    <a >首页</a>
+                    <a >{{$t(`menu.home`)}}</a>
                 </a-breadcrumb-item>
                 <a-breadcrumb-item>
-                    <a >列表页</a>
+                    <a >{{$t(`menu.list`)}}</a>
                 </a-breadcrumb-item>
-                <a-breadcrumb-item>查询表格</a-breadcrumb-item>
+                <a-breadcrumb-item>{{$t(`menu.list.searchtable`)}}</a-breadcrumb-item>
             </a-breadcrumb>
         </div>
         <div slot="content">
-            查询表格
+            {{$t(`menu.list.searchtable`)}}
         </div>
     </av-page-header>
 

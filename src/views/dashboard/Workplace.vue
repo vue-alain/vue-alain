@@ -4,15 +4,15 @@
       <div slot="breadcrumb">
         <a-breadcrumb>
           <a-breadcrumb-item>
-            <a >首页</a>
+            <a >{{$t(`menu.home`)}}</a>
           </a-breadcrumb-item>
           <a-breadcrumb-item>
             <a >Dashboard</a>
           </a-breadcrumb-item>
-          <a-breadcrumb-item>工作台</a-breadcrumb-item>
+          <a-breadcrumb-item>{{$t(`menu.dashboard.workplace`)}}</a-breadcrumb-item>
         </a-breadcrumb>
       </div>
-      <div slot="title">工作台</div>
+      <div slot="title">{{$t(`menu.dashboard.workplace`)}}</div>
       <div  slot="content" class="page-content">
         <div class="avatar">
           <a-avatar src="https://gw.alipayobjects.com/zos/rmsportal/lctvVCLfRpYCkYxAsiVQ.png"></a-avatar>
