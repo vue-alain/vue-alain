@@ -39,32 +39,21 @@
             <header-notify></header-notify>
           </li>
         <!-- Settings -->
-          <li class="hidden-xs">      
-            <!--  -->
+          <li class="hidden-xs">
             <a-dropdown>
               <div class="item">
                 <i class="fa fa-cog"></i>
               </div>
               <a-menu slot="overlay">
                 <a-menu-item>全屏</a-menu-item>
-                <a-menu-item>
-                  <a-dropdown>
-                    <a class="ant-dropdown-link" href="#">
-                      {{$t(`navBar.lang`)}} <a-icon type="down" />
-                    </a>
-                    <a-menu slot="overlay" @click="localeChange">
-                      <a-menu-item v-for="(locale) in localeList()" :key="locale.key">
-                        <a href="javascript:;">{{$t(`lang.${locale.key}`)}}</a>
-                      </a-menu-item>
-                    </a-menu>
-                  </a-dropdown>
-                </a-menu-item>
               </a-menu>
             </a-dropdown>
-          
           </li>
           <li class="hidden-xs">
             <header-user></header-user>
+          </li>
+          <li class="hidden-xs">
+            <select-lange></select-lange>
           </li>
       </ul>
     </div>
@@ -77,19 +66,21 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 import { State, Mutation, namespace } from 'vuex-class';
 
-import * as _ from 'lodash';
+
 
 const appModule = namespace('app');
 
 import HeaderUser from './Header.User.vue';
 import HeaderNotify from './Header.Notify.vue';
 import HeaderSearch from './Header.Search.vue';
+import SelectLange from './SelectLange.vue';
 
 @Component({
   components: {
     HeaderUser,
     HeaderNotify,
     HeaderSearch,
+    SelectLange,
   },
 })
 export default class AdminHeader extends Vue {
@@ -104,21 +95,7 @@ export default class AdminHeader extends Vue {
     this.collapse();
   }
 
-  private localeList() {
 
-    return _.map(_.keys(this.$i18n.messages),(item: any) =>{
-      return { key: item}
-    });
-    /*
-    return _.map(this.$i18n.messages, (item: any) => {
-      return {key: item.locale};
-    });
-    */
-  }
-
-  private localeChange(e: any) {
-    this.$i18n.locale = e.key;
-  }
 
   private mounted() {
   }

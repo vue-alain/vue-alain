@@ -672,8 +672,7 @@ get salesTypeDataOffline(): any[] {
     this.rangePickerValue = value;
   }
 
-  private mounted(){
-    console.log(this.$t(`Modal.okText`));
+  private mounted() {
   }
 
 }

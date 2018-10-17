@@ -52,7 +52,7 @@ Vue.use(Storage, {
   storage: 'local',
 });
 
-const messages = {
+const messages: any = {
   'zh_CN': zh_CN, // { title: '中文', key: 'zh_CN', values: zh_CN },
   'en_US': en_US, // { title: 'English', key: 'en_US', values: en_US },
 };
