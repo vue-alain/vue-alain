@@ -1,6 +1,6 @@
 <template>
   <a-locale-provider :locale="currentLocale">
-    <div id="app" :class="{'aside-collapsed':isCollapse}">
+    <div id="app" :class="{'aside-collapsed':isCollapse}" v-title="title">
       <router-view/>
     </div>
   </a-locale-provider>
@@ -27,6 +27,20 @@ export default class App extends Vue {
 
   @appModule.State('isCollapse')
   private isCollapse!: boolean;
+
+  @appModule.State('doctitle')
+  private doctitle!: any;
+
+  @appModule.State('name')
+  private appName!: any;
+
+  get title() {
+    let title = this.doctitle.title;
+    if (this.doctitle.i18n) {
+      title = this.$t(this.doctitle.i18n);
+    }
+    return this.appName ? `${title} - ${this.appName}` : title;
+  }
 
   get currentLocale() {
     const messages: any = this.$i18n.messages[this.$i18n.locale];

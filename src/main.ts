@@ -67,6 +67,10 @@ const i18n = new Vuei18n({
 Vue.config.productionTip = false;
 
 
+Vue.directive('title', {
+  inserted: (el, binding) => document.title = binding.value,
+  update: (el, binding) => document.title = binding.value,
+});
 
 const app = new Vue({
   router,

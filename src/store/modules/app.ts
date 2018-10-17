@@ -3,6 +3,10 @@ const app = {
     state: {
       isCollapse: false,
       name: '',
+      doctitle: {
+        title: '',
+        i18n: null,
+      },
     },
     mutations: {
       collapse(state: any) {
@@ -10,6 +14,11 @@ const app = {
       },
       setApp(state: any, appinfo: any) {
         state.name = appinfo.name;
+      },
+      changeTitle(state: any, titleInfo: any) {
+        state.doctitle = {
+          ...titleInfo,
+        };
       },
     },
     actions: {

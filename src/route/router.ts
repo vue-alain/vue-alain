@@ -59,6 +59,11 @@ router.afterEach( ( to: any, from: any) => {
   };
 
   store.dispatch('reuseTab/add', tabInfo);
+  store.commit('app/changeTitle', {
+      title: tabInfo.title,
+      i18n: tabInfo.i18n,
+    },
+  );
 });
 
 
