@@ -3,47 +3,47 @@
 <a-row style="margin: 0 -12px">
       <a-col :sm="24" :md="12" :xl="6" style="padding: 12px 12px 24px;">
         <av-g2-chart-card :title="$t('app.analysis.total-sales')" total="￥ 189,345">
-          <a-tooltip title="指标说明" slot="action">
+          <a-tooltip :title="$t('app.analysis.introduce')" slot="action">
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <div>
             <av-g2-trend style="margin-right: 16px" 
-            term="同周比" 
+            :term="$t(`app.analysis.week`)" 
             :percent="12" 
             :is-increase="true" 
             :scale="0" />
             <av-g2-trend 
-            term="日环比" 
+            :term="$t(`app.analysis.day`)" 
             :target="100" 
             :value="89" 
             :scale="0" />
           </div>
-          <div slot="footer">日均销售额<span> ￥234.56</span></div>
+          <div slot="footer">{{$t('app.analysis.day-sales')}}<span> ￥234.56</span></div>
         </av-g2-chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6" style="padding: 12px 12px 24px;">
-        <av-g2-chart-card title="总销售额" total="￥ 189,345">
-          <a-tooltip title="指标说明" slot="action">
+        <av-g2-chart-card :title="$t('app.analysis.visits')" total="￥ 189,345">
+          <a-tooltip :title="$t('app.analysis.introduce')" slot="action">
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <div>
             <av-g2-mini-area color="#975FE4" :data="chartData" />
           </div>
-          <div slot="footer">日访问量<span> 123,4</span></div>
+          <div slot="footer">{{$t(`app.analysis.day-visits`)}}<span> 123,4</span></div>
         </av-g2-chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6" style="padding: 12px 12px 24px;">
-        <av-g2-chart-card title="总销售额" total="￥ 189,345">
-          <a-tooltip title="指标说明" slot="action">
+        <av-g2-chart-card :title="$t(`app.analysis.payments`)" total="￥ 189,345">
+          <a-tooltip :title="$t('app.analysis.introduce')" slot="action">
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <av-g2-mini-bar :height="46"/>
-          <div slot="footer">转化率 <span>60%</span></div>
+          <div slot="footer">{{$t(`app.analysis.conversion-rate`)}} <span>60%</span></div>
         </av-g2-chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6" style="padding: 12px 12px 24px;">
-        <av-g2-chart-card title="运营活动效果" total="73%">
-          <a-tooltip title="指标说明" slot="action">
+        <av-g2-chart-card :title="$t(`app.analysis.operational-effect`)" total="73%">
+          <a-tooltip :title="$t('app.analysis.introduce')" slot="action">
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <div>
@@ -51,12 +51,12 @@
           </div>
           <div slot="footer">
             <av-g2-trend style="margin-right: 16px" 
-            term="同周比" 
+            :term="$t(`app.analysis.week`)" 
             :percent="12" 
             :is-increase="true" 
             :scale="0" />
             <av-g2-trend 
-            term="日环比" 
+            :term="$t(`app.analysis.day`)" 
             :target="100" 
             :value="89" 
             :scale="0" />
@@ -74,16 +74,16 @@
       <div class="salesExtraWrap">
         <div class="salesExtra">
           <a :class="this.isActive('today')" @click="selectDate('today')">
-            今日
+            {{$t(`app.analysis.all-day`)}}
           </a>
           <a :class="this.isActive('week')" @click="selectDate('week')">
-            本周
+            {{$t(`app.analysis.all-week`)}}
           </a>
           <a :class="this.isActive('month')" @click="selectDate('month')">
-            本月
+            {{$t(`app.analysis.all-month`)}}
           </a>
           <a  :class="this.isActive('year')" @click="selectDate('year')">
-            全年
+            {{$t(`app.analysis.all-year`)}}
           </a>
         </div>
         <a-range-picker :value="rangePickerValue" @change="handleRangePickerChange" :style="{ width: 256 }"/>
@@ -91,14 +91,14 @@
 
             </div>
             <a-tab-pane
-                tab="销售额"
+                :tab="$t(`app.analysis.sales`)"
                 key="sales">
                 <a-row>
                   <a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
                     <div class="salesBar">
                       <av-g2-bar
                         :height="295"
-                        title="销售趋势"
+                        :title="$t(`app.analysis.sales-trend`)"
                         :data="salesData"
                       />
                     </div>
@@ -106,7 +106,7 @@
                   <a-col :xl="8" :lg="12" :md="12" :sm="24" :xs="24">
                     <div class="salesRank">
                       <h4 class="rankingTitle">
-                        门店销售额排名
+                        {{$t(`app.analysis.sales-ranking`)}}
                       </h4>
                       <ul class="rankingList">
                             <li :key='item.title' v-for="(item,i) in rankingListData">
@@ -130,14 +130,14 @@
                 </a-row>
             </a-tab-pane>
             <a-tab-pane
-                tab="访问量"
+                :tab="$t(`app.analysis.visits`)"
                 key="views">
                 <a-row>
                   <a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
                     <div  class="salesBar">
                       <av-g2-bar
                         :height="292"
-                        title="访问量趋势"
+                        :title="$t(`app.analysis.visits-trend`)"
                         :data="salesData"
                       />
                     </div>
@@ -145,7 +145,7 @@
                   <a-col :xl="8" :lg="12" :md="12" :sm="24" :xs="24">
                     <div class="salesRank">
                       <h4 class="rankingTitle">
-                        门店访问量排名
+                        {{$t(`app.analysis.visits-ranking`)}}
                       </h4>
                       <ul class="rankingList">
 
@@ -176,7 +176,7 @@
           <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24">
             <a-card
               :bordered="false"
-              title="线上热门搜索"
+              :title="$t(`app.analysis.online-top-search`)"
               :style="{ 'margin-top': '24px' }"
             >
               <div slot="extra">更多操作</div>
@@ -188,9 +188,9 @@
                         :subTotal="17.1">
 
                     <span slot="subTitle">
-                      搜索用户数
+                      {{$t(`app.analysis.search-users`)}}
                       <a-tooltip
-                          title="指标说明"
+                          :title="$t('app.analysis.introduce')"
                         >
                           <a-icon style="margin-left: 8" type="info-circle-o" />  
                         </a-tooltip>
@@ -206,7 +206,7 @@
                         status="down"
                         :subTotal="26.2">
                     <span slot="subTitle">
-                      人均搜索次数
+                      {{$t(`app.analysis.per-capita-search`)}}
                     </span>
                   </av-number-info>
                   <av-g2-mini-area line style="height: 45px" :data="visitData2" />
@@ -237,7 +237,7 @@
             <a-card
               class="salesCard"
               :bordered="false"
-              title="销售额类别占比"
+              :title="$t(`app.analysis.the-proportion-of-sales`)"
               :bodyStyle="{ padding: 24 }"
               :style="{ 'margin-top': '24px', 'min-height': '509px' }"
             >
@@ -246,25 +246,25 @@
             <div style="padding-bottom:15px">
                     <a-radio-group v-model="salesType">
                       <a-radio-button value="all">
-                        全部渠道
+                        {{$t(`app.analysis.channel.all`)}}
                       </a-radio-button>
                       <a-radio-button value="online">
-                        线上
+                        {{$t(`app.analysis.channel.online`)}}
                       </a-radio-button>
                       <a-radio-button value="stores">
-                        门店
+                        {{$t(`app.analysis.channel.stores`)}}
                       </a-radio-button>
                     </a-radio-group>
                   </div>
               <h4 :style="{ marginTop: 8, marginBottom: 32 }">
-                销售额
+                {{$t(`app.analysis.sales`)}}
               </h4>
               
               <av-g2-pie
                 hasLegend
                 hasLabel
                 hasTooltip
-                subTitle="销售额"
+                :subTitle="$t(`app.analysis.sales`)"
                 :total="this.pieTotal"
                 :data="salesPieData"
                 style="height:248px"
@@ -299,7 +299,7 @@
                   <a-col :span="12">
                     <av-number-info
                       :title="shop.name"
-                      subTitle="转化率"
+                      :subTitle="$t(`app.analysis.conversion-rate`)"
                       :gap="2"
                       :total="`${shop.cvr * 100}%`"
                     />
@@ -316,17 +316,13 @@
               </div>
               <av-g2-timeline-chart 
               :titleMap="{
-                      y1: '客流量',
-                      y2: '支付笔数',
+                      y1: $t(`app.analysis.traffic`),
+                      y2: $t(`app.analysis.payments`),
                     }"
               ></av-g2-timeline-chart>
             </a-tab-pane>
           </a-tabs>
         </a-card>
-
-    <a-card class="offlineCard" style="margin-top: 32px" title="echarts图标测试">
-      
-    </a-card>
   </div>
 </template>
 
@@ -608,12 +604,12 @@ get salesTypeDataOffline(): any[] {
    get columns() {
      return [
       {
-        title: '排名',
+        title: this.$t(`app.analysis.table.rank`),
         dataIndex: 'index',
         key: 'index',
       },
       {
-        title: '搜索关键词',
+        title: this.$t(`app.analysis.table.search-keyword`),
         dataIndex: 'keyword',
         key: 'keyword',
         scopedSlots: {
@@ -621,14 +617,14 @@ get salesTypeDataOffline(): any[] {
         },
       },
       {
-        title: '用户数',
+        title: this.$t(`app.analysis.table.users`),
         dataIndex: 'count',
         key: 'count',
         sorter: (a: any, b: any) => a.count - b.count,
         class: 'alignRight',
       },
       {
-        title: '周涨幅',
+        title: this.$t(`app.analysis.table.weekly-range`),
         dataIndex: 'range',
         key: 'range',
         sorter: (a: any, b: any) => a.range - b.range,
