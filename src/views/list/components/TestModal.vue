@@ -4,6 +4,7 @@
     <span>
         {{visible}}
     </span>
+    <a-button @click="handlerClick">自定义返回内容</a-button>
 </a-modal>
 </template>
 
@@ -23,7 +24,7 @@ import {
     namespace,
 } from 'vuex-class';
 
-import ModalMixin,{ IModalMixin } from '@/modalMixin.ts';
+import ModalMixin, { IModalMixin } from '@/modalMixin.ts';
 
 @Component({
     components: {},
@@ -36,13 +37,15 @@ export default class TestModal extends Mixins<IModalMixin>(ModalMixin){
     })
     private user!: string;
 
-    constructor(){
+    constructor() {
         super();
     }
     private mounted(): void {
-        console.log(this.visible);
-        console.log(`TestModal  mounted`);
-        console.log(this.user);
+    }
+
+    private handlerClick() {
+        this.subject$.next('自定义返回结果');
+        this.close();
     }
 }
 </script>

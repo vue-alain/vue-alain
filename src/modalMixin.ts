@@ -10,8 +10,9 @@ import {
 
 export interface IModalMixin {
   visible: boolean;
-  modalSubject$: BehaviorSubject<any>;
+  subject$: BehaviorSubject<any>;
   show(): void;
+  close(): void;
   handleOk(): void;
   handleCancel(): void;
 }
@@ -21,24 +22,32 @@ export default class ModalMixin extends Vue implements IModalMixin {
 
   public visible: boolean = false;
 
-  public modalSubject$: BehaviorSubject<any> = new BehaviorSubject<any>({});
+  @Prop({
+    type: Object,
+    default() {
+      return new BehaviorSubject<any>({});
+    },
+  })
+  public subject$!: BehaviorSubject<any>;
 
   public handleOk(): void {
     this.visible = false;
-    this.modalSubject$.next({
-        isCancel: true,
-    });
+    this.subject$.next({});
   }
 
   public handleCancel(): void {
     this.visible = false;
-    this.modalSubject$.next({
-        isCancel: false,
+    this.subject$.error({
+      isCancel: true,
     });
   }
 
   public show() {
     this.visible = true;
+  }
+
+  public close() {
+    this.visible = false;
   }
 
   private mounted(): void {

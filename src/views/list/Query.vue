@@ -311,11 +311,11 @@ export default class QueryList extends Vue {
     private test() {
         /* webpackChunkName: "list.testmodal" */
         /*
-        const ComponentClass: any = ()=>import(  './components/TestModal.vue');
+        const ComponentClass: any = () => import(  './components/TestModal.vue');
+        console.log(typeof ComponentClass);
         const instance = new ComponentClass();
         console.log(instance);
-        instance.then((comp: any) =>{
-            console.log(comp);
+        instance.then((comp: any) => {
             const modalInstance = new comp.default({
                     propsData: {
                         'props': { user: 'admin2' },
@@ -323,19 +323,17 @@ export default class QueryList extends Vue {
                     },
                 }
             );
-            console.log(modalInstance);
             modalInstance.$mount();
-        });
-        */
+        });*/
 
-        
+        /*
         // TestModal
-        const instance = modalService.show(TestModal ,{ user: 'admin2' } );
-
-        instance.subscribe((res: any)=>{
+        const instance = modalService.show(TestModal , { user: 'admin2' } );
+        */
+        const instance = modalService.showAsync(import(  './components/TestModal.vue') , { user: 'admin2' } );
+        instance.subscribe((res: any) => {
             console.log(res);
         });
-        /**/
     }
 
     private handleUpdateModalVisible(visible: boolean, record: any): void {
