@@ -13,6 +13,9 @@
 </template>
 
 <script lang="ts">
+/**
+ * 多语言选择组件
+ */
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 
@@ -20,12 +23,19 @@ import * as _ from 'lodash';
 
 @Component({})
 export default class SelectLange extends Vue {
+
+    /**
+     * 多语言列表
+     */
     private localeList() {
         return _.map(_.keys(this.$i18n.messages), (item: any) => {
             return { key: item };
         });
     }
 
+    /**
+     * 切换语言
+     */
     private localeChange(e: any) {
         this.$i18n.locale = e.key;
     }

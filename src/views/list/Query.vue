@@ -102,6 +102,10 @@
                 <a-button icon="plus" type="primary" @click="() => this.handleModalVisible(true)">
                     新建
                 </a-button>
+
+                <a-button icon="plus" type="primary" @click="() => this.test()">
+                    测试功能
+                </a-button>
                 
                 <span v-if="selectedRows.length > 0">
                   <a-button>批量操作</a-button>
@@ -153,6 +157,10 @@ import moment from 'moment';
 import axios from 'axios';
 
 import UpdateTaskForm from './components/UpdateTaskForm.vue';
+import TestModal from './components/TestModal.vue';
+import TestModal2 from './components/TestModal2.vue';
+
+import modalService from '@/core/ModalService.tsx';
 
 const statusMap = ['default', 'processing', 'success', 'error'];
 const status = ['关闭', '运行中', '已上线', '异常'];
@@ -291,6 +299,14 @@ export default class QueryList extends Vue {
 
     private handlerTableChange(pagination: any, filter: any, sorter: any): void {
 
+    }
+
+    private testCallback(param: any) {
+    }
+
+    private test() {
+        modalService.show(TestModal , undefined, { user: 'admin111' } );
+        // modalService.show2(TestModal2,{user:'admin2'});
     }
 
     private handleUpdateModalVisible(visible: boolean, record: any): void {

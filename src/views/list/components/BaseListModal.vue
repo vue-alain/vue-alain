@@ -1,6 +1,7 @@
 <template>
 <a-form @submit="handleSubmit" :autoFormCreate="(form)=>{this.form = form}">
-<a-modal :title="'任务编辑'" class="standardListForm" :width="640" :bodyStyle="{ padding: '28px 0 0' }" :visible="visible" @ok="handleOk" @cancel="handleCancel">
+<a-modal :title="'任务编辑'" 
+class="standardListForm" :width="640" :bodyStyle="{ padding: '28px 0 0' }" :visible="visible" @ok="handleOk" @cancel="handleCancel">
     
         <a-form-item label="任务名称" v-bind="formLayout" 
                 fieldDecoratorId="title" 

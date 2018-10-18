@@ -90,11 +90,6 @@ const appModule = namespace('app');
 
 import * as _ from 'lodash';
 
-/**
- * 菜单
- * 缺少功能:
- * 2. 选中子菜单，父菜单高亮
- */
 @Component({
     components: {},
 })
