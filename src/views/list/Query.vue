@@ -156,11 +156,15 @@ import {
 import moment from 'moment';
 import axios from 'axios';
 
-import UpdateTaskForm from './components/UpdateTaskForm.vue';
-import TestModal from './components/TestModal.vue';
-import TestModal2 from './components/TestModal2.vue';
+import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 
-import modalService from '@/core/ModalService.tsx';
+import UpdateTaskForm from './components/UpdateTaskForm.vue';
+
+/**/
+import TestModal from './components/TestModal.vue';
+
+
+import modalService from '@/core/ModalService.ts';
 
 const statusMap = ['default', 'processing', 'success', 'error'];
 const status = ['关闭', '运行中', '已上线', '异常'];
@@ -305,11 +309,12 @@ export default class QueryList extends Vue {
     }
 
     private test() {
-        // modalService.show(TestModal , undefined, { user: 'admin111' } );
-        modalService.show2(TestModal2,{user:'admin2'})
-            .subscribe((res: any)=>{
-                console.log(res);
-            });
+
+        const instance = modalService.show(TestModal ,{ user: 'admin2' } );
+
+        instance.subscribe((res: any)=>{
+            console.log(res);
+        });
     }
 
     private handleUpdateModalVisible(visible: boolean, record: any): void {

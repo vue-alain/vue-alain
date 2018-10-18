@@ -1,7 +1,8 @@
 <template>
-<a-modal title="测试窗口" destroyOnClose :visible="visible" @ok="handleOk" @cancel="handleCancel">
+<a-modal title="测试窗口" destroyOnClose :visible="visible"
+@ok="handleOk" @cancel="handleCancel">
     <span>
-        {{this.param.user}}
+        {{visible}}
     </span>
 </a-modal>
 </template>
@@ -14,6 +15,7 @@ import {
     Emit,
     Model,
     Watch,
+    Mixins,
 } from 'vue-property-decorator';
 import {
     State,
@@ -21,49 +23,26 @@ import {
     namespace,
 } from 'vuex-class';
 
+import ModalMixin,{ IModalMixin } from '@/modalMixin.ts';
+
 @Component({
     components: {},
 })
-export default class TestModal extends Vue {
-
-    @Prop({
-        type: Function,
-        default() {
-            return (param: any) => {};
-        },
-    })
-    private callback!: (param: any) => void;
-
-    @Prop({
-        type: Object,
-        default() {
-            return {};
-        },
-    })
-    private param!: any;
+export default class TestModal extends Mixins<IModalMixin>(ModalMixin){
 
     @Prop({
         type: String,
         default: '',
     })
-    private user!: any;
+    private user!: string;
 
-    private visible: boolean = false;
-
+    constructor(){
+        super();
+    }
     private mounted(): void {
-        this.visible  = true;
+        console.log(this.visible);
+        console.log(`TestModal  mounted`);
+        console.log(this.user);
     }
-
-    private handleOk() {
-        this.visible = false;
-        this.callback(true);
-    }
-
-    private handleCancel() {
-        this.visible = false;
-        this.callback(false);
-    }
-
-
 }
 </script>

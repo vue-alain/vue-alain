@@ -39,6 +39,7 @@ import AxiosInterceptor from '@/core/AxiosInterceptor';
 import zh_CN from '@/locales/zh_cn';
 import en_US from '@/locales/en_us';
 
+import 'rxjs/Rx';
 
 Vue.use(Antd);
 Vue.use(Viser);
