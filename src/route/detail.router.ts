@@ -4,6 +4,7 @@ const router = {
     path: '/detail',
     component: MainLayout,
     name: '/detail',
+    redirect: '/detail/basic',
     meta: {
         title: '详情页',
         icon: 'profile',

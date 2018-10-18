@@ -4,6 +4,7 @@ const router = {
     path: '/form',
     component: MainLayout,
     name: '/form',
+    redirect: '/form/basic',
     meta: {
         title: '表单页',
         icon: 'form',

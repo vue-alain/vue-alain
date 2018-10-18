@@ -4,6 +4,7 @@ const router = {
     path: '/list',
     component: MainLayout,
     name: '/list',
+    redirect: '/list/query',
     meta: {
         title: '列表页',
         icon: 'table',
