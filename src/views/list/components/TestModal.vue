@@ -29,7 +29,7 @@ import ModalMixin, { IModalMixin } from '@/modalMixin.ts';
 @Component({
     components: {},
 })
-export default class TestModal extends Mixins<IModalMixin>(ModalMixin){
+export default class TestModal extends Mixins<IModalMixin>(ModalMixin) {
 
     @Prop({
         type: String,

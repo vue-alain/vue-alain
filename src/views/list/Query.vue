@@ -52,11 +52,6 @@
                 展开 <a-icon type="down" />
               </a>
             </span>
-                            <!--
-            <a-form-item label="调用次数" fieldDecoratorId="number" v-bind="searchFormLayout">
-              <a-input-number :style="{ width: '100%' }" />
-            </a-form-item>
-            -->
                         </a-col>
 
                     </a-row>
@@ -332,7 +327,6 @@ export default class QueryList extends Vue {
         */
         const instance = modalService.showAsync(import(  './components/TestModal.vue') , { user: 'admin2' } );
         instance.subscribe((res: any) => {
-            console.log(res);
         });
     }
 
