@@ -305,8 +305,11 @@ export default class QueryList extends Vue {
     }
 
     private test() {
-        modalService.show(TestModal , undefined, { user: 'admin111' } );
-        // modalService.show2(TestModal2,{user:'admin2'});
+        // modalService.show(TestModal , undefined, { user: 'admin111' } );
+        modalService.show2(TestModal2,{user:'admin2'})
+            .subscribe((res: any)=>{
+                console.log(res);
+            });
     }
 
     private handleUpdateModalVisible(visible: boolean, record: any): void {

@@ -4,6 +4,8 @@ import {
     Vue,
 } from 'vue-property-decorator';
 
+import { Observable, Subscription, BehaviorSubject } from 'rxjs';
+
 import DynamicModal from './DynamicModal.vue';
 
 export interface ModalOption {
@@ -30,9 +32,10 @@ class ModalService{
         instance.$mount();
     }
 
-    public show2(component: any, props?: any) {
+    public show2(component: any, props?: any): Subscription {
         // const comp = this.modal(component);
         //console.log(comp);
+        // const bev=modalSubject
         
         const ComponentClass = Vue.extend(DynamicModal);
         
@@ -43,6 +46,7 @@ class ModalService{
             },
         });
         instance.$mount();
+        return (instance as any).modalSubject$;
     }
 
 }

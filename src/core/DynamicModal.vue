@@ -19,6 +19,8 @@ import {
     namespace,
 } from 'vuex-class';
 
+import { Observable, Subscription, BehaviorSubject } from 'rxjs';
+
 @Component({
     components: {},
 })
@@ -38,6 +40,9 @@ export default class DynamicModal extends Vue {
     })
     private component!: any;
 
+    public modalSubject$: BehaviorSubject<any> = new BehaviorSubject<any>({});
+    //private _change$: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>([]);
+
     @Prop({
         type:Object,
         default(){
@@ -53,14 +58,23 @@ export default class DynamicModal extends Vue {
         console.log(this.props);
     }
 
+    private desctory(){
+        this.modalSubject$.unsubscribe();
+    }
+
     private handleOk(){
         this.visible = false;
-        this.callback(true);
+        this.modalSubject$.next({
+            isCancel: true
+        });
+        //this.callback(true);
     }
 
     private handleCancel(){
         this.visible = false;
-        this.callback(false);
+        this.modalSubject$.next({
+            isCancel: false
+        });
     }
 
 
