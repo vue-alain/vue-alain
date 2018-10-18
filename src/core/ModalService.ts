@@ -4,23 +4,33 @@ import {
     Vue,
 } from 'vue-property-decorator';
 
-import { Observable } from 'rxjs';
+import { VueConstructor } from 'Vue';
+
+import { Observable, BehaviorSubject } from 'rxjs';
 import { IModalMixin } from '@/modalMixin.ts';
 class ModalService {
 
-    public show(component: any, props?: any): Observable<any> {
+    public show(component: VueConstructor<Vue>|string, props?: any): Observable<any> {
 
-        const ComponentClass = Vue.extend(component);
+        const comp = component as VueConstructor<Vue>;
+        if (comp != null) {
 
-        const instance = new ComponentClass({
-            propsData: {
-                'props': props,
-                ...props,
-            },
-        });
-        instance.$mount();
+            const ComponentClass = Vue.extend(comp);
 
-        return  (instance as IModalMixin).modalSubject$;
+            const instance = new ComponentClass({
+                propsData: {
+                    'props': props,
+                    ...props,
+                },
+            });
+            instance.$mount();
+
+            return  (instance as IModalMixin).modalSubject$;
+
+        }
+        // if((typeof compoent) === VueConstructor<Vue>)
+
+        return new BehaviorSubject<any>({});
     }
 }
 
