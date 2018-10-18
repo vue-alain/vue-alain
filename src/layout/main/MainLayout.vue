@@ -1,25 +1,16 @@
 <template>
-
 <a-layout class="wrapper">
-    <admin-header></admin-header>
+  <admin-header></admin-header>
   <a-layout>
-    <!--
-    <div class="aside">
-      <div class="d-block py-lg">
-        <av-sidebar-nav :list="menulist"></av-sidebar-nav>
-      </div>
-    </div>
-    -->
-    
     <admin-sidebar></admin-sidebar>
-    
     <a-layout>
       <a-layout-content class="content">
         <reuse-tab :list="tabList"
-        :pos="$route.name"
-        @changePath="handleChangePath"
-        @closeTab="handleCloseTab"></reuse-tab>
-        <router-view></router-view>
+            :pos="$route.name"
+            @changePath="handleChangePath"
+            @closeTab="handleCloseTab">
+        </reuse-tab>
+      <router-view></router-view>
       </a-layout-content>
       <a-layout-footer style="padding:0px">
         <admin-footer :link-list="linkList" :copyright="copyright" />
@@ -32,7 +23,9 @@
 <script  lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
+// app 模块
 const appModule = namespace('app');
+// 复用tab模块
 const reuseTabModule = namespace('reuseTab');
 
 import ReuseTab from '@/components/reusetab/Index.vue';
@@ -53,12 +46,15 @@ import * as _ from 'lodash';
 })
 export default class MainLayout extends Vue {
 
+  // 是否折叠
   @appModule.State('isCollapse')
   private isCollapse!: boolean;
 
+  // 复用tab数据源
   @reuseTabModule.State('source')
   private reuseTabSource!: any[];
 
+  // 复用tab跳转
   @reuseTabModule.State('to')
   private reuseTabTo!: string;
 
@@ -71,6 +67,7 @@ export default class MainLayout extends Vue {
       {link: 'https://vuecomponent.github.io/ant-design-vue/docs/vue/introduce-cn/', name: 'Vue Ant Design'},
     ];
 
+  // 复用tab列表
   get tabList() {
     _.forEach(this.reuseTabSource, (item: any) => {
       if ( item.i18n ) {
@@ -88,10 +85,16 @@ export default class MainLayout extends Vue {
   private mounted() {
   }
 
+  /**
+   * 点击复用tab标签跳转路由
+   */
   private handleChangePath(e: any, route: any) {
     this.$router.push(route.path);
   }
 
+  /**
+   * 处理关闭路由tab
+   */
   private handleCloseTab(e: any, route: any, close: boolean) {
     const activeName = this.$route.name;
     this.reuseTabClose({
@@ -100,11 +103,17 @@ export default class MainLayout extends Vue {
     });
   }
 
+  /**
+   * 关于路由tab
+   */
   @reuseTabModule.Action('remove')
   private reuseTabClose(param: any) {
 
   }
 
+  /**
+   * 监控 路由tab to属性，以便正确调整路由
+   */
   @Watch('reuseTabTo')
   private watchReuseTabTo(newVal: string, oldVal: string) {
     if (newVal !== undefined || newVal !== '') {

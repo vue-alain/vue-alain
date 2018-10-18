@@ -25,13 +25,15 @@ const router = new Router({
   ],
 });
 
+/**
+ * 设置全局路由守卫
+ */
 router.beforeResolve((to: Route, from: Route, next: any) => {
-
 
   const state: any = store.state;
   const user: any = state.user;
 
-  /**/
+  // 路由信息设置了需要守卫，跳转路由时需要先登录
   if (to.meta && to.meta.routerGuard) {
     // 需要路由守护
     if (user.token === undefined) {
@@ -58,7 +60,9 @@ router.afterEach( ( to: any, from: any) => {
     i18n: to.meta.i18n || null,
   };
 
+  // 设置复用tab
   store.dispatch('reuseTab/add', tabInfo);
+  // 设置标题
   store.commit('app/changeTitle', {
       title: tabInfo.title,
       i18n: tabInfo.i18n,
