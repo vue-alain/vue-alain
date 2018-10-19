@@ -27,7 +27,7 @@
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <div>
-            <av-g2-mini-area color="#975FE4" :data="chartData" />
+            <av-g2-mini-area color="#975FE4" :data="visitData" />
           </div>
           <div slot="footer">{{$t(`app.analysis.day-visits`)}}<span> 123,4</span></div>
         </av-g2-chart-card>
@@ -349,14 +349,15 @@ for (let i = 0; i < fakeY.length; i += 1) {
     y: fakeY[i],
   });
 }
+*/
 
-const rankingListData = [];
+const rankingListDataSource: any[] = [];
 for (let i = 0; i < 7; i += 1) {
-  rankingListData.push({
+  rankingListDataSource.push({
     title: `工专路 ${i} 号店`,
     total: 323234,
   });
-}*/
+}
 
 @Component({
   components: {},
@@ -364,7 +365,7 @@ for (let i = 0; i < 7; i += 1) {
 export default class Analysis extends Vue {
   private rangePickerValue: moment.Moment[] = getTimeDistance('year');
 
-  // private rankingListData: Array<{title: string, total: number}>;
+  private rankingListData: any[]=rankingListDataSource;
 
   private radarData:any[]=[];
   private visitData:any[]=[];
@@ -387,15 +388,22 @@ export default class Analysis extends Vue {
   private offlineData:any[] =[];
 
   get salesPieData(): any[] {
+    let data: any[] = [];
     if (this.salesType === 'all') {
-      return this.salesTypeData;
+      data = this.salesTypeData;
     } else {
-      return this.salesType === 'online' ? this.salesTypeDataOnline : this.salesTypeDataOffline;
+      data = this.salesType === 'online' ? this.salesTypeDataOnline : this.salesTypeDataOffline;
     }
+
+    return data.map(x=>{
+      x.item = x.x;
+      x.count = x.y;
+      return x;
+    });
   }
 
   get pieTotal() {
-    return this.salesPieData.reduce((pre, now) => now.y + pre, 0);
+    return this.salesPieData.reduce((pre: any, now: any) => now.y + pre, 0);
   }
 
 
