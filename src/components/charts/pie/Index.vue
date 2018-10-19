@@ -112,6 +112,15 @@ export default class Pie extends Vue {
 
     get extendSettings() {
       const setting: any = {};
+      /*
+      setting.legend = {
+        type: 'scroll',
+        orient: 'vertical',
+        right: 0,
+        top: 20,
+        bottom: 20
+      };
+      */
       return setting;
     }
 

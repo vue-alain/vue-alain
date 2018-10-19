@@ -7,30 +7,12 @@
       :settings="chartSettings" 
       :extend="extendSettings" 
       :legend-visible="false"></ve-line>
-      <!--
-      <v-chart :force-fit="true" :height="height"
-        :data="data" :padding="[36, 5, 18, 5]">
-        <v-tooltip />
-        <v-smooth-line v-if="line" position="x*y" :size="2" />
-        <v-smooth-area position="x*y" :color="color" />
-      </v-chart>
-      -->
     </div>
   </div>
 </template>
 
 <style scoped lang="less">
-
-.mini-chart {
-    position: relative;
-    width: 100%;
-    .chart-content{
-      position: absolute;
-      bottom: -28px;
-      width: 100%;
-    }
-}
-
+@import "./../index.less";
 </style>
 
 <script  lang="ts">
@@ -74,12 +56,19 @@ export default class MiniArea extends Vue {
     const borderColor = this.borderColor;
     return {
       xAxis: {
-      show: false,
-    },
-    yAxis: {
-      show: false,
-    },
-    series(v: any) {
+        show: false,
+        boundaryGap: false,
+        axisLine: {
+          show: false,
+        },
+      },
+      yAxis: {
+        show: false,
+        axisLine: {
+          show: false,
+        },
+      },
+      series(v: any) {
           v.forEach((i: any ) => {
             i.symbol = false;
             i.showSymbol = false;

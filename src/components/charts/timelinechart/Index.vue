@@ -1,79 +1,12 @@
 <template>
 <div class="timelineChart" :style="{height: height + 30}">
-        <h4 v-if="title">{{title}}</h4>
-          <v-chart :height="height" :padding="padding" :data="chartDataSet" :scale="cols" :force-fit="true">
-            <v-axis name="x" />
-            <v-tooltip />
-            <v-legend name="key" position="top" />
-            <!--
-            <Geom type="line" position="x*value" size={borderWidth} color="key" />
-            -->
-            <v-line position="x*value" :size="borderWidth" color="key" />
-            <!--
-            <v-line position="x*value" :size="borderWidth" color="key"  />
-            -->
-          </v-chart>
-          <div>
-            <v-plugin>
-      <v-slider 
-        width="auto" 
-        :height="26"
-        :start="start" 
-        :end="end"
-        :data="originDv" 
-        xAxis="x" 
-        yAxis="y1" 
-        :scales="{
-          x:timeScale
-        }"
-        :background-chart="{type: 'line'}"
-        :on-change="handleSliderChange"/>
-    </v-plugin>
- <!--
-            <v-slider :padding="[0, padding[1] + 20, 0, padding[3]]"
-            width="auto"
-            :height="26"
-            :data="dv"
-            xAxis="x"
-            yAxis="y1"
-        :scales="timeScale"
-        :start="ds.state.start"
-        :end="ds.state.end"
-        :backgroundChart="{type: 'line'}"
-        @change="handleSliderChange"
-            ></v-slider>
-           
-            
-            <SliderGen />
-padding={[0, padding[1] + 20, 0, padding[3]]}
-        width="auto"
-        height={26}
-        xAxis="x"
-        yAxis="y1"
-        scales={{ x: timeScale }}
-        data={data}
-        start={ds.state.start}
-        end={ds.state.end}
-        backgroundChart={{ type: 'line' }}
-        onChange={({ startValue, endValue }) => {
-          ds.setState('start', startValue);
-          ds.setState('end', endValue);
-        }}
+  <h4 v-if="title">{{title}}</h4>
+  <ve-line
+    :data="chartData"
+    :data-zoom="dataZoom">
+  </ve-line>
+</div>
 
-            -->
-          </div>
-      </div>
-<!--
-  <div>
-    <v-chart :force-fit="true" :height="height" :data="data" :scale="scale">
-      <v-tooltip />
-      <v-axis />
-      <v-legend />
-      <v-line position="x*temperature" color="city" />
-      <v-point position="x*temperature" color="city" :size="4" :v-style="style" :shape="'circle'" />
-    </v-chart>
-  </div>
-  -->
 </template>
 
 <style lang="less">
@@ -149,129 +82,53 @@ export default class TimelineChart extends Vue {
   private title!: string;
 
   @Prop({
-    type: Object,
+    type: Array,
     default() {
-      return {
-        y1: 'y1',
-        y2: 'y2',
-      };
+      return [];
     },
   })
-  private titleMap!: any;
+  private columns!: any[];
 
-  get originDv(): any[] {
-    return sourceData;
+  @Prop({
+    type: Array,
+    default() {
+      return [];
+    },
+  })
+  private data!: any[];
+
+  @Prop({
+    type: Number,
+    default: 0,
+  })
+  private start!: number;
+
+  @Prop({
+    type: Number,
+    default: 100,
+  })
+  private end!: number;
+
+  get dataZoom(): any[] {
+    return [{
+        type: 'slider',
+        start: this.start,
+        end: this.end,
+      },
+    ];
   }
 
-  get timeScale() {
+  get chartData(): any {
     return {
-      dataKey: 'x',
-      type: 'time',
-      tickInterval: 60 * 60 * 1000,
-      mask: 'HH:mm',
-      range: [0, 1],
-    };
+        columns: this.columns, // ['日期', '成本', '利润'],
+        rows: this.data,
+      };
   }
 
-  get cols() {
-    const self = this;
-    const max = self.max;
-    return [self.timeScale];
-  }
-
-  get max() {
-    const data = sourceData;
-    let max;
-    if (data[0] && data[0].y1 && data[0].y2) {
-      max = Math.max(
-        [...data].sort((a, b) => b.y1 - a.y1)[0].y1,
-        [...data].sort((a, b) => b.y2 - a.y2)[0].y2,
-      );
-    }
-    return max;
-  }
-
-  private start: any = 0;
-  private end: any = 0;
-  private scale = scale;
   private height = 400;
   private borderWidth = 2;
-  private style = { stroke: '#fff', lineWidth: 1 };
-
-  private padding: any[] = [60, 20, 40, 40];
-
-  private chartDataSet: any = {
-  };
-
-  private handleSliderChange(opts: any) {
-    const { startValue, endValue, startText, endText } = opts;
-    this.start = startValue;
-    this.end = endValue;
-    this.bindChart();
-  }
-
-  private buildData() {
-
-    const ds = this.buildDataSet();
-    const dv = this.dv(ds);
-    return {
-      ds,
-      dv,
-    };
-  }
-
-  private bindChart() {
-    const source = this.buildData();
-    this.chartDataSet = source.dv;
-  }
-
-  private buildDataSet() {
-    const start = this.start;
-    const end = this.end;
-    return new DataSet({
-        state: {
-          [start]: start,
-          [end]: end,
-        },
-      });
-  }
-
-  private  dv(ds: any) {
-    const data = sourceData;
-    const self = this;
-    const dv = ds.createView();
-    dv.source(data)
-      .transform({
-        type: 'filter',
-        callback: (obj: any) => {
-          const date = obj.x;
-          return date <= ds.state.end && date >= ds.state.start;
-        },
-      })
-      .transform({
-        type: 'map',
-        callback(row: any) {
-          const newRow = { ...row };
-          newRow[self.titleMap.y1] = row.y1;
-          newRow[self.titleMap.y2] = row.y2;
-          return newRow;
-        },
-      })
-      .transform({
-        type: 'fold',
-        fields: [self.titleMap.y1, self.titleMap.y2], // 展开字段集
-        key: 'key', // key字段
-        value: 'value', // value字段
-      });
-
-    return dv;
-  }
-
 
   private mounted() {
-    this.start = sourceData[0].x;
-    this.end = sourceData[sourceData.length - 1].x;
-    this.bindChart();
   }
 
 

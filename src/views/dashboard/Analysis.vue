@@ -37,7 +37,9 @@
           <a-tooltip :title="$t('app.analysis.introduce')" slot="action">
             <a-icon type="info-circle-o" />
           </a-tooltip>
-          <av-g2-mini-bar :height="46"/>
+          <div>
+            <av-g2-mini-bar :data="visitData"/>
+          </div>
           <div slot="footer">{{$t(`app.analysis.conversion-rate`)}} <span>60%</span></div>
         </av-g2-chart-card>
       </a-col>
@@ -148,7 +150,7 @@
                         {{$t(`app.analysis.visits-ranking`)}}
                       </h4>
                       <ul class="rankingList">
-                        <!--
+                        
                         <li :key='item.title' v-for="(item,i) in rankingListData">
                             <span
                               class="rankingItemNumber"
@@ -163,7 +165,7 @@
                               {{$numeral(item.total).format('0,0')}}
                             </span>
                           </li>
-                          -->
+                          <!---->
                       </ul>
                     </div>
                   </a-col>
@@ -316,13 +318,25 @@
                 </a-row>
               </div>
               <av-g2-timeline-chart 
-              :titleMap="{
-                      y1: $t(`app.analysis.traffic`),
-                      y2: $t(`app.analysis.payments`),
-                    }"
+                :columns="['日期', '成本', '利润']"
+                  :data="[
+          { '日期': '1月1日', '成本': 15, '利润': 12 },
+          { '日期': '1月2日', '成本': 12, '利润': 25 },
+          { '日期': '1月3日', '成本': 21, '利润': 10 },
+          { '日期': '1月4日', '成本': 41, '利润': 32 },
+          { '日期': '1月5日', '成本': 31, '利润': 30 },
+          { '日期': '1月6日', '成本': 71, '利润': 55 }
+        ]"
               ></av-g2-timeline-chart>
             </a-tab-pane>
           </a-tabs>
+        </a-card>
+        <a-card
+          title="echarts"
+          :bordered="false"
+          :bodyStyle="{ padding: '0 0 32px 0' }"
+          style="margin-top: 32px">
+        
         </a-card>
   </div>
 </template>
@@ -365,11 +379,11 @@ for (let i = 0; i < 7; i += 1) {
 export default class Analysis extends Vue {
   private rangePickerValue: moment.Moment[] = getTimeDistance('year');
 
-  private rankingListData: any[]=rankingListDataSource;
+  private rankingListData: any[] = rankingListDataSource;
 
-  private radarData:any[]=[];
-  private visitData:any[]=[];
-  private offlineChartData:any[]=[];
+  private radarData: any[] = [];
+  private visitData: any[] = [];
+  private offlineChartData: any[] = [];
 
   private salesType: string = 'all';
 
