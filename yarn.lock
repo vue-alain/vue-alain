@@ -3219,6 +3219,23 @@ echarts-amap@1.0.0-rc.6:
   version "1.0.0-rc.6"
   resolved "https://registry.yarnpkg.com/echarts-amap/-/echarts-amap-1.0.0-rc.6.tgz#5782a74daee52ed44ce3f8f62577561783f09e16"
 
+echarts-liquidfill@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/echarts-liquidfill/-/echarts-liquidfill-2.0.2.tgz#6a82f7a128345793308d5001455b5a159721532d"
+  dependencies:
+    echarts "^4.1.0"
+    zrender "^4.0.4"
+
+echarts-wordcloud@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/echarts-wordcloud/-/echarts-wordcloud-1.1.3.tgz#07b140c8ba76b19c317b43c310f3d5dc99289ff2"
+
+echarts@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/echarts/-/echarts-4.1.0.tgz#d588c95f73c1a9928b9c73d5b769751c3185bcdc"
+  dependencies:
+    zrender "4.0.4"
+
 echarts@^4.2.0-rc.1:
   version "4.2.0-rc.1"
   resolved "https://registry.yarnpkg.com/echarts/-/echarts-4.2.0-rc.1.tgz#c76bc392e9d34f914480f8299305f66fa0b79cb7"
@@ -8638,11 +8655,13 @@ uuid@^3.0.1, uuid@^3.1.0, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
 
-v-charts@^1.17.10:
-  version "1.17.10"
-  resolved "https://registry.yarnpkg.com/v-charts/-/v-charts-1.17.10.tgz#4b4762ae11f7092c7fe8429d4229eb62405512da"
+v-charts@^1.18.0:
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/v-charts/-/v-charts-1.18.0.tgz#f2a38b70da667ccb8e34f687d9d596eb2a00fcda"
   dependencies:
     echarts-amap "1.0.0-rc.6"
+    echarts-liquidfill "^2.0.2"
+    echarts-wordcloud "^1.1.3"
     numerify "1.2.9"
     utils-lite "0.1.10"
 
@@ -9279,6 +9298,10 @@ yorkie@^2.0.0:
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
 
-zrender@4.0.5:
+zrender@4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/zrender/-/zrender-4.0.4.tgz#910e60d888f00c9599073f23758dd23345fe48fd"
+
+zrender@4.0.5, zrender@^4.0.4:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/zrender/-/zrender-4.0.5.tgz#6e8f738971ce2cd624aac82b2156729b1c0e5a82"
