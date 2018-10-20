@@ -3236,12 +3236,6 @@ echarts@^4.1.0:
   dependencies:
     zrender "4.0.4"
 
-echarts@^4.2.0-rc.1:
-  version "4.2.0-rc.1"
-  resolved "https://registry.yarnpkg.com/echarts/-/echarts-4.2.0-rc.1.tgz#c76bc392e9d34f914480f8299305f66fa0b79cb7"
-  dependencies:
-    zrender "4.0.5"
-
 editorconfig@^0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/editorconfig/-/editorconfig-0.15.0.tgz#b6dd4a0b6b9e76ce48e066bdc15381aebb8804fd"
@@ -9302,6 +9296,6 @@ zrender@4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/zrender/-/zrender-4.0.4.tgz#910e60d888f00c9599073f23758dd23345fe48fd"
 
-zrender@4.0.5, zrender@^4.0.4:
+zrender@^4.0.4:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/zrender/-/zrender-4.0.5.tgz#6e8f738971ce2cd624aac82b2156729b1c0e5a82"

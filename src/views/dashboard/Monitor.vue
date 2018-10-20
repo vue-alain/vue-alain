@@ -47,8 +47,10 @@
               :bodyStyle="{ textAlign: 'center' }"
               :bordered="false"
             >
-            <ve-gauge :data="chartData"></ve-gauge>
+            <av-gauge :percent="87" title="跳出率"></av-gauge>
             <!--
+            <ve-gauge :data="chartData"></ve-gauge>
+            
               <Gauge :title="跳出率" height={180} percent={87} />
               -->
             </a-card>
@@ -99,9 +101,7 @@
               :bordered="false"
               :bodyStyle="{ overflow: 'hidden' }"
             >
-            <!--
-              <TagCloud data={tags} height={161} />
-              -->
+              <av-tag-cloud :data="chartList"></av-tag-cloud>
             </a-card>
           </a-col>
           <a-col :xl="6" :lg="12" :sm="24" :xs="24">
@@ -110,10 +110,7 @@
               :bodyStyle="{ textAlign: 'center', fontSize: 0 }"
               :bordered="false"
             >
-            <ve-liquidfill :data="waterChartData"></ve-liquidfill>
-            <!--
-              <WaterWave height={161} :title="补贴资金剩余" percent={34} />
-              -->
+            <av-water-wave :percent="0.64" title="上海"></av-water-wave>
             </a-card>
           </a-col>
         </a-row>
@@ -123,25 +120,16 @@
 
 <script  lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-
+import axios from 'axios';
 @Component({})
 export default class Monitor extends Vue {
 
-  private chartData: any = {
-          columns: ['type', 'value'],
-          rows: [
-            { type: '速度', value: 87, }
-          ]
-        };
-
-
-  private waterChartData: any ={
-          columns: ['city', 'percent'],
-          rows: [{
-            city: '上海',
-            percent: 0.6
-          }]
-        };
+  private chartList: any[] = [];
+  private mounted() {
+    axios.get('/api/tag').then((res: any) => {
+      this.chartList = res.data.list;
+    });
+  }
 }
 </script>
 

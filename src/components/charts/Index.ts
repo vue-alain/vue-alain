@@ -8,6 +8,9 @@ import Trend from './trend/Index.vue';
 import ChartCard from './chartcard/Index.vue';
 import Pie from './pie/Index.vue';
 import TimelineChart from './timelinechart/Index.vue';
+import WaterWave from './waterwave/Index.vue';
+import TagCloud from './tagcloud/Index.vue';
+import Gauge from './gauge/Index.vue';
 
 import numeral from 'numeral';
 
@@ -25,6 +28,9 @@ export default {
         Vue.component('av-g2-chart-card', ChartCard);
         Vue.component('av-g2-pie', Pie);
         Vue.component('av-g2-timeline-chart', TimelineChart);
+        Vue.component('av-water-wave', WaterWave);
+        Vue.component('av-tag-cloud', TagCloud);
+        Vue.component('av-gauge', Gauge);
         Object.defineProperty( Vue.prototype, '$yuan', { value: yuan } );
         Object.defineProperty( Vue.prototype, '$numeral', { value: numeral } );
     },
