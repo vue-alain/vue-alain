@@ -32,9 +32,6 @@ export default class MiniBar extends Vue {
     @Prop({type: Array, default: () => []})
     private data!: any[];
 
-    @Prop({type: Boolean, default: false})
-    private forceFit!: boolean;
-
     @Prop({type: String, default: '#1890FF'})
     private color!: string;
 

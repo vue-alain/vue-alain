@@ -26,22 +26,22 @@ export default class Gauge extends Vue {
     const {title} = this;
     return {
         dataName: {
-          '占比': title,
+          item: title,
         },
         dataType: {
-          '占比': 'percent',
+          item: 'percent',
         },
         seriesMap: {
-          '占比': {
-            min:0,
-            max:1,
+          item: {
+            min: 0,
+            max: 1,
             axisLabel: {
               formatter(v: number) {
                 return '';
-              }
-            }
+              },
+            },
           },
-        }
+        },
       };
   }
 
@@ -49,8 +49,8 @@ export default class Gauge extends Vue {
     return {
           columns: ['type', 'value'],
           rows: [
-            { type: '占比', value: this.percent / 100 }
-          ]
+            { type: 'item', value: this.percent / 100 },
+          ],
         };
   }
 }
