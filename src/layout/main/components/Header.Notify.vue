@@ -44,7 +44,7 @@
 
 <script  lang="ts">
 
-
+/** 
 import { Popover, Badge, Tabs, List, Spin } from 'ant-design-vue';
 Vue.component(Popover.name, Popover);
 Vue.component(Badge.name, Badge);
@@ -55,6 +55,7 @@ Vue.component(List.name, List);
 Vue.component(List.Item.name, List.Item);
 Vue.component(List.Item.Meta.name, List.Item.Meta);
 Vue.component(Spin.name, Spin);
+*/
 
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
