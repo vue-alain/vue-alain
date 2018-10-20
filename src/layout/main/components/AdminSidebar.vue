@@ -1,54 +1,11 @@
 <template>
 <div class="aside">
-    <!--:openKeys.sync="openMenus"-->
-    
     <a-menu mode="inline" :inlineCollapsed="isCollapse" 
     v-model="currentRouteName" 
     @openChange="handleOpenChange"
     :openKeys="openMenus">
-        <!--
-        <template v-for="menuitem in menuList">
-            <a-menu-item :key="menuitem.text" v-if="menuitem.children==null">
-                <router-link :to="menuitem.link">
-                    <a-icon :type="menuitem.icon" />
-                    <span>{{menuitem.text}}</span>
-                </router-link>
-            </a-menu-item>
-            <a-sub-menu :key="menuitem.text" v-if="menuitem.children!=null">
-                <span slot="title">
-                    <a-icon :type="menuitem.icon" />
-                    <span>{{menuitem.text}}</span>
-                </span>
-                <a-menu-item :key="child.text" v-for="child in menuitem.children">
-                    <router-link :to="child.link">
-                        {{child.text}}
-                    </router-link>
-                </a-menu-item>
-            </a-sub-menu>
-        </template>
-        
-        <template v-for="menuitem in menuList">
-            <a-menu-item :key="menuitem.text" v-if="menuitem.children==null">
-                <router-link :to="menuitem.link">
-                    <a-icon :type="menuitem.icon" />
-                    {{menuitem.text}}
-                </router-link>
-            </a-menu-item>
-            <a-sub-menu :key="menuitem.text" v-if="menuitem.children!=null">
-                <template slot="title">
-                    <a-icon :type="menuitem.icon" />
-                    <span>{{menuitem.text}}</span>
-                </template>
-                <a-menu-item :key="child.text" v-for="child in menuitem.children">
-                    <router-link :to="child.link">
-                        {{child.text}}
-                    </router-link>
-                </a-menu-item>
-            </a-sub-menu>
-        </template>
-        -->
         <template v-for="menuitem in menuData">
-            <a-menu-item :key="menuitem.name" v-if="menuitem.children==null">
+            <a-menu-item :key="menuitem.name" v-if="menuitem.children==null||menuitem.children.length===1">
                 <router-link :to="menuitem.name">
                     <a-icon :type="menuitem.meta.icon" />
                     <span>{{displayMenuTitle(menuitem)}}</span>
@@ -102,7 +59,7 @@ export default class AdminSidebar extends Vue {
 
     private currentRouteName: any[] = [];
     private openMenus: any[] = [];
-// openKeys
+
     constructor() {
         super();
     }
