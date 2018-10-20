@@ -14,6 +14,9 @@
 ### 编译
 使用`yarn build`可能会报错，使用`node .\node_modules\@vue\cli-service\bin\vue-cli-service.js build`编译
 
+## 更新日志
+[更新日志](./CHANGELOG.md)
+
 ## 截图
 ![](/_screenshot/login.png)
 ![](/_screenshot/main1.png)
