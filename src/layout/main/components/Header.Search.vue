@@ -13,6 +13,11 @@
 </template>
 
 <script  lang="ts">
+
+import { AutoComplete, Icon } from 'ant-design-vue';
+Vue.component(Icon.name, Icon);
+Vue.component(AutoComplete.name, AutoComplete);
+
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({})

@@ -28,6 +28,14 @@
 </template>
 
 <script lang="ts">
+
+/** 
+import { Dropdown, Avatar } from 'ant-design-vue';
+Vue.component(Avatar.name, Avatar);
+Vue.component(Dropdown.name, Dropdown);
+Vue.component(Dropdown.Button.name, Dropdown.Button);
+*/
+
 import {
     Component,
     Prop,

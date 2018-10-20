@@ -10,7 +10,9 @@
             @changePath="handleChangePath"
             @closeTab="handleCloseTab">
         </reuse-tab>
-      <router-view></router-view>
+        <!---->
+        <router-view></router-view>
+        
       </a-layout-content>
       <a-layout-footer style="padding:0px">
         <admin-footer :link-list="linkList" :copyright="copyright" />

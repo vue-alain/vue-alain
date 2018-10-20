@@ -5,13 +5,12 @@ import router from '@/route/router';
 import store from '@/store/store';
 import './registerServiceWorker';
 
-import Antd from 'ant-design-vue';
+// import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 import './shims-ant-design-vue-type';
 
 import 'font-awesome/css/font-awesome.min.css';
 
-import Viser from 'viser-vue';
 import VCharts from 'v-charts';
 
 import Vuei18n from 'vue-i18n';
@@ -41,8 +40,42 @@ import en_US from '@/locales/en_us';
 
 import 'rxjs/Rx';
 
+/*
+import { LocaleProvider,
+  Layout,
+  Row,
+  Col,
+  Modal,
+  Menu,
+  message,
+  notification,
+} from 'ant-design-vue';
+Vue.component(LocaleProvider.name, LocaleProvider);
+Vue.component(Layout.name, LocaleProvider);
+Vue.component(Layout.Header.name, Layout.Header);
+Vue.component(Layout.Footer.name, Layout.Footer);
+Vue.component(Layout.Sider.name, Layout.Sider);
+Vue.component(Layout.Content.name, Layout.Content);
+Vue.component(Row.name, LocaleProvider);
+Vue.component(Col.name, LocaleProvider);
+Vue.component(Menu.name, Menu);
+Vue.component(Menu.Item.name, Menu.Item);
+Vue.component(Menu.SubMenu.name, Menu.SubMenu);
+Vue.component(Menu.Divider.name, Menu.Divider);
+Vue.component(Menu.ItemGroup.name, Menu.ItemGroup);
+
+
+Vue.prototype.$message = message;
+Vue.prototype.$notification = notification;
+Vue.prototype.$info = Modal.info;
+Vue.prototype.$success = Modal.success;
+Vue.prototype.$error = Modal.error;
+Vue.prototype.$warning = Modal.warning;
+Vue.prototype.$confirm = Modal.confirm;
+*/
+
+import Antd from 'ant-design-vue';
 Vue.use(Antd);
-Vue.use(Viser);
 Vue.use(Charts);
 Vue.use(Components);
 Vue.use(VCharts);

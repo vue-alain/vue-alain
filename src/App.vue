@@ -11,6 +11,7 @@
 </style>
 
 <script  lang="ts">
+
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 import { State, Mutation, namespace } from 'vuex-class';

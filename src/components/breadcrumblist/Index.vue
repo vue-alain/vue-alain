@@ -18,6 +18,12 @@
 </template>
 
 <script lang="tsx">
+
+import { Breadcrumb, Icon } from 'ant-design-vue';
+Vue.component(Icon.name, Icon);
+Vue.component(Breadcrumb.name, Breadcrumb);
+Vue.component(Breadcrumb.Item.name, Breadcrumb.Item);
+
 import {
     Component,
     Prop,

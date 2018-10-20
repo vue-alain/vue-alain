@@ -325,7 +325,9 @@ export default class QueryList extends Vue {
         // TestModal
         const instance = modalService.show(TestModal , { user: 'admin2' } );
         */
-        const instance = modalService.showAsync(import(  './components/TestModal.vue') , { user: 'admin2' } );
+        const instance = modalService.showAsync(
+            import(/* webpackChunkName: "list.testmodal" */'./components/TestModal.vue') ,
+            { user: 'admin2' } );
         instance.subscribe((res: any) => {
         });
     }
