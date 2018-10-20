@@ -48,11 +48,6 @@
               :bordered="false"
             >
             <av-gauge :percent="87" title="跳出率"></av-gauge>
-            <!--
-            <ve-gauge :data="chartData"></ve-gauge>
-            
-              <Gauge :title="跳出率" height={180} percent={87} />
-              -->
             </a-card>
           </a-col>
         </a-row>
@@ -61,7 +56,7 @@
             <a-card :title="$t(`app.monitor.proportion-per-category`)" :bordered="false" class="pieCard">
               <a-row style="padding: '16px 0'">
                 <a-col :span="8">
-                  <av-g2-pie
+                  <av-pie
                     :percent="28"
                     :height="128"
                     showTitle
@@ -71,7 +66,7 @@
                   />
                 </a-col>
                 <a-col :span="8">
-                  <av-g2-pie
+                  <av-pie
                     color="#5DDECF"
                     :percent="22"
                     :height="128"
@@ -82,7 +77,7 @@
                   />
                 </a-col>
                 <a-col :span="8">
-                  <av-g2-pie
+                  <av-pie
                     color="#2FC25B"
                     :percent="32"
                     :height="128"

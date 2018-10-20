@@ -31,13 +31,10 @@ import * as _ from 'lodash';
 export default class BreadcrumbList extends Vue {
 
     get source() {
-        console.log(this.$route);
         return this.$route.matched;
-        // return this.$route.;
     }
 
-    private mounted(){
-        console.log(this.$route);
+    private mounted() {
     }
 
 }

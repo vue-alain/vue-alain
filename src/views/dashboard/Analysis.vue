@@ -2,68 +2,68 @@
   <div>
 <a-row style="margin: 0 -12px">
       <a-col :sm="24" :md="12" :xl="6" style="padding: 12px 12px 24px;">
-        <av-g2-chart-card :title="$t('app.analysis.total-sales')" total="￥ 189,345">
+        <av-chart-card :title="$t('app.analysis.total-sales')" total="￥ 189,345">
           <a-tooltip :title="$t('app.analysis.introduce')" slot="action">
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <div>
-            <av-g2-trend style="margin-right: 16px" 
+            <av-trend style="margin-right: 16px" 
             :term="$t(`app.analysis.week`)" 
             :percent="12" 
             :is-increase="true" 
             :scale="0" />
-            <av-g2-trend 
+            <av-trend 
             :term="$t(`app.analysis.day`)" 
             :target="100" 
             :value="89" 
             :scale="0" />
           </div>
           <div slot="footer">{{$t('app.analysis.day-sales')}}<span> ￥234.56</span></div>
-        </av-g2-chart-card>
+        </av-chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6" style="padding: 12px 12px 24px;">
-        <av-g2-chart-card :title="$t('app.analysis.visits')" total="￥ 189,345">
+        <av-chart-card :title="$t('app.analysis.visits')" total="￥ 189,345">
           <a-tooltip :title="$t('app.analysis.introduce')" slot="action">
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <div>
-            <av-g2-mini-area color="#975FE4" :data="visitData" />
+            <av-mini-area color="#975FE4" :data="visitData" />
           </div>
           <div slot="footer">{{$t(`app.analysis.day-visits`)}}<span> 123,4</span></div>
-        </av-g2-chart-card>
+        </av-chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6" style="padding: 12px 12px 24px;">
-        <av-g2-chart-card :title="$t(`app.analysis.payments`)" total="￥ 189,345">
+        <av-chart-card :title="$t(`app.analysis.payments`)" total="￥ 189,345">
           <a-tooltip :title="$t('app.analysis.introduce')" slot="action">
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <div>
-            <av-g2-mini-bar :data="visitData"/>
+            <av-mini-bar :data="visitData"/>
           </div>
           <div slot="footer">{{$t(`app.analysis.conversion-rate`)}} <span>60%</span></div>
-        </av-g2-chart-card>
+        </av-chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6" style="padding: 12px 12px 24px;">
-        <av-g2-chart-card :title="$t(`app.analysis.operational-effect`)" total="73%">
+        <av-chart-card :title="$t(`app.analysis.operational-effect`)" total="73%">
           <a-tooltip :title="$t('app.analysis.introduce')" slot="action">
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <div>
-            <av-g2-mini-progress :target="90" :percent="78" color="#13C2C2" height="8px"/>
+            <av-mini-progress :target="90" :percent="78" color="#13C2C2" height="8px"/>
           </div>
           <div slot="footer">
-            <av-g2-trend style="margin-right: 16px" 
+            <av-trend style="margin-right: 16px" 
             :term="$t(`app.analysis.week`)" 
             :percent="12" 
             :is-increase="true" 
             :scale="0" />
-            <av-g2-trend 
+            <av-trend 
             :term="$t(`app.analysis.day`)" 
             :target="100" 
             :value="89" 
             :scale="0" />
           </div>
-        </av-g2-chart-card>
+        </av-chart-card>
       </a-col>
     </a-row>
     <a-row>
@@ -98,7 +98,7 @@
                 <a-row>
                   <a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
                     <div class="salesBar">
-                      <av-g2-bar
+                      <av-bar
                         :height="295"
                         :title="$t(`app.analysis.sales-trend`)"
                         :data="salesData"
@@ -137,7 +137,7 @@
                 <a-row>
                   <a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
                     <div  class="salesBar">
-                      <av-g2-bar
+                      <av-bar
                         :height="292"
                         :title="$t(`app.analysis.visits-trend`)"
                         :data="salesData"
@@ -195,15 +195,14 @@
                       <a-tooltip
                           :title="$t('app.analysis.introduce')"
                         >
-                          <a-icon style="margin-left: 8" type="info-circle-o" />  
+                          <a-icon style="margin-left: 8" type="info-circle-o" />
                         </a-tooltip>
                     </span>
-                    
                   </av-number-info>
-                  <av-g2-mini-area  line style="height: 45px" :data="visitData2" />
+                  <av-mini-area  line style="height: 45px" :data="visitData2" />
                 </a-col>
                 <a-col :sm="12" :xs="24" :style="{ 'margin-bottom': '24px' }">
-                  <av-number-info 
+                  <av-number-info
                         :gap="8"
                         total="2.7"
                         status="down"
@@ -212,7 +211,7 @@
                       {{$t(`app.analysis.per-capita-search`)}}
                     </span>
                   </av-number-info>
-                  <av-g2-mini-area line style="height: 45px" :data="visitData2" />
+                  <av-mini-area line style="height: 45px" :data="visitData2" />
                 </a-col>
               </a-row>
               <!---->
@@ -227,16 +226,13 @@
                 }"
               >
                 <a href="#/" slot="keyword" slot-scope="text">{{text}}</a>
-                <av-g2-trend slot="range" slot-scope="record" :flag="record.status === 1 ? 'down' : 'up'">
+                <av-trend slot="range" slot-scope="record" :flag="record.status === 1 ? 'down' : 'up'">
                   <span style="margin-right: 4px">{{record.text}}%</span>
-                </av-g2-trend>
+                </av-trend>
               </a-table>
-              
-              
             </a-card>
           </a-col>
           <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24">
-            
             <a-card
               class="salesCard"
               :bordered="false"
@@ -262,7 +258,7 @@
               <h4 :style="{ marginTop: 8, marginBottom: 32 }">
                 {{$t(`app.analysis.sales`)}}
               </h4>
-              <av-g2-pie
+              <av-pie
                 hasLegend
                 hasLabel
                 hasTooltip
@@ -273,7 +269,7 @@
                 :height="400"
                 :lineWidth="4"
                 showTitle
-                :subtitle="this.pieTotal"
+                :subtitle="`${this.pieTotal}`"
               />
             </a-card>
 
@@ -300,7 +296,7 @@
                     />
                   </a-col>
                   <a-col :span="12" style="padding-top: 36px">
-                    <av-g2-pie
+                    <av-pie
                       :percent="shop.cvr * 100"
                       :color="activeKey !== shop.name?'#BDE4FF':null"
                       :inner="0.55"
@@ -309,7 +305,7 @@
                   </a-col>
                 </a-row>
               </div>
-              <av-g2-timeline-chart
+              <av-timeline-chart
                 :columns="['日期', '成本', '利润']"
                   :data="[
           { '日期': '1月1日', '成本': 15, '利润': 12 },
@@ -319,7 +315,7 @@
           { '日期': '1月5日', '成本': 31, '利润': 30 },
           { '日期': '1月6日', '成本': 71, '利润': 55 }
         ]"
-              ></av-g2-timeline-chart>
+              ></av-timeline-chart>
             </a-tab-pane>
           </a-tabs>
         </a-card>

@@ -18,16 +18,16 @@ const yuan = (val: any) => `¥ ${numeral(val).format('0,0')}`;
 
 export default {
     install: ( Vue: any ) => {
-        Vue.component('av-g2-mini-bar', MiniBar);
-        Vue.component('av-g2-bar', Bar);
-        Vue.component('av-g2-mini-area', MiniArea);
-        Vue.component('av-g2-mini-progress', MiniProgress);
-        Vue.component('av-g2-radar', Radar);
-        Vue.component('av-g2-ranking-list', RankingList);
-        Vue.component('av-g2-trend', Trend);
-        Vue.component('av-g2-chart-card', ChartCard);
-        Vue.component('av-g2-pie', Pie);
-        Vue.component('av-g2-timeline-chart', TimelineChart);
+        Vue.component('av-mini-bar', MiniBar);
+        Vue.component('av-bar', Bar);
+        Vue.component('av-mini-area', MiniArea);
+        Vue.component('av-mini-progress', MiniProgress);
+        Vue.component('av-radar', Radar);
+        Vue.component('av-ranking-list', RankingList);
+        Vue.component('av-trend', Trend);
+        Vue.component('av-chart-card', ChartCard);
+        Vue.component('av-pie', Pie);
+        Vue.component('av-timeline-chart', TimelineChart);
         Vue.component('av-water-wave', WaterWave);
         Vue.component('av-tag-cloud', TagCloud);
         Vue.component('av-gauge', Gauge);
