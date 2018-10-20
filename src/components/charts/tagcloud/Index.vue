@@ -17,8 +17,9 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class TagCloud extends Vue {
 
   @Prop({ type: Array, default() {
-    return [];
-  } })
+      return [];
+    },
+  })
   private data!: any[];
 
   @Prop({ type: Number, default: 10  })

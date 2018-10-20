@@ -24,7 +24,7 @@ import {
     namespace,
 } from 'vuex-class';
 
-import ModalMixin, { IModalMixin } from '@/modalMixin.ts';
+import ModalMixin, { IModalMixin } from '@/core/modalMixin.ts';
 
 @Component({
     components: {},

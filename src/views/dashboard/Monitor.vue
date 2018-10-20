@@ -63,33 +63,33 @@
                 <a-col :span="8">
                   <av-g2-pie
                     :percent="28"
-                    :subTitle="$t(`app.monitor.fast-food`)"
-                    total="28%"
-                    :height="256"
-                    :lineWidth="2"
-                    style="height:128px"
+                    :height="128"
+                    showTitle
+                    title="中式快餐"
+                    subtitle="28%"
+                    :radius="[40,50]"
                   />
                 </a-col>
                 <a-col :span="8">
                   <av-g2-pie
                     color="#5DDECF"
                     :percent="22"
-                    :subTitle="$t(`app.monitor.western-food`)"
-                    total="22%"
-                    :height="256"
-                    :lineWidth="2"
-                    style="height:128px"
+                    :height="128"
+                    showTitle
+                    title="西餐"
+                    subtitle="22%"
+                    :radius="[40,50]"
                   />
                 </a-col>
                 <a-col :span="8">
                   <av-g2-pie
                     color="#2FC25B"
                     :percent="32"
-                    :subTitle="$t(`app.monitor.hot-pot`)"
-                    total="32%"
-                    :height="256"
-                    :lineWidth="2"
-                    style="height:128px"
+                    :height="128"
+                    showTitle
+                    title="火锅"
+                    subtitle="32%"
+                    :radius="[40,50]"
                   />
                 </a-col>
               </a-row>

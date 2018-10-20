@@ -9,7 +9,7 @@ import { VueConstructor } from 'Vue';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { of } from 'rxjs/observable/of';
 import { catchError  } from 'rxjs/operators';
-import { IModalMixin } from '@/modalMixin.ts';
+
 class ModalService {
 
     public show(component: VueConstructor<Vue>| Promise<any>  , props?: any): Observable<any> {
@@ -22,14 +22,14 @@ class ModalService {
 
             const instance = new ComponentClass({
                 propsData: {
-                    'props': props,
+                    props,
                     subject$: modalsubject$,
                     ...props,
                 },
             });
             instance.$mount();
         }
-        return this.handlersubject(modalsubject$);
+        return this.handlesubject(modalsubject$);
     }
 
     public showAsync(component: Promise<any>,  props?: any): Observable<any> {
@@ -37,7 +37,7 @@ class ModalService {
         component.then((comp: any) => {
             const modalInstance = new comp.default({
                     propsData: {
-                        'props': props,
+                        props,
                         subject$: modalsubject$,
                         ...props,
                     },
@@ -45,10 +45,10 @@ class ModalService {
             );
             modalInstance.$mount();
         });
-        return this.handlersubject(modalsubject$)
+        return this.handlesubject(modalsubject$);
     }
 
-    private handlersubject(modalsubject$: BehaviorSubject<any>): Observable<any> {
+    private handlesubject(modalsubject$: BehaviorSubject<any>): Observable<any> {
         return modalsubject$.asObservable()
         .pipe(catchError((err: any) => of(err)));
     }

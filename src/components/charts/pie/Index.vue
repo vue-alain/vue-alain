@@ -1,60 +1,19 @@
 <template>
-<ve-ring :data="pieData" :legend-visible="!isPercent" :settings="chartSettings" :extend="extendSettings" :height="chartHeight" :tooltip-visible="!isPercent"></ve-ring>
-<!--
-  <v-chart :forceFit="true" :height="height" :data="pieData" :scale="scale">
-        <v-tooltip v-if="hasTooltip" :showTitle="false" dataKey="item*percent" />
-        <v-axis />
-        <v-legend v-if="hasLegend" dataKey="item" />
-        <v-pie position="percent" :color="pieColor" :vStyle="pieStyle" :label="hasLabel?labelConfig:[]" />
-        <v-coord type="theta" :radius="0.75" :innerRadius="0.6" />
-    </v-chart>
-    -->
+<ve-ring :data="pieData" 
+:legend-visible="!isPercent" 
+:settings="chartSettings"
+:extend="extendSettings" 
+:height="chartHeight" 
+:tooltip-visible="!isPercent"></ve-ring>
 
 </template>
 
 <style lang="less">
 
-.mini-chart {
-    position: relative;
-    width: 100%;
-    .chart-content{
-    position: absolute;
-    bottom: -28px;
-    width: 100%;
-  }
-  }
 </style>
 
 <script  lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import {format} from 'date-fns';
-
-const DataSet = require('@antv/data-set');
-
-const scale = [{
-  dataKey: 'percent',
-  min: 0,
-  formatter: '.0%',
-}];
-
-const sourceData = [
-  { item: '事例一', count: 40 },
-  { item: '事例二', count: 21 },
-  { item: '事例三', count: 17 },
-  { item: '事例四', count: 13 },
-  { item: '事例五', count: 9 },
-];
-
-
-
-const dv = new DataSet.View().source(sourceData);
-dv.transform({
-  type: 'percent',
-  field: 'count',
-  dimension: 'item',
-  as: 'percent',
-});
-const data = dv.rows;
 
 @Component({
   components: {
@@ -68,7 +27,7 @@ export default class Pie extends Vue {
     @Prop({type: Number, default: null})
     private width!: number;
 
-    @Prop({type: Array, default: () => data})
+    @Prop({type: Array, default: () => []})
     private data!: any[];
 
     @Prop({type: Boolean, default: false})
@@ -86,8 +45,17 @@ export default class Pie extends Vue {
     @Prop({type: String, default: null})
     private color!: string;
 
-    private scale: any[] = scale;
+    @Prop({type: Array, default: () => [10, 20]})
+    private radius!: any[];
 
+    @Prop({type: String, default: null})
+    private title!: string;
+
+    @Prop({type: String, default: null})
+    private subtitle!: string;
+
+    @Prop({type: Boolean, default: false})
+    private showTitle!: boolean;
 
     get chartHeight() {
       return `${this.height}px`;
@@ -112,15 +80,17 @@ export default class Pie extends Vue {
 
     get extendSettings() {
       const setting: any = {};
-      /*
-      setting.legend = {
-        type: 'scroll',
-        orient: 'vertical',
-        right: 0,
-        top: 20,
-        bottom: 20
-      };
-      */
+      if(this.showTitle){
+
+        setting.title = {
+          text: this.title,
+          subtext: this.subtitle,// '纯属虚构',
+          x:'center',
+          y:'center',
+        };
+
+      }
+      
       return setting;
     }
 
@@ -133,7 +103,7 @@ export default class Pie extends Vue {
       };
 
       if (this.isPercent) {
-        setting.radius = [10, 20];
+        setting.radius = this.radius;
         setting.offsetY = this.height / 2;
         setting.itemStyle = {
           color(params: any) {
@@ -142,6 +112,8 @@ export default class Pie extends Vue {
         };
       }
 
+      // 放大效果
+      setting.hoverAnimation = false;
 
       return setting;
     }
@@ -164,16 +136,6 @@ export default class Pie extends Vue {
           columns: ['item', 'count'],
           rows: source,
       };
-      /*
-      const dv1 = new DataSet.View().source(source);
-      dv1.transform({
-        type: 'percent',
-        field: 'count',
-        dimension: 'item',
-        as: 'percent',
-      });
-      return dv1.rows;
-      */
     }
 
     private pieStyle: any = {

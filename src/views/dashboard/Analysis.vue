@@ -262,31 +262,23 @@
               <h4 :style="{ marginTop: 8, marginBottom: 32 }">
                 {{$t(`app.analysis.sales`)}}
               </h4>
-              
               <av-g2-pie
                 hasLegend
                 hasLabel
                 hasTooltip
-                :subTitle="$t(`app.analysis.sales`)"
+                :title="$t(`app.analysis.sales`)"
                 :total="this.pieTotal"
                 :data="salesPieData"
                 style="height:248px"
                 :height="400"
                 :lineWidth="4"
+                showTitle
+                :subtitle="this.pieTotal"
               />
-              
-              <!--
-              <av-g2-pie
-                      :percent="75"
-                      style="height:64px"
-                      :inner="0.55"
-                      :height="256"
-                    />-->
             </a-card>
-          
+
           </a-col>
     </a-row>
-  
     <a-card
           class="offlineCard"
           :bordered="false"
@@ -294,7 +286,7 @@
           style="margin-top: 32px"
         >
           <a-tabs defaultActiveKey="Stores 0" @change="handleTabChange">
-            <a-tab-pane 
+            <a-tab-pane
               v-for="(shop) in offlineData"
               :key="shop.name">
               <div slot="tab">
@@ -317,7 +309,7 @@
                   </a-col>
                 </a-row>
               </div>
-              <av-g2-timeline-chart 
+              <av-g2-timeline-chart
                 :columns="['日期', '成本', '利润']"
                   :data="[
           { '日期': '1月1日', '成本': 15, '利润': 12 },
@@ -336,7 +328,6 @@
           :bordered="false"
           :bodyStyle="{ padding: '0 0 32px 0' }"
           style="margin-top: 32px">
-        
         </a-card>
   </div>
 </template>
@@ -349,21 +340,6 @@ import moment from 'moment';
 import { getTimeDistance } from '@/util/util';
 import {format} from 'date-fns';
 import axios from 'axios';
-
-/*
-const miniChartData: any[] = [];
-
-const beginDay = new Date().getTime();
-
-const fakeY = [7, 5, 4, 2, 4, 7, 5, 6, 5, 9, 6, 3, 1, 5, 3, 6, 5];
-
-for (let i = 0; i < fakeY.length; i += 1) {
-  miniChartData.push({
-    x: format(new Date(beginDay + 1000 * 60 * 60 * 24 * i), 'YYYY-MM-DD'),
-    y: fakeY[i],
-  });
-}
-*/
 
 const rankingListDataSource: any[] = [];
 for (let i = 0; i < 7; i += 1) {
@@ -389,7 +365,19 @@ export default class Analysis extends Vue {
 
   private activeKey: string = 'Stores 0';
 
-  // private chartData: any[] = miniChartData;
+  private salesTypeData: any[] = [];
+
+  private salesTypeDataOnline: any[] = [];
+
+  private salesTypeDataOffline: any[] = [];
+
+  private salesData: any[] = [];
+
+  private visitData2: any[] = [];
+
+  private searchData: any[] = [];
+
+  private offlineData: any[] = [];
 
   constructor() {
     super();
@@ -399,8 +387,6 @@ export default class Analysis extends Vue {
     this.activeKey = name;
   }
 
-  private offlineData:any[] =[];
-
   get salesPieData(): any[] {
     let data: any[] = [];
     if (this.salesType === 'all') {
@@ -409,7 +395,7 @@ export default class Analysis extends Vue {
       data = this.salesType === 'online' ? this.salesTypeDataOnline : this.salesTypeDataOffline;
     }
 
-    return data.map(x=>{
+    return data.map( (x: any) => {
       x.item = x.x;
       x.count = x.y;
       return x;
@@ -421,20 +407,8 @@ export default class Analysis extends Vue {
   }
 
 
-private salesTypeData: any[] = [];
-
-private salesTypeDataOnline: any[] =[];
-
-private salesTypeDataOffline: any[] =[];
-
-  private salesData: any[]=[];
-
-  private visitData2: any[] =[];
-
-  private searchData:any[]=[];
-
-   get columns() {
-     return [
+  get columns() {
+    return [
       {
         title: this.$t(`app.analysis.table.rank`),
         dataIndex: 'index',
@@ -466,7 +440,7 @@ private salesTypeDataOffline: any[] =[];
         align: 'right',
       },
     ];
-   }
+  }
 
   get pieChartData() {
     return {
@@ -505,21 +479,19 @@ private salesTypeDataOffline: any[] =[];
   }
 
   private mounted() {
-    const url ='/api/fake_chart_data';
+    const url = '/api/fake_chart_data';
     axios.get(url).then((res: any) => {
             const data = res.data;
-            console.log(data);
-            this.visitData=data.visitData;
-
-          this.visitData2=data.visitData2;
-  this.salesData=data.salesData;
-  this.searchData=data.searchData;
-  this.offlineData=data.offlineData;
-  this.offlineChartData=data.offlineChartData;
-  this.salesTypeData=data.salesTypeData;
-  this.salesTypeDataOnline=data.salesTypeDataOnline;
-  this.salesTypeDataOffline=data.salesTypeDataOffline;
-  this.radarData=data.radarData;
+            this.visitData = data.visitData;
+            this.visitData2 = data.visitData2;
+            this.salesData = data.salesData;
+            this.searchData = data.searchData;
+            this.offlineData = data.offlineData;
+            this.offlineChartData = data.offlineChartData;
+            this.salesTypeData = data.salesTypeData;
+            this.salesTypeDataOnline = data.salesTypeDataOnline;
+            this.salesTypeDataOffline = data.salesTypeDataOffline;
+            this.radarData = data.radarData;
         });
   }
 
