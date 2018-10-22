@@ -35,44 +35,12 @@ import Startup from '@/core/Startup';
 import AxiosInterceptor from '@/core/AxiosInterceptor';
 
 // 引入多语言
-import zh_CN from '@/locales/zh_cn';
-import en_US from '@/locales/en_us';
+import zh_CN from '@/locales/zh_CN';
+// import en_US from '@/locales/en_US';
+
+import localeService from '@/core/localeService';
 
 import 'rxjs/Rx';
-
-/*
-import { LocaleProvider,
-  Layout,
-  Row,
-  Col,
-  Modal,
-  Menu,
-  message,
-  notification,
-} from 'ant-design-vue';
-Vue.component(LocaleProvider.name, LocaleProvider);
-Vue.component(Layout.name, LocaleProvider);
-Vue.component(Layout.Header.name, Layout.Header);
-Vue.component(Layout.Footer.name, Layout.Footer);
-Vue.component(Layout.Sider.name, Layout.Sider);
-Vue.component(Layout.Content.name, Layout.Content);
-Vue.component(Row.name, LocaleProvider);
-Vue.component(Col.name, LocaleProvider);
-Vue.component(Menu.name, Menu);
-Vue.component(Menu.Item.name, Menu.Item);
-Vue.component(Menu.SubMenu.name, Menu.SubMenu);
-Vue.component(Menu.Divider.name, Menu.Divider);
-Vue.component(Menu.ItemGroup.name, Menu.ItemGroup);
-
-
-Vue.prototype.$message = message;
-Vue.prototype.$notification = notification;
-Vue.prototype.$info = Modal.info;
-Vue.prototype.$success = Modal.success;
-Vue.prototype.$error = Modal.error;
-Vue.prototype.$warning = Modal.warning;
-Vue.prototype.$confirm = Modal.confirm;
-*/
 
 import Antd from 'ant-design-vue';
 Vue.use(Antd);
@@ -90,8 +58,8 @@ Vue.use(Storage, {
 });
 
 const messages: any = {
-  'zh_CN': zh_CN, // { title: '中文', key: 'zh_CN', values: zh_CN },
-  'en_US': en_US, // { title: 'English', key: 'en_US', values: en_US },
+  zh_CN, // { title: '中文', key: 'zh_CN', values: zh_CN },
+  en_US: {}, // { title: 'English', key: 'en_US', values: en_US },
 };
 
 // 配置多语言信息
@@ -100,7 +68,7 @@ const i18n = new Vuei18n({
   messages,
 });
 // Vue.use(createElement);
-
+localeService.init(i18n, 'zh_CN');
 
 Vue.config.productionTip = false;
 

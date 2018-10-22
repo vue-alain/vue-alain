@@ -19,6 +19,8 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 
+import localeService from '@/core/localeService';
+
 import * as _ from 'lodash';
 
 @Component({})
@@ -37,7 +39,11 @@ export default class SelectLange extends Vue {
      * 切换语言
      */
     private localeChange(e: any) {
-        this.$i18n.locale = e.key;
+        localeService.loadLanguageAsync(e.key)
+            .then((res: any) => {
+                console.log('切换语言成功');
+            });
+        // this.$i18n.locale = e.key;
     }
 }
 </script>
