@@ -61,7 +61,6 @@ const messages: any = {
   zh_CN, // { title: '中文', key: 'zh_CN', values: zh_CN },
   en_US: {}, // { title: 'English', key: 'en_US', values: en_US },
 };
-
 // 配置多语言信息
 const i18n = new Vuei18n({
   locale: 'zh_CN',  // 语言标识

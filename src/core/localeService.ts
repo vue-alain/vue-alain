@@ -12,7 +12,7 @@ interface ILocalsProvider {
 
 class AntdLocaleProvider implements ILocalsProvider {
 
-    getMesage(lang: any): Promise<any>{
+    public getMesage(lang: any): Promise<any>{
         // import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
         const antdLang = import(`ant-design-vue/lib/locale-provider/${lang}`);
         return antdLang;
@@ -72,14 +72,12 @@ class LocaleService {
                             let langMsg={};
                             msgs.map(item=>{
                                 if(item.data!=null){
-                                    console.log(item.data);
-                                    _.assignIn(langMsg,item.data);    
+                                    _.assignIn(langMsg,item.data);
                                 }else{
-                                    _.assignIn(langMsg,item);
-                                }    
+                                    _.assignIn(langMsg,item.default);
+                                }
                             });
-
-                            i18n.setLocaleMessage(langMsg);
+                            i18n.setLocaleMessage(lang,langMsg);
                             this.loadedLanguages.push(lang);
                             return this.setI18nLanguage(lang);
                         });
