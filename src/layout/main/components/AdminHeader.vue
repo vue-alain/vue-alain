@@ -67,11 +67,6 @@
 </template>
 
 <script  lang="ts">
-/*
-import { Dropdown } from 'ant-design-vue';
-Vue.component(Dropdown.name, Dropdown);
-Vue.component(Dropdown.Button.name, Dropdown.Button);
-*/
 
 import { Component, Prop, Vue } from 'vue-property-decorator';
 

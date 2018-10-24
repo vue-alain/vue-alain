@@ -12,7 +12,7 @@ interface ILocalsProvider {
 
 class AntdLocaleProvider implements ILocalsProvider {
 
-    public getMesage(lang: any): Promise<any>{
+    public getMesage(lang: any): Promise<any> {
         // import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
         const antdLang = import(`ant-design-vue/lib/locale-provider/${lang}`);
         return antdLang;
@@ -22,7 +22,7 @@ class AntdLocaleProvider implements ILocalsProvider {
 
 class JsonLocaleProvider implements ILocalsProvider{
 
-    getMesage(lang: any): Promise<any>{
+    public getMesage(lang: any): Promise<any> {
         const jsonLang = axios.get(`/assets/locales/${lang}.json`);
         return jsonLang;
     }
@@ -31,7 +31,7 @@ class JsonLocaleProvider implements ILocalsProvider{
 
 class TsLocaleProvider implements ILocalsProvider{
 
-    getMesage(lang: any): Promise<any>{
+    public getMesage(lang: any): Promise<any> {
         const result = import(/* webpackChunkName: "lang-[request]" */  `@/locales/${lang}`);
         return result;
     }
@@ -44,17 +44,17 @@ class LocaleService {
 
     private providers: any[] = [];
 
-    public init(i18n: any, defaultLang: string){
+    public init(i18n: any, defaultLang: string) {
         this._i18n = i18n;
         this.loadedLanguages.push(defaultLang);
     }
 
-    public addProvider(provider:any){
+    public addProvider(provider:any) {
         this.providers.push(provider);
     }
 
-    private getLocales(lang: any){
-        const localeProviders:Promise<any>[] = [];
+    private getLocales(lang: any) {
+        const localeProviders: Promise<any>[] = [];
         this.providers.forEach(item=>{
                 const provider = new item() as ILocalsProvider;
                 localeProviders.push(provider.getMesage(lang))
@@ -68,12 +68,12 @@ class LocaleService {
             if (!this.loadedLanguages.includes(lang)) {
                 const langs = this.getLocales(lang);
                 return Promise.all(langs)
-                        .then((msgs: any[])=>{
-                            let langMsg={};
-                            msgs.map(item=>{
-                                if(item.data!=null){
+                        .then((msgs: any[]) => {
+                            let langMsg = {};
+                            msgs.map((item: any) => {
+                                if (item.data!=null) {
                                     _.assignIn(langMsg,item.data);
-                                }else{
+                                } else {
                                     _.assignIn(langMsg,item.default);
                                 }
                             });

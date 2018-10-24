@@ -36,6 +36,14 @@ const router = {
         title: '高级表单',
         i18n: `menu.form.advancedform`,
       },
+    },
+    {
+      path: 'dynamic',
+      name: '/form/dynamic',
+      component: () => import(/* webpackChunkName: "form" */ '@/views/form/DynamicForm.vue'),
+      meta: {
+        title: '动态表单',
+      },
     }],
   };
 
