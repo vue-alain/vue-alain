@@ -20,6 +20,11 @@ import NumberWidget from './widgets/NumberWidget.vue';
 import DateRangeWidget from './widgets/DateRangeWidget.vue';
 import TextareaWidget from './widgets/TextareaWidget.vue';
 
+import TextWidget from './widgets/TextWidget.vue';
+import Widget from './widgets/widget';
+
+const text = Widget(TextWidget);
+
 @Component({
     components:{
         'df-string':StringWidget,

@@ -210,6 +210,19 @@ export default class DynamicForm extends Vue {
           },
         }
       },
+      {
+        type:'text',
+        ui:{
+          type:'input',
+          itemattrs:{
+            label:'hoc测试',
+            ...this.formItemLayout
+          },
+          childrenattrs:{
+            placeholder:'hoc测试'
+          },
+        }
+      },
     ];
   }
 
