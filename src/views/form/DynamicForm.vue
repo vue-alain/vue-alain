@@ -129,12 +129,12 @@
 <script  lang="tsx">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
-
+/** 
 import DyFormitem from './dycompoents/DyFormitem.vue';
-
+*/
 @Component({
     components:{
-      'dy-item':DyFormitem,
+     // 'dy-item':DyFormitem,
     }
 })
 export default class DynamicForm extends Vue {

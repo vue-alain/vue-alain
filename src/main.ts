@@ -50,7 +50,7 @@ Vue.use(VCharts);
 
 Vue.use(Vuei18n);
 
-import DynamicForm from '@/views/form/dycompoents/index';
+import DynamicForm from '@/components/dynamicform/index';
 Vue.use(DynamicForm);
 
 // local storage 配置
