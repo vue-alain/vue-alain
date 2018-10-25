@@ -50,6 +50,9 @@ Vue.use(VCharts);
 
 Vue.use(Vuei18n);
 
+import DynamicForm from '@/views/form/dycompoents/index';
+Vue.use(DynamicForm);
+
 // local storage 配置
 Vue.use(Storage, {
   namespace: 'vuealain_', // sorage 前缀

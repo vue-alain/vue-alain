@@ -11,7 +11,7 @@
 
 </style>
 
-<script  lang="ts">
+<script  lang="tsx">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 
@@ -19,18 +19,17 @@ import StringWidget from './widgets/StringWidget.vue';
 import NumberWidget from './widgets/NumberWidget.vue';
 import DateRangeWidget from './widgets/DateRangeWidget.vue';
 import TextareaWidget from './widgets/TextareaWidget.vue';
+import Text from './widgets/TextWidget.vue';
 
-import TextWidget from './widgets/TextWidget.vue';
-import Widget from './widgets/widget';
-
-const text = Widget(TextWidget);
+import registry from './WidgetRegistry';
 
 @Component({
     components:{
-        'df-string':StringWidget,
-        'df-number':NumberWidget,
-        'df-daterange':DateRangeWidget,
-        'df-textarea':TextareaWidget,
+        // 'df-string':StringWidget,
+        // 'df-number':NumberWidget,
+        // 'df-daterange':DateRangeWidget,
+        // 'df-textarea':TextareaWidget,
+        // 'df-text': Text,
     }
 })
 export default class DyFormitem extends Vue {
@@ -41,8 +40,13 @@ export default class DyFormitem extends Vue {
     private formitems!: any[];
 
     private createWidgets(foritem: any): any{
+        const key = `df-${foritem.type}`;
+        const comp = registry.getType(key);
+        return comp;
+        /*
         if(foritem.type==='string'){
-            return 'df-string';
+            const comp = StringWidget;
+            return StringWidget;
         }
         if(foritem.type==='number'){
             return 'df-number';
@@ -53,7 +57,11 @@ export default class DyFormitem extends Vue {
         if(foritem.type==='textarea'){
             return 'df-textarea';
         }
+        if(foritem.type==='text'){
+            return 'df-text';
+        }
         return {};
+        */
     }
 
 }
