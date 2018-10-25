@@ -2,7 +2,7 @@
   <div>
     <a-form @submit="handleSubmit" hideRequiredMark style="margin-top: 8px" :autoFormCreate="(form)=>{this.form = form}">
           
-          <DyFormitemWapper :formitems="dyShchema"></DyFormitemWapper>
+          <dy-item :formitems="dyShchema"></dy-item>
           
           <a-form-item 
               v-bind="formItemLayout" 
@@ -106,7 +106,7 @@
               </div>
             </a-form-item> 
 
-              -->
+              
 
             
             <component v-bind:is="formItems"></component>
@@ -116,7 +116,7 @@
               </a-button>
               <a-button style="margin-left: 8px">保存</a-button>
             </a-form-item>
-            
+            -->
           </a-form>
          
   </div>
@@ -130,11 +130,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 
-import DyFormitemWapper from './dycompoents/DyFormitemWapper.vue';
+import DyFormitem from './dycompoents/DyFormitem.vue';
 
 @Component({
     components:{
-      DyFormitemWapper,
+      'dy-item':DyFormitem,
     }
 })
 export default class DynamicForm extends Vue {
@@ -159,13 +159,55 @@ export default class DynamicForm extends Vue {
       {
         type:'string',
         ui:{
-          type:'input'
+          type:'input',
+          itemattrs:{
+            label:'姓名',
+            ...this.formItemLayout
+          },
+          childrenattrs:{
+            placeholder:'请输入姓名'
+          },
         }
       },
       {
         type:'number',
         ui:{
-          type:'input'
+          type:'number',
+          itemattrs:{
+            label:'年龄',
+            ...this.formItemLayout
+          },
+          childrenattrs:{
+            min:0,
+            max:100,
+          },
+        }
+      },
+      {
+        type:'daterange',
+        ui:{
+          itemattrs:{
+            label:'起止日期',
+            ...this.formItemLayout
+          },
+          childrenattrs:{
+            style:{width: '100%'},
+            placeholder:['开始日期', '结束日期']
+          },
+        }
+      },
+      {
+        type:'textarea',
+        ui:{
+          itemattrs:{
+            label:'目标描述',
+            ...this.formItemLayout
+          },
+          childrenattrs:{
+            tyle:{'min-height': '32px'},
+            placeholder:'请输入你的阶段性工作目标',
+            rows:4
+          },
         }
       },
     ];

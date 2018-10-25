@@ -1,9 +1,7 @@
 <template>
-
-<a-form-item v-bind="attrs">   
-    <slot></slot>
-</a-form-item>
-
+<df-item :formitem="formitem">
+  <a-textarea v-bind="attrs"/>
+</df-item>
 </template>
 
 <style lang="less">
@@ -14,22 +12,21 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 
-import DyInput from './DyInput.vue';
+import DyFormitemWapper from './../DyFormitemWapper.vue';
 
 @Component({
     components:{
+      'df-item':DyFormitemWapper
     }
 })
-export default class DyFormitemWapper extends Vue {
+export default class TextareaWidget extends Vue {
 
-  @Prop({type: Object, default() {
-    return {};
-  }})
+  @Prop({type: Object, default: () => {}})
   private formitem!: any;
 
   get attrs(){
     const ui= this.formitem.ui;
-    return ui!=null?ui.itemattrs:{};
+    return ui!=null?ui.childrenattrs:{};
   }
 
 }
