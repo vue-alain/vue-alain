@@ -119,7 +119,10 @@
             -->
           </a-form>
 
-  <dy-form :formSchema="schema" :uiSchema="uiSchema"></dy-form>
+  <dy-form :formSchema="schema" :uiSchema="uiSchema"
+    @onSuccess="handleSuccess"
+    :submiting="submiting"
+  ></dy-form>
 
   </div>
 
@@ -229,14 +232,22 @@ export default class DynamicForm extends Vue {
     ];
   }
 
+  get formData(): any{
+    return {
+      name:'关云长'
+    };
+  }
+
   get uiSchema():any {
     return {
       name:{
         itemattrs:{
           ...this.formItemLayout,
-          help:'帮助信息',
           fieldDecoratorId:'name',
-          fieldDecoratorOptions:{rules: [{ required: true, message: '请输入姓名' }]}
+          fieldDecoratorOptions:{
+            initialValue:this.formData.name,
+            rules: [{ required: true, message: '请输入姓名' }]
+          }
         },
         widgetattrs:{
           placeholder:'请填写姓名',
@@ -306,12 +317,23 @@ export default class DynamicForm extends Vue {
     };
   }
 
+  private submiting:boolean = false;
+
   private items(formItems: any): any{
     const formitems: any[] = [];
     formItems.forEach((item: any)=>{
       formitems.push(this.buildFormitem(item));
     });
     return formitems;
+  }
+
+  private handleSuccess(values: any){
+    console.log('表单提交成功');
+    console.log(values);
+    this.submiting=true;
+    setTimeout(()=>{
+      this.submiting= false;
+    },1000);
   }
 
   private buildFormitemChile(formitem: any){

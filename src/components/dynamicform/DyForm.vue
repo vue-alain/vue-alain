@@ -6,6 +6,13 @@
 
     <dy-item :properties="rootProperties"></dy-item>
 
+    <a-form-item style="margin-top: 32px">
+        <a-button type="primary" htmlType="submit" :loading="submiting">
+            提交
+        </a-button>
+        <a-button style="margin-left: 8px">保存</a-button>
+    </a-form-item>
+
 </a-form>
 </template>
 
@@ -17,7 +24,8 @@
 import {
     Component,
     Prop,
-    Vue
+    Vue,
+    Emit,
 } from 'vue-property-decorator';
 import {
     State,
@@ -60,6 +68,12 @@ export default class DyForm extends Vue {
     })
     private formOption!: any;
 
+    @Prop({
+        type: Boolean,
+        default: false,
+    })
+    private submiting!: boolean;
+
     private form:any = null;
 
     private rootProperties: DFSchema[] = [];
@@ -88,7 +102,21 @@ export default class DyForm extends Vue {
         return rootProperties;
     }
     
-    private handleSubmit(){
+    private handleSubmit(e: any){
+        e.preventDefault();
+        
+        this.form.validateFieldsAndScroll((err: any, values: any) => {
+            if(err){
+                return;
+            }
+            this.success(values);
+        });
+
+    }
+
+    @Emit('onSuccess')
+    private success(values: any) {
+
     }
 
 }
