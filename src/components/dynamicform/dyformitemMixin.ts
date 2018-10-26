@@ -33,7 +33,9 @@ export default class DyFormMixin extends Vue implements IDyFormMixin {
         if(ui==null){
           return {};
         }
-        return ui.widgetattrs;
+        const result = ui.itemattrs;
+        console.log(result);
+        return result;
     }
 
 }

@@ -1,6 +1,6 @@
 <template>
 
-<a-form-item v-bind="attrs" :label="this.formitem.title">   
+<a-form-item v-bind="itemAttrs" :label="this.formitem.title">   
     <slot></slot>
 </a-form-item>
 
@@ -11,30 +11,19 @@
 </style>
 
 <script  lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Mixins } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 
 import DyInput from './DyInput.vue';
 import { DFSchema } from './schema/DfSchema';
 
+import DyFormMixin, { IDyFormMixin } from '@/components/dynamicform/dyformitemMixin';
+
 @Component({
     components:{
     }
 })
-export default class DyFormitemWapper extends Vue {
-
-  @Prop({type: Object, default() {
-    return {};
-  }})
-  private formitem!: DFSchema;
-
-  get attrs(){
-    const ui: any = this.formitem.ui;
-    if(ui==null){
-      return {};
-    }
-    return ui.itemattrs;
-  }
+export default class DyFormitemWapper extends  Mixins<IDyFormMixin>(DyFormMixin){
 
 }
 </script>

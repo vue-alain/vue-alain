@@ -1,8 +1,8 @@
 <template>
 <a-form @submit="handleSubmit"
-    hideRequiredMark
     style="margin-top: 8px"
-    :autoFormCreate="(form)=>{this.form = form}">
+    :autoFormCreate="(form)=>{this.form = form}"
+    v-bind="formOption">
 
     <dy-item :properties="rootProperties"></dy-item>
 
@@ -27,6 +27,7 @@ import {
 
 import DyFormitem from './DyFormitem.vue';
 import { DFSchema } from './schema/DfSchema';
+import { DFUISchema } from './schema/UiSchema';
 
 @Component({
     components: {
@@ -43,6 +44,22 @@ export default class DyForm extends Vue {
     })
     private formSchema!: DFSchema;
 
+    @Prop({
+        type: Object,
+        default () {
+            return {};
+        }
+    })
+    private uiSchema!: DFUISchema;
+
+    @Prop({
+        type: Object,
+        default () {
+            return {};
+        }
+    })
+    private formOption!: any;
+
     private form:any = null;
 
     private rootProperties: DFSchema[] = [];
@@ -55,7 +72,18 @@ export default class DyForm extends Vue {
         const properties: any = this.formSchema.properties;
         const rootProperties = Object.keys(properties)
             .map((key: any)=>{
-                return properties[key];
+                const item = properties[key];
+                let uiItem = this.uiSchema[key];
+                if(uiItem==null){
+                    uiItem={};
+                }
+                const ui = {
+                    ...item.ui,
+                    ...uiItem,
+                };
+                item.ui = ui;
+                item.type= uiItem.widget||item.type;
+                return item;
             });
         return rootProperties;
     }

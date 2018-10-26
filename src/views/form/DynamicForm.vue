@@ -119,7 +119,7 @@
             -->
           </a-form>
 
-  <dy-form :formSchema="schema"></dy-form>
+  <dy-form :formSchema="schema" :uiSchema="uiSchema"></dy-form>
 
   </div>
 
@@ -229,20 +229,28 @@ export default class DynamicForm extends Vue {
     ];
   }
 
+  get uiSchema():any {
+    return {
+      name:{
+        itemattrs:{
+          ...this.formItemLayout,
+          help:'帮助信息',
+          fieldDecoratorId:'name',
+          fieldDecoratorOptions:{rules: [{ required: true, message: '请输入姓名' }]}
+        },
+        widgetattrs:{
+          placeholder:'请填写姓名',
+        }
+      }
+    }
+  }
+
   get schema(): any{
     return {
       properties:{
         name:{
           type: 'string',
           title:'姓名',
-          ui:{
-            itemattrs:{
-              ...this.formItemLayout,
-            },
-            widgetattrs:{
-              placeholder:'请填写姓名',
-            }
-          }
         },
         age:{
           type: 'number',

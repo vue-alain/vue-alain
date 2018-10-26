@@ -19,7 +19,7 @@
 
     <a-card :bordered="false">
       
-          <a-form @submit="handleSubmit" hideRequiredMark style="margin-top: 8px" :autoFormCreate="(form)=>{this.form = form}">
+          <a-form @submit="handleSubmit"  style="margin-top: 8px" :autoFormCreate="(form)=>{this.form = form}">
             <a-form-item 
               v-bind="formItemLayout" 
               label="标题"
