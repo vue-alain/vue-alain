@@ -1,9 +1,9 @@
 <template>
   <div>
     <a-form @submit="handleSubmit" hideRequiredMark style="margin-top: 8px" :autoFormCreate="(form)=>{this.form = form}">
-          
+          <!--
           <dy-item :formitems="dyShchema"></dy-item>
-          
+          -->
           <a-form-item 
               v-bind="formItemLayout" 
               label="标题">
@@ -118,8 +118,11 @@
             </a-form-item>
             -->
           </a-form>
-         
+
+  <dy-form :formSchema="schema"></dy-form>
+
   </div>
+
 </template>
 
 <style lang="less">
@@ -129,12 +132,12 @@
 <script  lang="tsx">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
-/** 
-import DyFormitem from './dycompoents/DyFormitem.vue';
-*/
+
+import DyForm from '@/components/dynamicform/DyForm.vue';
+
 @Component({
     components:{
-     // 'dy-item':DyFormitem,
+      DyForm
     }
 })
 export default class DynamicForm extends Vue {
@@ -228,70 +231,60 @@ export default class DynamicForm extends Vue {
 
   get schema(): any{
     return {
-      propiters:[
-        {
+      properties:{
+        name:{
           type: 'string',
-          label:'姓名',
-          layout:this.formItemLayout,
-          attrs:{
-            placeholder:'请填写姓名'
+          title:'姓名',
+          ui:{
+            itemattrs:{
+              ...this.formItemLayout,
+            },
+            widgetattrs:{
+              placeholder:'请填写姓名',
+            }
           }
         },
-        {
+        age:{
           type: 'number',
-          label:'年龄',
-          layout:this.formItemLayout,
-          attrs:{
-            min:0,
-            max:100,
+          title:'年龄',
+          ui:{
+            itemattrs:{
+              ...this.formItemLayout
+            },
+            widgetattrs:{
+              min:0,
+              max:100
+            }
           }
         },
-        {
+        range:{
           type: 'daterange',
-          label:'起止日期',
-          layout:this.formItemLayout,
-          attrs:{
-            style:{width: '100%'},
+          title:'起止日期',
+          ui:{
+            itemattrs:{
+              ...this.formItemLayout
+            },
+            widgetattrs:{
+              style:{width: '100%'},
             placeholder:['开始日期', '结束日期']
+            }
           }
         },
-        {
+        remark:{
           type: 'textarea',
-          label:'目标描述',
-          layout:this.formItemLayout,
-          attrs:{
-            style:{'min-height': '32px'},
-            placeholder:'请输入你的阶段性工作目标',
-            rows:4
+          title:'目标描述',
+          ui:{
+            itemattrs:{
+              ...this.formItemLayout
+            },
+            widgetattrs:{
+              style:{'min-height': '32px'},
+              placeholder:'请输入你的阶段性工作目标',
+              rows:4
+            }
           }
         },
-        {
-          type: 'radio',
-          label:'目标公开',
-          layout:this.formItemLayout,
-          default:'1',
-          source:[
-            {label:'公开',value:'1'},
-            {label:'部分公开',value:'2'},
-            {label:'不公开',value:'3'},
-          ],
-        },
-        {
-          type: 'select',
-          label:'公开给',
-          layout:this.formItemLayout,
-          default:'',
-          mode:'multiple',
-          source:[
-            {label:'甲',value:'1'},
-            {label:'乙',value:'2'},
-            {label:'兵',value:'3'},
-          ],
-          attrs:{
-            placeholder:'公开给',
-          }
-        },
-      ],
+      },
 
     };
   }

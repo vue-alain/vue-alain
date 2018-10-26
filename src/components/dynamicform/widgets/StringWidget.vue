@@ -1,6 +1,6 @@
 <template>
 <df-item :formitem="formitem">
-  <a-input v-bind="attrs"/>
+  <a-input v-bind="widgetAttrs"/>
 </df-item>
 </template>
 
@@ -9,25 +9,34 @@
 </style>
 
 <script  lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Mixins } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 
+import { DFSchema } from './../schema/DfSchema';
+
 import DyFormitemWapper from './../DyFormitemWapper.vue';
+
+import DyFormMixin, { IDyFormMixin } from '@/components/dynamicform/dyformitemMixin';
 
 @Component({
     components:{
       'df-item':DyFormitemWapper
     }
 })
-export default class StringWidget extends Vue {
+export default class StringWidget extends  Mixins<IDyFormMixin>(DyFormMixin) {
 
+/*
   @Prop({type: Object, default: () => {}})
-  private formitem!: any;
+  private formitem!: DFSchema;
 
   get attrs(){
-    const ui= this.formitem.ui;
-    return ui!=null?ui.childrenattrs:{};
+    const ui: any = this.formitem.ui;
+    if(ui==null){
+      return {};
+    }
+    return ui.widgetattrs;
   }
+  */
 
 }
 </script>

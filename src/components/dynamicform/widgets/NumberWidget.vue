@@ -1,6 +1,6 @@
 <template>
 <df-item :formitem="formitem">
-  <a-input-number v-bind="attrs"/>
+  <a-input-number v-bind="widgetAttrs"/>
 </df-item>
 </template>
 
@@ -9,26 +9,20 @@
 </style>
 
 <script  lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Mixins } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 
 import DyFormitemWapper from './../DyFormitemWapper.vue';
 import NumberInfo from '@/components/numberinfo/Index.vue';
+
+import DyFormMixin, { IDyFormMixin } from '@/components/dynamicform/dyformitemMixin';
 
 @Component({
     components:{
       'df-item':DyFormitemWapper
     }
 })
-export default class NumberWidget extends Vue {
-
-  @Prop({type: Object, default: () => {}})
-  private formitem!: any;
-
-  get attrs(){
-    const ui= this.formitem.ui;
-    return ui!=null?ui.childrenattrs:{};
-  }
+export default class NumberWidget extends  Mixins<IDyFormMixin>(DyFormMixin) {
 
 }
 </script>

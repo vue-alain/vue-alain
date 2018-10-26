@@ -1,7 +1,7 @@
-import { SFUISchema } from './UiSchema';
+import { DFUISchema } from './UiSchema';
 
-export interface SFSchemaDefinition {
-    [key: string]: SFSchema;
+export interface DFSchemaDefinition {
+    [key: string]: DFSchema;
   }
 
 /**
@@ -9,7 +9,7 @@ export interface SFSchemaDefinition {
  *
  * **注意：** 所有结构都以标准为基准，除了 `ui` 属性为非标准单纯只是为了更好的开发
  */
-export interface SFSchema {
+export interface DFSchema {
     //////////// Any /////////////
     /**
      * 数据类型，支持 JavaScript 基础类型；注意项：
@@ -20,6 +20,7 @@ export interface SFSchema {
      * - 指定 `widget` 参数强制渲染小部件
      */
     type?: 'number' | 'integer' | 'string' | 'boolean' | 'object' | 'array';
+
     /**
      * 枚举，静态数据源，例如：`radio`、`checkbox` 等
      *
@@ -29,6 +30,7 @@ export interface SFSchema {
      * - 基础数据类型数组会自动转化成 `SFSchemaEnum` 数组格式
      */
     enum?: any[];
+
     //////////// 数值类型 /////////////
     /**
      * 最小值
@@ -63,6 +65,7 @@ export interface SFSchema {
      * 验证输入字段正则表达式字符串，若指定 `format: 'regex'` 时务必指定
      */
     pattern?: string;
+
     //////////// 数组类型/////////////
     /**
      * 数组元素类型描述，只支持数组对象，若需要基础类型数组可通过其他部件支持
@@ -86,7 +89,8 @@ export interface SFSchema {
      * ]
      * ```
      */
-    items?: SFSchema;
+
+    items?: DFSchema;
     /**
      * 约束数组最小的元素个数
      * - `type="array"` 时有效
@@ -105,7 +109,7 @@ export interface SFSchema {
     /**
      * 数组额外元素的校验规则
      */
-    additionalItems?: SFSchema;
+    additionalItems?: DFSchema;
     //////////// 对象类型/////////////
     /**
      * 最大属性个数，必须是非负整数
@@ -122,37 +126,8 @@ export interface SFSchema {
     /**
      * 定义属性
      */
-    properties?: { [key: string]: SFSchema };
-    //////////// 条件类/////////////
-    // 未来可能被移除
-    // dependencies?: { [key: string]: string[] | SFSchema };
-    /**
-     * 条件验证
-     * - 必须包含 `properties` 节点
-     *  - 键名必须是当前节点 `properties` 值之一
-     *  - 利用 `enum` 属性表示条件值，支持 `$ANY$` 表示任意值
-     * - 不支持跨 Schema 节点
-     * - 当条件成功会执行 `then` 否则执行 `else`
-     * - `if`和`then` 是必须同时出现，`else` 可选项
-     */
-    if?: SFSchema;
-    /**
-     * 条件成功时执行
-     * - 只支持 `required` 参数，用于表示显示
-     */
-    then?: SFSchema;
-    /**
-     * 条件失败时执行
-     * - 只支持 `required` 参数，用于表示显示
-     */
-    else?: SFSchema;
-    //////////// 逻辑类/////////////
-    /** **不建议** 使用，可用 `required` 替代 */
-    allOf?: SFSchema[];
-    /** **不建议** 使用，可用 `required` 和 `minProperties` 替代 */
-    anyOf?: SFSchema[];
-    /** 值必须是其中之一 */
-    oneOf?: SFSchema[];
+    properties?: { [key: string]: DFSchema };
+    
     //////////// 格式/////////////
     /**
      * 数据格式，[文档](http://json-schema.org/latest/json-schema-validation.html#rfc.section.7.3)
@@ -170,6 +145,7 @@ export interface SFSchema {
      * - `color` 颜色值
      */
     format?: string;
+
     //////////// 注释/////////////
     /**
      * 属性描述，相当于 `label` 值，按以下规则展示：
@@ -190,17 +166,14 @@ export interface SFSchema {
      */
     readOnly?: boolean;
     //////////// 其他/////////////
+
     //////////// Definitions /////////////
     // /** 指定 Schema JSON 模式，默认为：`http://json-schema.org/draft-07/schema` */
     // $schema?: string;
     /** 内部类型定义体 */
-    definitions?: SFSchemaDefinition;
-    /** 引用定义体 */
-    $ref?: string;
-    // $schema?: string;
-    /** 针对开发者的注释，无任何意义，也不会被校验 */
-    $comment?: string;
+    definitions?: DFSchemaDefinition;
+
     //////////// 非标准/////////////
     /** **唯一非标准：** 指定UI配置信息，优先级高于 `sf` 组件 `ui` 属性值 */
-    ui?: SFUISchema | string;
+    ui?: DFUISchema | string;
   }

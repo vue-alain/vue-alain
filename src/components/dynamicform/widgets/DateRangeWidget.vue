@@ -1,6 +1,6 @@
 <template>
 <df-item :formitem="formitem">
-  <a-range-picker v-bind="attrs"/>
+  <a-range-picker v-bind="widgetAttrs"/>
 </df-item>
 </template>
 
@@ -9,25 +9,19 @@
 </style>
 
 <script  lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Mixins } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 
 import DyFormitemWapper from './../DyFormitemWapper.vue';
+
+import DyFormMixin, { IDyFormMixin } from '@/components/dynamicform/dyformitemMixin';
 
 @Component({
     components:{
       'df-item':DyFormitemWapper
     }
 })
-export default class DateRangeWidget extends Vue {
-
-  @Prop({type: Object, default: () => {}})
-  private formitem!: any;
-
-  get attrs(){
-    const ui= this.formitem.ui;
-    return ui!=null?ui.childrenattrs:{};
-  }
+export default class DateRangeWidget extends  Mixins<IDyFormMixin>(DyFormMixin) {
 
 }
 </script>
