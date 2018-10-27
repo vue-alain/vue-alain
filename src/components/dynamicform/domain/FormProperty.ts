@@ -9,7 +9,13 @@ export default class FormProperty {
     private _uiSchema: DFUISchemaItem = {};
     private _propertyId: string = '' ;
 
-    constructor(propertyId: string , formSchema: DFSchema, uiSchema: DFUISchemaItem) {
+    private _required: string[] = [];
+
+    constructor(
+        propertyId: string ,
+        formSchema: DFSchema,
+        uiSchema: DFUISchemaItem,
+        required: string[] = []) {
         this._propertyId = propertyId;
         /*
         this._id = id;
@@ -21,6 +27,7 @@ export default class FormProperty {
         */
         this._formSchem = formSchema;
         this._uiSchema = uiSchema;
+        this._required = required;
     }
 
     get key(): string {
@@ -52,6 +59,7 @@ export default class FormProperty {
     get formitemAttrs() {
         const attrs = this.ui.itemattrs;
         attrs.fieldDecoratorId = this.key;
+        attrs.fieldDecoratorOptions = this.fieldDecoratorOptions;
         return attrs;
     }
 
@@ -83,5 +91,26 @@ export default class FormProperty {
             return [];
         }
         return this.formSchema.enum;
+    }
+
+    get rules(): any[] {
+        const rules: any[] = [];
+        const isRequired = this._required.includes(this.key);
+        if (isRequired) {
+            let msg = '必填项';
+            if (this.ui.errors) {
+                msg = this.ui.errors['required'];
+            }
+            rules.push({ required: true, message: msg });
+        }
+        // { required: true, message: '请输入姓名' }
+        return rules;
+    }
+
+    get fieldDecoratorOptions(): any {
+        return {
+            initialValue: this.formData[this.key],
+            rules: this.rules,
+        };
     }
 }

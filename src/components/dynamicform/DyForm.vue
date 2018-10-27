@@ -89,7 +89,7 @@ export default class DyForm extends Vue {
             .map((key: any) => {
                 const item = properties[key];
                 const uiItem = this.uiSchema[key];
-                return new FormProperty(key, item, uiItem);
+                return new FormProperty(key, item, uiItem, this.formSchema.required);
             });
         return rootProperties;
     }

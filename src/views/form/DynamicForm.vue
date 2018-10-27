@@ -52,10 +52,12 @@ export default class DynamicForm extends Vue {
         itemattrs: {
           ...this.formItemLayout,
           // fieldDecoratorId:'name',
+          /*
           fieldDecoratorOptions: {
             initialValue: this.formData.name,
             rules: [{ required: true, message: '请输入姓名' }],
           },
+          */
         },
         widgetattrs: {
           placeholder: '请填写姓名',
@@ -66,10 +68,16 @@ export default class DynamicForm extends Vue {
 
   get schema(): any {
     return {
+      required: ['name'],
       properties: {
         name: {
           type: 'string',
           title: '姓名',
+          ui: {
+            errors: {
+              required: '姓名为必填项',
+            },
+          },
         },
         age: {
           type: 'number',
