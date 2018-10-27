@@ -1,40 +1,36 @@
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 import {
-  Component,
-  Prop,
-  Vue,
-  Emit,
-  Model,
-  Watch,
+    Component,
+    Prop,
+    Vue,
+    Emit,
+    Model,
+    Watch,
 } from 'vue-property-decorator';
 
 import { DFSchema } from './schema/DfSchema';
+import FormProperty from './domain/FormProperty';
 
 export interface IDyFormMixin {
-    formitem?: DFSchema;
+    formitem?: FormProperty;
 }
 
 @Component({})
 export default class DyFormMixin extends Vue implements IDyFormMixin {
 
     @Prop({type: Object, default: () => {}})
-    public formitem!: DFSchema;
+    public formitem!: FormProperty;
 
-    get widgetAttrs(){
-        const ui: any = this.formitem.ui;
-        if(ui==null){
-          return {};
-        }
-        return ui.widgetattrs;
+    get widgetAttrs() {
+        return this.formitem.widgetAttrs;
     }
 
-    get itemAttrs(){
-        const ui: any = this.formitem.ui;
-        if(ui==null){
-          return {};
-        }
-        const result = ui.itemattrs;
-        return result;
+    get itemAttrs() {
+        return this.formitem.formitemAttrs;
+    }
+
+    get label(): string {
+        return this.formitem.label;
     }
 
 }

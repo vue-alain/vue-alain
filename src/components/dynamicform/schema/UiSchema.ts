@@ -1,3 +1,5 @@
+import { ErrorSchema } from './ErrorSchema';
+
 export interface DFGridSizeSchema {
     span?: number;
     order?: number;
@@ -61,7 +63,8 @@ export interface DFDataSchema {
 /** 指定如何渲染 `Schema` */
 export interface DFUISchemaItem
 extends DFRenderSchema,
-    DFDataSchema {
+    DFDataSchema,
+    ErrorSchema {
     [key: string]: any;
 
     /** 是否开启调试模式，在数据变更、校验会打印出相信信息，不建议在生产环境中使用 */

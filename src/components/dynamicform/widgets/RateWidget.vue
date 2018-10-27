@@ -1,9 +1,7 @@
 <template>
-
-<a-form-item v-bind="itemAttrs" :label="this.label">   
-    <slot></slot>
-</a-form-item>
-
+<df-item :formitem="formitem">
+  <a-rate v-bind="widgetAttrs"/>
+</df-item>
 </template>
 
 <style lang="less">
@@ -14,16 +12,18 @@
 import { Component, Prop, Vue, Mixins } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 
-import DyInput from './DyInput.vue';
-import { DFSchema } from './schema/DfSchema';
+import { DFSchema } from './../schema/DfSchema';
+
+import DyFormitemWapper from './../DyFormitemWapper.vue';
 
 import DyFormMixin, { IDyFormMixin } from '@/components/dynamicform/dyformitemMixin';
 
 @Component({
-    components:{
-    }
+    components: {
+      'df-item': DyFormitemWapper,
+    },
 })
-export default class DyFormitemWapper extends  Mixins<IDyFormMixin>(DyFormMixin){
+export default class RateWidget extends  Mixins<IDyFormMixin>(DyFormMixin) {
 
 }
 </script>

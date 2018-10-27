@@ -20,13 +20,13 @@ import { State, Mutation, namespace } from 'vuex-class';
 import DyForm from '@/components/dynamicform/DyForm.vue';
 
 @Component({
-    components:{
-      DyForm
-    }
+    components: {
+      DyForm,
+    },
 })
 export default class DynamicForm extends Vue {
 
-  private form:any = null;
+  private form: any = null;
 
   private formItemLayout: any = {
     labelCol: {
@@ -40,89 +40,187 @@ export default class DynamicForm extends Vue {
     },
   };
 
-  get formData(): any{
+  get formData(): any {
     return {
-      name:'关云长'
+      name: '关云长',
     };
   }
 
-  get uiSchema():any {
+  get uiSchema(): any {
     return {
-      name:{
-        itemattrs:{
+      name: {
+        itemattrs: {
           ...this.formItemLayout,
-          fieldDecoratorId:'name',
-          fieldDecoratorOptions:{
-            initialValue:this.formData.name,
-            rules: [{ required: true, message: '请输入姓名' }]
-          }
+          // fieldDecoratorId:'name',
+          fieldDecoratorOptions: {
+            initialValue: this.formData.name,
+            rules: [{ required: true, message: '请输入姓名' }],
+          },
         },
-        widgetattrs:{
-          placeholder:'请填写姓名',
-        }
-      }
-    }
+        widgetattrs: {
+          placeholder: '请填写姓名',
+        },
+      },
+    };
   }
 
-  get schema(): any{
+  get schema(): any {
     return {
-      properties:{
-        name:{
+      properties: {
+        name: {
           type: 'string',
-          title:'姓名',
+          title: '姓名',
         },
-        age:{
+        age: {
           type: 'number',
-          title:'年龄',
-          ui:{
-            itemattrs:{
-              ...this.formItemLayout
+          title: '年龄',
+          ui: {
+            itemattrs: {
+              ...this.formItemLayout,
             },
-            widgetattrs:{
-              min:0,
-              max:100
-            }
-          }
+            widgetattrs: {
+              min: 0,
+              max: 100,
+            },
+          },
         },
-        range:{
+        range: {
           type: 'daterange',
-          title:'起止日期',
-          ui:{
-            itemattrs:{
-              ...this.formItemLayout
+          title: '起止日期',
+          ui: {
+            itemattrs: {
+              ...this.formItemLayout,
             },
-            widgetattrs:{
-              style:{width: '100%'},
-            placeholder:['开始日期', '结束日期']
-            }
-          }
+            widgetattrs: {
+              style: {width: '100%'},
+              placeholder: ['开始日期', '结束日期'],
+            },
+          },
         },
-        remark:{
+        remark: {
           type: 'textarea',
-          title:'目标描述',
-          ui:{
-            itemattrs:{
-              ...this.formItemLayout
+          title: '目标描述',
+          ui: {
+            itemattrs: {
+              ...this.formItemLayout,
             },
-            widgetattrs:{
-              style:{'min-height': '32px'},
-              placeholder:'请输入你的阶段性工作目标',
-              rows:4
-            }
-          }
+            widgetattrs: {
+              style: {'min-height': '32px'},
+              placeholder: '请输入你的阶段性工作目标',
+              rows: 4,
+            },
+          },
+        },
+        switch: {
+          type: 'boolean',
+          ui: {
+            itemattrs: {
+              ...this.formItemLayout,
+            },
+          },
+        },
+        slider: {
+          type: 'slider',
+          ui: {
+            itemattrs: {
+              ...this.formItemLayout,
+            },
+            widgetattrs: {
+              marks: { 0: 'A', 20: 'B', 40: 'C', 60: 'D', 80: 'E', 100: 'F' }
+            },
+          },
+        },
+        rate: {
+          type: 'rate',
+          ui: {
+            itemattrs: {
+              ...this.formItemLayout,
+            },
+            widgetattrs: {
+              allowHalf: true,
+            },
+          },
+        },
+        select: {
+          type: 'select',
+          enum: [
+            { label: 'Red', value: 'red'},
+            { label: 'Green', value: 'green'},
+            { label: 'Blue', value: 'blue'},
+          ],
+          ui: {
+            itemattrs: {
+              ...this.formItemLayout,
+            },
+            widgetattrs: {
+            },
+          },
+        },
+        select2: {
+          type: 'select',
+          title: 'Select[multiple]',
+          enum: [
+            { label: 'Red', value: 'red'},
+            { label: 'Green', value: 'green'},
+            { label: 'Blue', value: 'blue'},
+          ],
+          ui: {
+            itemattrs: {
+              ...this.formItemLayout,
+            },
+            widgetattrs: {
+              mode: 'multiple',
+            },
+          },
+        },
+        radio: {
+          type: 'radio',
+          title: 'radio',
+          enum: [
+            { label: 'item 1', value: 'a'},
+            { label: 'item 2', value: 'b'},
+            { label: 'item 3', value: 'c'},
+          ],
+          ui: {
+            itemattrs: {
+              ...this.formItemLayout,
+            },
+            widgetattrs: {
+            },
+          },
+        },
+        radio2: {
+          type: 'radio',
+          title: 'radio[button]',
+          enum: [
+            { label: 'item 1', value: 'a'},
+            { label: 'item 2', value: 'b'},
+            { label: 'item 3', value: 'c'},
+          ],
+          ui: {
+            button: true,
+            itemattrs: {
+              ...this.formItemLayout,
+            },
+            widgetattrs: {
+            },
+          },
         },
       },
 
     };
   }
 
-  private submiting:boolean = false;
+  private submiting: boolean = false;
 
-  private handleSuccess(values: any){
-    this.submiting=true;
-    setTimeout(()=>{
-      this.submiting= false;
-    },1000);
+  private handleSuccess(values: any) {
+    // tslint:disable-next-line:no-console
+    console.log(values);
+
+    this.submiting = true;
+    setTimeout(() => {
+      this.submiting = false;
+    }, 1000);
   }
 
 }

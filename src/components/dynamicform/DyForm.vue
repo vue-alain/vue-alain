@@ -30,41 +30,42 @@ import {
 import {
     State,
     Mutation,
-    namespace
+    namespace,
 } from 'vuex-class';
 
 import DyFormitem from './DyFormitem.vue';
 import { DFSchema } from './schema/DfSchema';
 import { DFUISchema } from './schema/UiSchema';
+import FormProperty from './domain/FormProperty';
 
 @Component({
     components: {
-        'dy-item':DyFormitem
-    }
+        'dy-item': DyFormitem,
+    },
 })
 export default class DyForm extends Vue {
 
     @Prop({
         type: Object,
-        default () {
+        default() {
             return {};
-        }
+        },
     })
     private formSchema!: DFSchema;
 
     @Prop({
         type: Object,
-        default () {
+        default() {
             return {};
-        }
+        },
     })
     private uiSchema!: DFUISchema;
 
     @Prop({
         type: Object,
-        default () {
+        default() {
             return {};
-        }
+        },
     })
     private formOption!: any;
 
@@ -74,39 +75,30 @@ export default class DyForm extends Vue {
     })
     private submiting!: boolean;
 
-    private form:any = null;
+    private form: any = null;
 
-    private rootProperties: DFSchema[] = [];
+    private rootProperties: FormProperty[] = [];
 
-    private mounted(){
+    private mounted() {
         this.rootProperties = this.createRootProperties();
     }
 
-    private createRootProperties(){
+    private createRootProperties() {
         const properties: any = this.formSchema.properties;
         const rootProperties = Object.keys(properties)
-            .map((key: any)=>{
+            .map((key: any) => {
                 const item = properties[key];
-                let uiItem = this.uiSchema[key];
-                if(uiItem==null){
-                    uiItem={};
-                }
-                const ui = {
-                    ...item.ui,
-                    ...uiItem,
-                };
-                item.ui = ui;
-                item.type= uiItem.widget||item.type;
-                return item;
+                const uiItem = this.uiSchema[key];
+                return new FormProperty(key, item, uiItem);
             });
         return rootProperties;
     }
-    
-    private handleSubmit(e: any){
+
+    private handleSubmit(e: any) {
         e.preventDefault();
-        
+
         this.form.validateFieldsAndScroll((err: any, values: any) => {
-            if(err){
+            if (err){
                 return;
             }
             this.success(values);
