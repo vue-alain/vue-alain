@@ -168,7 +168,7 @@ export default class DynamicForm extends Vue {
               ...this.formItemLayout,
             },
             widgetattrs: {
-              marks: { 0: 'A', 20: 'B', 40: 'C', 60: 'D', 80: 'E', 100: 'F' }
+              marks: { 0: 'A', 20: 'B', 40: 'C', 60: 'D', 80: 'E', 100: 'F' },
             },
           },
         },

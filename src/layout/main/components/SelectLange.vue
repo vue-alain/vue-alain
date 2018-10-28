@@ -41,9 +41,7 @@ export default class SelectLange extends Vue {
     private localeChange(e: any) {
         localeService.loadLanguageAsync(e.key)
             .then((res: any) => {
-                console.log('切换语言成功');
             });
-        // this.$i18n.locale = e.key;
     }
 }
 </script>

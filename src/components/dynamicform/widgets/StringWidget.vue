@@ -19,9 +19,9 @@ import DyFormitemWapper from './../DyFormitemWapper.vue';
 import DyFormMixin, { IDyFormMixin } from '@/components/dynamicform/dyformitemMixin';
 
 @Component({
-    components:{
-      'df-item':DyFormitemWapper
-    }
+    components: {
+      'df-item': DyFormitemWapper,
+    },
 })
 export default class StringWidget extends  Mixins<IDyFormMixin>(DyFormMixin) {
 

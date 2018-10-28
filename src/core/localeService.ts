@@ -3,42 +3,14 @@ import {
 } from 'vue-property-decorator';
 
 
-import axios from 'axios';
 import * as _ from 'lodash';
 
-interface ILocalsProvider {
-    getMesage(lang: any): Promise<any>;
-}
-
-class AntdLocaleProvider implements ILocalsProvider {
-
-    public getMesage(lang: any): Promise<any> {
-        // import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
-        const antdLang = import(`ant-design-vue/lib/locale-provider/${lang}`);
-        return antdLang;
-    }
-
-}
-
-class JsonLocaleProvider implements ILocalsProvider{
-
-    public getMesage(lang: any): Promise<any> {
-        const jsonLang = axios.get(`/assets/locales/${lang}.json`);
-        return jsonLang;
-    }
-
-}
-
-class TsLocaleProvider implements ILocalsProvider{
-
-    public getMesage(lang: any): Promise<any> {
-        const result = import(/* webpackChunkName: "lang-[request]" */  `@/locales/${lang}`);
-        return result;
-    }
-
-}
+import { ILocalsProvider } from './locale/ILocalsProvider';
+import { JsonLocaleProvider } from './locale/JsonLocaleProvider';
+import { AntdLocaleProvider } from './locale/AntdLocaleProvider';
 
 class LocaleService {
+    // tslint:disable-next-line:variable-name
     private _i18n: any = null;
     private loadedLanguages: string[] = [];
 
@@ -49,17 +21,8 @@ class LocaleService {
         this.loadedLanguages.push(defaultLang);
     }
 
-    public addProvider(provider:any) {
+    public addProvider(provider: any) {
         this.providers.push(provider);
-    }
-
-    private getLocales(lang: any) {
-        const localeProviders: Promise<any>[] = [];
-        this.providers.forEach(item=>{
-                const provider = new item() as ILocalsProvider;
-                localeProviders.push(provider.getMesage(lang))
-            });
-        return localeProviders;
     }
 
     public loadLanguageAsync(lang: any) {
@@ -69,15 +32,15 @@ class LocaleService {
                 const langs = this.getLocales(lang);
                 return Promise.all(langs)
                         .then((msgs: any[]) => {
-                            let langMsg = {};
+                            const langMsg = {};
                             msgs.map((item: any) => {
-                                if (item.data!=null) {
-                                    _.assignIn(langMsg,item.data);
+                                if (item.data != null) {
+                                    _.assignIn(langMsg, item.data);
                                 } else {
-                                    _.assignIn(langMsg,item.default);
+                                    _.assignIn(langMsg, item.default);
                                 }
                             });
-                            i18n.setLocaleMessage(lang,langMsg);
+                            i18n.setLocaleMessage(lang, langMsg);
                             this.loadedLanguages.push(lang);
                             return this.setI18nLanguage(lang);
                         });
@@ -85,6 +48,15 @@ class LocaleService {
             return Promise.resolve(this.setI18nLanguage(lang));
         }
         return Promise.resolve(lang);
+    }
+
+    private getLocales(lang: any) {
+        const localeProviders: Array<Promise<any>> = [];
+        this.providers.forEach((item: any) => {
+                const provider = new item() as ILocalsProvider;
+                localeProviders.push(provider.getMesage(lang));
+            });
+        return localeProviders;
     }
 
     private setI18nLanguage(lang: any) {

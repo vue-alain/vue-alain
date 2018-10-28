@@ -9,8 +9,8 @@ export interface DFGridSizeSchema {
 }
 
 export interface DFGridSchema {
-    itemattrs?: any ,
-    widgetattrs?: any ,
+    itemattrs?: any;
+    widgetattrs?: any;
 }
 
 export interface DFRenderSchema {
@@ -57,7 +57,7 @@ export interface DFDataSchema {
  * - `input` 可能根据不同部件的情况存在值，例如：`autocomplete` 表示当前键入的值
  * - 参数、返回值：可能根据不同部件需求而定，具体参阅相应小部件独立说明
  */
-// asyncData?: (input?: any) => Observable<SFSchemaEnumType[]>;
+    asyncData?: (input?: any) => Promise<any[]>;
 }
 
 /** 指定如何渲染 `Schema` */

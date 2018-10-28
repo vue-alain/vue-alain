@@ -18,9 +18,9 @@ import NumberInfo from '@/components/numberinfo/Index.vue';
 import DyFormMixin, { IDyFormMixin } from '@/components/dynamicform/dyformitemMixin';
 
 @Component({
-    components:{
-      'df-item':DyFormitemWapper
-    }
+    components: {
+      'df-item': DyFormitemWapper,
+    },
 })
 export default class NumberWidget extends  Mixins<IDyFormMixin>(DyFormMixin) {
 
