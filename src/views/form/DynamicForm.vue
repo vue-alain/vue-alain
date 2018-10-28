@@ -248,6 +248,26 @@ export default class DynamicForm extends Vue {
             },
           },
         },
+        file1: {
+          type: 'string',
+          title: '上传文件',
+          ui: {
+            widget: 'upload',
+            itemattrs: {
+              ...this.formItemLayout,
+            },
+          },
+        },
+        file2: {
+          type: 'string',
+          title: '上传文件2',
+          ui: {
+            widget: 'uploaddragger',
+            itemattrs: {
+              ...this.formItemLayout,
+            },
+          },
+        },
       },
 
     };

@@ -10,6 +10,8 @@ import SliderWidget from './widgets/SliderWidget.vue';
 import RateWidget from './widgets/RateWidget.vue';
 import SelectWidget from './widgets/SelectWidget.vue';
 import RadioWidget from './widgets/RadioWidget.vue';
+import UploadWidget from './widgets/UploadWidget.vue';
+import UploadDraggerWidget from './widgets/UploadDraggerWidget.vue';
 
 import registry from './WidgetRegistry';
 
@@ -26,5 +28,7 @@ export default {
         registry.register('df-rate', RateWidget);
         registry.register('df-select', SelectWidget);
         registry.register('df-radio', RadioWidget);
+        registry.register('df-upload', UploadWidget);
+        registry.register('df-uploaddragger', UploadDraggerWidget);
     },
 };

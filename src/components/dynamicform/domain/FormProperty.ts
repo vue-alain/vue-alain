@@ -46,14 +46,19 @@ export default class FormProperty {
     }
 
     get uiSchema(): DFUISchemaItem {
-        if (this._uiSchema == null) {
-            return {};
-        }
-        return this._uiSchema;
+        const itemui: any = this.formSchema.ui;
+        const ui: any = this._uiSchema;
+        return {
+            ...itemui,
+            ...ui,
+        };
     }
 
     get type() {
-        return this.uiSchema.widget || this.formSchema.type;
+        if (this.uiSchema.widget) {
+            return this.uiSchema.widget;
+        }
+        return this.formSchema.type;
     }
 
     get formitemAttrs() {

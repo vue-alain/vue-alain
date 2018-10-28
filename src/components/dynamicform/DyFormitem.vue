@@ -28,7 +28,7 @@ export default class DyFormitem extends Vue {
     }})
     private properties!: any[];
 
-    private createWidgets(foritem: any): any{
+    private createWidgets(foritem: any): any {
         const key = `df-${foritem.type}`;
         const comp = registry.getType(key);
         return comp;
