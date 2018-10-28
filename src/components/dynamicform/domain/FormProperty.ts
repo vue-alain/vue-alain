@@ -99,9 +99,44 @@ export default class FormProperty {
         if (isRequired) {
             let msg = '必填项';
             if (this.ui.errors) {
-                msg = this.ui.errors['required'];
+                msg = this.ui.errors.required;
             }
             rules.push({ required: true, message: msg });
+        }
+        if (this.formSchema.maxLength) {
+            let msg = '超过最大长度';
+            if (this.ui.errors) {
+                msg = this.ui.errors.maxLength;
+            }
+            rules.push({ max: this.formSchema.maxLength, message: msg });
+        }
+        if (this.formSchema.minLength) {
+            let msg = '最小长度';
+            if (this.ui.errors) {
+                msg = this.ui.errors.minLength;
+            }
+            rules.push({ min: this.formSchema.minLength, message: msg });
+        }
+        if (this.formSchema.pattern) {
+            let msg = '正则表达式不正确';
+            if (this.ui.errors) {
+                msg = this.ui.errors.pattern;
+            }
+            rules.push({ pattern: this.formSchema.pattern, message: msg });
+        }
+        if (this.formSchema.maximum) {
+            let msg = '最大数';
+            if (this.ui.errors) {
+                msg = this.ui.errors.maximum;
+            }
+            rules.push({ type: 'number', max: this.formSchema.maximum, message: msg });
+        }
+        if (this.formSchema.minimum) {
+            let msg = '最小数';
+            if (this.ui.errors) {
+                msg = this.ui.errors.minimum;
+            }
+            rules.push({ type: 'number', min: this.formSchema.minimum, message: msg });
         }
         // { required: true, message: '请输入姓名' }
         return rules;

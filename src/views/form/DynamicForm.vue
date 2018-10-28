@@ -63,6 +63,13 @@ export default class DynamicForm extends Vue {
           placeholder: '请填写姓名',
         },
       },
+      password: {
+        errors: {
+          minLength: '密码长度至少6位',
+          maxLength: '密码长度最多10位',
+          pattern: '密码必须是字母',
+        },
+      },
     };
   }
 
@@ -79,6 +86,18 @@ export default class DynamicForm extends Vue {
             },
           },
         },
+        password: {
+          type: 'string',
+          title: '密码[长度|正则 验证]',
+          minLength: 6,
+          maxLength: 10,
+          pattern: '^[A-Za-z]+$',
+          ui: {
+            itemattrs: {
+              ...this.formItemLayout,
+            },
+          },
+        },
         age: {
           type: 'number',
           title: '年龄',
@@ -89,6 +108,21 @@ export default class DynamicForm extends Vue {
             widgetattrs: {
               min: 0,
               max: 100,
+            },
+          },
+        },
+        age1: {
+          type: 'number',
+          title: '年龄1[最大最小值验证]',
+          maximum: 100,
+          minimum: 16,
+          ui: {
+            errors: {
+              minimum: '年龄必须满16',
+              maximum: '年龄必须小于100',
+            },
+            itemattrs: {
+              ...this.formItemLayout,
             },
           },
         },
