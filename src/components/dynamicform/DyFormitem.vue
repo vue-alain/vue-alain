@@ -18,8 +18,7 @@ import { State, Mutation, namespace } from 'vuex-class';
 import registry from './WidgetRegistry';
 
 @Component({
-    components:{
-    }
+    components: {},
 })
 export default class DyFormitem extends Vue {
 

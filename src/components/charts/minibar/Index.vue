@@ -53,7 +53,7 @@ export default class MiniBar extends Vue {
     get chartData() {
       return {
           columns: ['x', 'y'],
-          rows: this.data
+          rows: this.data,
         };
     }
 

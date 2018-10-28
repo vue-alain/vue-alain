@@ -1,6 +1,6 @@
 <template>
 
-<a-form-item v-bind="itemAttrs" :label="this.label">   
+<a-form-item v-bind="itemAttrs" :label="this.label">
     <slot></slot>
 </a-form-item>
 
@@ -20,10 +20,10 @@ import { DFSchema } from './schema/DfSchema';
 import DyFormMixin, { IDyFormMixin } from '@/components/dynamicform/dyformitemMixin';
 
 @Component({
-    components:{
-    }
+    components: {
+    },
 })
-export default class DyFormitemWapper extends  Mixins<IDyFormMixin>(DyFormMixin){
+export default class DyFormitemWapper extends  Mixins<IDyFormMixin>(DyFormMixin) {
 
 }
 </script>

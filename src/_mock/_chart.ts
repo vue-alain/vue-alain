@@ -168,7 +168,7 @@ const radarTitleMap: any = {
   hot: '热度',
 };
 radarOriginData.forEach((item: any) => {
-  Object.keys(item).forEach(key => {
+  Object.keys(item).forEach((key: any) => {
     if (key !== 'name') {
       radarData.push({
         name: item.name,

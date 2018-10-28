@@ -98,7 +98,7 @@ export default class DyForm extends Vue {
         e.preventDefault();
 
         this.form.validateFieldsAndScroll((err: any, values: any) => {
-            if (err){
+            if (err) {
                 return;
             }
             this.success(values);

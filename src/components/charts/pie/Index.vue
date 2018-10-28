@@ -80,17 +80,16 @@ export default class Pie extends Vue {
 
     get extendSettings() {
       const setting: any = {};
-      if(this.showTitle){
+      if (this.showTitle) {
 
         setting.title = {
           text: this.title,
-          subtext: this.subtitle,// '纯属虚构',
-          x:'center',
-          y:'center',
+          subtext: this.subtitle, // '纯属虚构',
+          x: 'center',
+          y: 'center',
         };
 
       }
-      
       return setting;
     }
 

@@ -127,7 +127,7 @@ export interface DFSchema {
      * 定义属性
      */
     properties?: { [key: string]: DFSchema };
-    
+
     //////////// 格式/////////////
     /**
      * 数据格式，[文档](http://json-schema.org/latest/json-schema-validation.html#rfc.section.7.3)
