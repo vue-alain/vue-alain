@@ -27,6 +27,9 @@ export default class DyFormitem extends Vue {
     }})
     private properties!: any[];
 
+    /**
+     * 从 组件工厂中获取组件并显示
+     */
     private createWidgets(foritem: any): any {
         const key = `df-${foritem.type}`;
         const comp = registry.getType(key);

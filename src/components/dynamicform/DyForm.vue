@@ -45,6 +45,9 @@ import FormProperty from './domain/FormProperty';
 })
 export default class DyForm extends Vue {
 
+    /**
+     * json schema 描述的表单结构
+     */
     @Prop({
         type: Object,
         default() {
@@ -53,6 +56,9 @@ export default class DyForm extends Vue {
     })
     private formSchema!: DFSchema;
 
+    /**
+     * UI schema 描述表单渲染
+     */
     @Prop({
         type: Object,
         default() {
@@ -61,6 +67,9 @@ export default class DyForm extends Vue {
     })
     private uiSchema!: DFUISchema;
 
+    /**
+     * 表单选项，未使用
+     */
     @Prop({
         type: Object,
         default() {
@@ -69,6 +78,9 @@ export default class DyForm extends Vue {
     })
     private formOption!: any;
 
+    /**
+     * 表单是否提交中
+     */
     @Prop({
         type: Boolean,
         default: false,
@@ -83,6 +95,9 @@ export default class DyForm extends Vue {
         this.rootProperties = this.createRootProperties();
     }
 
+    /**
+     * 创建属性
+     */
     private createRootProperties() {
         const properties: any = this.formSchema.properties;
         const rootProperties = Object.keys(properties)
@@ -94,6 +109,9 @@ export default class DyForm extends Vue {
         return rootProperties;
     }
 
+    /**
+     * 表单提交
+     */
     private handleSubmit(e: any) {
         e.preventDefault();
 

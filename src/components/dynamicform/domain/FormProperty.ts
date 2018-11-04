@@ -1,7 +1,12 @@
 import { DFSchema } from './../schema/DfSchema';
 import { DFUISchemaItem } from './../schema/UiSchema';
 
+
 // tslint:disable:variable-name
+/**
+ * form属性，主要是提供一些属性，提供给动态表单项属性
+ * 一般是有 json schem 和 ui shcem 和 formdata组合提供
+ */
 export default class FormProperty {
     public formData: any = {};
 
@@ -17,14 +22,6 @@ export default class FormProperty {
         uiSchema: DFUISchemaItem,
         required: string[] = []) {
         this._propertyId = propertyId;
-        /*
-        this._id = id;
-        this._fieldKey = fieldKey;
-        this._formData = formdata;
-        this._attrs = attrs;
-        this._visiable = visiable;
-        this._title = title;
-        */
         this._formSchem = formSchema;
         this._uiSchema = uiSchema;
         this._required = required;

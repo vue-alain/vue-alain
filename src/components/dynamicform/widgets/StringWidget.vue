@@ -25,18 +25,5 @@ import DyFormMixin, { IDyFormMixin } from '@/components/dynamicform/dyformitemMi
 })
 export default class StringWidget extends  Mixins<IDyFormMixin>(DyFormMixin) {
 
-/*
-  @Prop({type: Object, default: () => {}})
-  private formitem!: DFSchema;
-
-  get attrs(){
-    const ui: any = this.formitem.ui;
-    if(ui==null){
-      return {};
-    }
-    return ui.widgetattrs;
-  }
-  */
-
 }
 </script>
