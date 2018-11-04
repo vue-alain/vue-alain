@@ -46,18 +46,12 @@ export default class DynamicForm extends Vue {
     };
   }
 
+  // 动态表单 ui schema，描述表单展示
   get uiSchema(): any {
     return {
       name: {
         itemattrs: {
           ...this.formItemLayout,
-          // fieldDecoratorId:'name',
-          /*
-          fieldDecoratorOptions: {
-            initialValue: this.formData.name,
-            rules: [{ required: true, message: '请输入姓名' }],
-          },
-          */
         },
         widgetattrs: {
           placeholder: '请填写姓名',
@@ -73,6 +67,7 @@ export default class DynamicForm extends Vue {
     };
   }
 
+  // 动态表单 json schema，描述表单填写数据的数据结构
   get schema(): any {
     return {
       required: ['name'],

@@ -15,7 +15,7 @@ export interface DFGridSchema {
 
 export interface DFRenderSchema {
     /**
-     * 指定采用什么小部件渲染，所有小部件名可[查阅文档](https://ng-alain.com/)
+     * 小部件名称
      */
     widget?: string;
 
@@ -23,15 +23,6 @@ export interface DFRenderSchema {
      * 元素组件大小
      */
     size?: 'default' | 'large' | 'small';
-
-    /**
-     * 指定宽度，单位：`px`
-     */
-    width?: number;
-    /**
-     * 响应式属性
-     */
-    grid?: DFGridSchema;
 
     /**
      * <form-item>属性
@@ -42,12 +33,6 @@ export interface DFRenderSchema {
      * 组件属性
      */
     widgetattrs?: any;
-
-    /** 标签可选信息 */
-    optional?: string;
-
-    /** 标签可选帮助，使用 `nz-tooltip` 展示 */
-    optionalHelp?: string;
 
 }
 

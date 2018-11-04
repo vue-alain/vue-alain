@@ -17,17 +17,35 @@ import registry from './WidgetRegistry';
 
 export default {
     install() {
-        registry.register('df-daterange' , DateRangeWidget);
+        // 日期范围
         registry.register('df-daterange', DateRangeWidget);
+
+        // 数字输入框
         registry.register('df-number', NumberWidget);
+
+        // 文本框
         registry.register('df-string', StringWidget);
         registry.register('df-text', TextWidget);
+
+        // 区域文本框
         registry.register('df-textarea', TextareaWidget);
+
+        // 开关
         registry.register('df-boolean', SwitchWidget);
+
+        // 拖动条
         registry.register('df-slider', SliderWidget);
+
+        // 星打分
         registry.register('df-rate', RateWidget);
+
+        // 下拉框
         registry.register('df-select', SelectWidget);
+
+        // 单选框
         registry.register('df-radio', RadioWidget);
+
+        // 上传文件
         registry.register('df-upload', UploadWidget);
         registry.register('df-uploaddragger', UploadDraggerWidget);
     },
