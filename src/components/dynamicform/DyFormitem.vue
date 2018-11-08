@@ -1,7 +1,7 @@
 <template>
 <div>
-    <component v-for="(formitem,index) in properties" 
-    :key="index" 
+    <component v-for="(formitem,index) in properties"
+    :key="index"
     :is="createWidgets(formitem)"
     :formitem="formitem"></component>
 </div>

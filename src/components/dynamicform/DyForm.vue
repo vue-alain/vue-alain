@@ -1,7 +1,7 @@
 <template>
 <a-form @submit="handleSubmit"
     style="margin-top: 8px"
-    :autoFormCreate="(form)=>{this.form = form}"
+    :autoFormCreate="(form)=>{this.dyForm = form}"
     v-bind="formOption">
 
     <dy-item :properties="rootProperties"></dy-item>
@@ -87,7 +87,7 @@ export default class DyForm extends Vue {
     })
     private submiting!: boolean;
 
-    private form: any = null;
+    private dyForm: any = null;
 
     private rootProperties: FormProperty[] = [];
 
