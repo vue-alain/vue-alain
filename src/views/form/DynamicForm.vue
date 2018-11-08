@@ -5,6 +5,14 @@
     :submiting="submiting"
   ></dy-form>
 
+
+    <a-card :bordered="false" title="动态表单 demo">
+      <form-schema ref="formSchema" :schema="schema2"
+        :components="components">
+      </form-schema>
+
+    </a-card>
+
   </div>
 
 </template>
@@ -17,11 +25,46 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 
+import AntdUIComponents from '@/components/dynamicform/AntdUIComponents';
+import FormSchema, { Components } from '@formschema/native';
+
+/*
+import {
+  Form,
+  FormItem,
+  Input,
+  Radio,
+  Checkbox,
+  Select,
+  Option,
+  Button
+} from 'element-ui'
+
+FormSchema.setComponent('label', FormItem)*/
+
+/*
+FormSchema.setComponent('form', 'a-form',(vm: any)=>{});
+
+// http://element.eleme.io/#/en-US/component/form#validation
+FormSchema.setComponent('label', 'a-form-item');
+
+FormSchema.setComponent('email', 'a-input');
+FormSchema.setComponent('text', 'a-input');
+FormSchema.setComponent('textarea', 'a-input');
+FormSchema.setComponent('checkbox', 'a-checkbox');
+FormSchema.setComponent('switch', 'a-switch');
+FormSchema.setComponent('radio', 'a-radio');
+FormSchema.setComponent('select', 'a-select');
+*/
+
+// FormSchema.setComponent('email', 'el-input');
+
 import DyForm from '@/components/dynamicform/DyForm.vue';
 
 @Component({
     components: {
       DyForm,
+      FormSchema,
     },
 })
 export default class DynamicForm extends Vue {
@@ -44,6 +87,13 @@ export default class DynamicForm extends Vue {
     return {
       name: '关云长',
     };
+  }
+
+  get components() {
+    // const compos= new Components();
+    const components = AntdUIComponents(Components);
+      console.log(components);
+    return components;
   }
 
   // 动态表单 ui schema，描述表单展示
@@ -267,6 +317,135 @@ export default class DynamicForm extends Vue {
 
     };
   }
+
+  private schema2: any ={
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "Newsletter Subscription",
+  "description": "Sign up for free newsletters and get more delivered to your inbox",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 80,
+      "title": "Full Name",
+      "attrs": {
+        "placeholder": "Your Full Name",
+        "title": "Please enter your full name"
+      }
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 120,
+      "title": "Email",
+      "default": "demsking@gmail.com",
+      "attrs": {
+        "type": "email",
+        "placeholder": "Your Email",
+        "title": "Please enter your email"
+      }
+    },
+    "datetime": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Activity time",
+      "attrs": {
+        "type": "datetime-local"
+      }
+    },
+    "delivery": {
+      "type": "boolean",
+      "title": "Instant delivery",
+      "default": false
+    },
+    "lists": {
+      "type": "string",
+      "title": "List",
+      "enum": ["Daily New", "Promotion"],
+      "attrs": {
+        "placeholder": "Select your list subscription",
+        "title": "Please select your list subscription"
+      }
+    },
+    "listValues": {
+      "type": "string",
+      "title": "List Values",
+      "enum": [
+        { "value": "daily", "label": "Daily News" },
+        { "value": "promotion", "label": "Promotion" }
+      ],
+      "attrs": {
+        "placeholder": "Select your list subscription",
+        "title": "Please select your list subscription"
+      }
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 120,
+      "title": "Source",
+      "description": "Ex. Using the NPM Search Engine",
+      "attrs": {
+        "type": "textarea",
+        "placeholder": "How did you hear about us?"
+      }
+    },
+    "password": {
+      "type": "string",
+      "title": "password",
+      "default": "hello",
+      "attrs": {
+        "type": "password"
+      }
+    },
+    "aList": {
+      "type": "array",
+      "title": "Array field",
+      "minItems": 2,
+      "maxItems": 5,
+      "items": {
+        "type": "string"
+      },
+      "attrs": {
+        "typeX": "password"
+      }
+    },
+    "regex": {
+      "type": "string",
+      "title": "regex",
+      "pattern": "[a-e]+"
+    },
+    "multipleCheckbox": {
+      "type": "array",
+      "title": "Checkboxes",
+      "anyOf": [
+        { "value": "daily", "label": "Daily News" },
+        { "value": "promotion", "label": "Promotion" }
+      ]
+    },
+    "groupedRadio": {
+      "type": "array",
+      "title": "Frequence",
+      "oneOf": [
+        { "value": "daily", "label": "Daily News" },
+        { "value": "weekly", "label": "Weekly News" }
+      ]
+    },
+    "agree": {
+      "type": "boolean",
+      "title": "Agree",
+      "description": "You agree to receive occasional updates and special offers for vue-json-schema updates.",
+      "default": false,
+      "attrs": {
+        "type": "checkbox"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": ["name", "email", "lists", "aList"]
+}
+;
+
 
   private submiting: boolean = false;
 
