@@ -20,9 +20,9 @@
 <script lang="tsx">
 
 import { Breadcrumb, Icon } from 'ant-design-vue';
-Vue.component(Icon.name, Icon);
-Vue.component(Breadcrumb.name, Breadcrumb);
-Vue.component(Breadcrumb.Item.name, Breadcrumb.Item);
+// Vue.component(Icon.name, Icon);
+// Vue.component(Breadcrumb.name, Breadcrumb);
+// Vue.component(Breadcrumb.Item.name, Breadcrumb.Item);
 
 import {
     Component,
@@ -33,7 +33,13 @@ import {
 } from 'vue-property-decorator';
 import * as _ from 'lodash';
 
-@Component({})
+@Component({
+    components: {
+        [Icon.name]: Icon,
+        [Breadcrumb.name]: Breadcrumb,
+        [Breadcrumb.Item.name]: Breadcrumb.Item,
+    },
+})
 export default class BreadcrumbList extends Vue {
 
     get source() {
