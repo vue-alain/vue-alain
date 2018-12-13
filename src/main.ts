@@ -38,6 +38,8 @@ import AxiosInterceptor from '@/core/AxiosInterceptor';
 import zh_CN from '@/locales/zh_CN';
 // import en_US from '@/locales/en_US';
 
+import * as _ from 'lodash';
+
 import localeService from '@/core/localeService';
 
 import 'rxjs/Rx';
@@ -54,11 +56,19 @@ import DynamicForm from '@/components/dynamicform/index';
 Vue.use(DynamicForm);
 
 // local storage 配置
-Vue.use(Storage, {
+Vue.use(_.clone(Storage), {
   namespace: 'vuealain_', // sorage 前缀
   name: 'ls', // 注入vue中的别名，this.$ls
   storage: 'local',
 });
+
+Vue.use(_.clone(Storage), {
+  namespace: 'vuealain_ss_', // sorage 前缀
+  name: 'ss', // 注入vue中的别名，this.$ss
+  storage: 'session',
+});
+
+
 
 const messages: any = {
   zh_CN, // { title: '中文', key: 'zh_CN', values: zh_CN },
@@ -101,7 +111,8 @@ Startup.bootstrap().then(
     store.commit('app/setApp', res.data.app);
 
     // 从storage中初始化token，以便登录后刷新token丢失
-    const initToken = app.$ls.get('token');
+    const initToken = app.$ss.get('token');
+    console.log('initToken',initToken);
     if ( initToken != null) {
       store.commit('user/loginSuccess', {token: initToken});
     }

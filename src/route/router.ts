@@ -29,14 +29,17 @@ const router = new Router({
  * 设置全局路由守卫
  */
 router.beforeResolve((to: Route, from: Route, next: any) => {
-
+  
   const state: any = store.state;
   const user: any = state.user;
 
+  console.log('beforeResolve',user);
+
   // 路由信息设置了需要守卫，跳转路由时需要先登录
   if (to.meta && to.meta.routerGuard) {
+    console.log(to);
     // 需要路由守护
-    if (user.token === undefined) {
+    if (user.token == undefined) {
       next({name: '/passport/login', query: {
         redirect: to.path,
       }});
