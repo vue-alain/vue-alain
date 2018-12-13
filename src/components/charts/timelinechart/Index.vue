@@ -18,8 +18,6 @@
 <script  lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-const DataSet = require('@antv/data-set');
-
 const sourceData = [
   /*
   { x: 'Jan', y1: 7.0, y2: 3.9 },
@@ -57,16 +55,6 @@ const sourceData = [
   { x: 1536954520634, y1: 36, y2: 102 },
 ];
 
-/*
-const dv = new DataSet.View().source(sourceData);
-dv.transform({
-  type: 'fold',
-  fields: ['y1', 'y2'],
-  key: 'city',
-  value: 'value',
-});
-const data = dv.rows;
-*/
 
 const scale = [
   {
