@@ -43,6 +43,16 @@ const router = {
       component: () => import(/* webpackChunkName: "form" */ '@/views/form/DynamicForm.vue'),
       meta: {
         title: '动态表单',
+        i18n: `动态表单`,
+      },
+    },
+    {
+      path: 'formeditor',
+      name: '/form/formeditor',
+      component: () => import(/* webpackChunkName: "form" */ '@/views/form/FormEditor.vue'),
+      meta: {
+        title: '表单设计器',
+        i18n: `表单设计器`,
       },
     }],
   };
