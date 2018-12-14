@@ -1,3 +1,6 @@
+/**
+ * 对话框服务，主要提供异步打开对话框的功能
+ */
 import {
     Component,
     Prop,
@@ -12,6 +15,11 @@ import { catchError  } from 'rxjs/operators';
 
 class ModalService {
 
+    /**
+     * 打开对话框
+     * @param component 对话框组件
+     * @param props 对话框props
+     */
     public show(component: VueConstructor<Vue>| Promise<any>  , props?: any): Observable<any> {
 
         const modalsubject$: BehaviorSubject<any> = new BehaviorSubject<any>({});
@@ -32,6 +40,11 @@ class ModalService {
         return this.handlesubject(modalsubject$);
     }
 
+    /**
+     * 异步打开对话框
+     * @param component 对话框组件
+     * @param props 对话框props
+     */
     public showAsync(component: Promise<any>,  props?: any): Observable<any> {
         const modalsubject$: BehaviorSubject<any> = new BehaviorSubject<any>({});
         component.then((comp: any) => {

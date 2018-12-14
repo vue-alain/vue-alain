@@ -1,3 +1,6 @@
+/**
+ * 导入多语言信息
+ */
 import Vue from 'vue';
 
 
@@ -8,11 +11,7 @@ import '@/shims-vue-ls-type';
 import zh_CN from '@/locales/zh_CN';
 import localeService from '@/core/localeService';
 
-// import en_US from '@/locales/en_US';
-
 Vue.use(Vuei18n);
-
-
 
 const messages: any = {
   zh_CN, // { title: '中文', key: 'zh_CN', values: zh_CN },

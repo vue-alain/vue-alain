@@ -1,3 +1,6 @@
+/**
+ * 导入自定义组件
+ */
 import Vue from 'vue';
 
 import Charts from '@/components/charts/Index';

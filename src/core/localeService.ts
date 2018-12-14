@@ -1,10 +1,11 @@
-import {
-    Vue,
-} from 'vue-property-decorator';
-
-
+/**
+ * 语言服务
+ */
 import * as _ from 'lodash';
 
+/**
+ * 语言提供者
+ */
 import { ILocalsProvider } from './locale/ILocalsProvider';
 import { JsonLocaleProvider } from './locale/JsonLocaleProvider';
 import { AntdLocaleProvider } from './locale/AntdLocaleProvider';
@@ -61,15 +62,19 @@ class LocaleService {
 
     private setI18nLanguage(lang: any) {
         this._i18n.locale = lang;
-        // axios.defaults.headers.common['Accept-Language'] = lang;
-        // document.querySelector('html').setAttribute('lang', lang);
         return lang;
     }
 
 }
 
 const localeService = new LocaleService();
+
+/**
+ * 提供者的顺序影响国际化信息，后者提供的国际化内容替换前者
+ */
+// 添加antd语言提供者
 localeService.addProvider(AntdLocaleProvider);
+// 添加json语言提供者
 localeService.addProvider(JsonLocaleProvider);
 
 export default localeService;

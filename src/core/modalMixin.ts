@@ -1,3 +1,6 @@
+/**
+ * 弹出框混入功能
+ */
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 import {
   Component,
@@ -9,11 +12,29 @@ import {
 } from 'vue-property-decorator';
 
 export interface IModalMixin {
+  /**
+   * 弹出框是否显示
+   */
   visible: boolean;
+  /**
+   * 弹出框监听者
+   */
   subject$: BehaviorSubject<any>;
+  /**
+   * 显示弹出框
+   */
   show(): void;
+  /**
+   * 关闭弹出框
+   */
   close(): void;
+  /**
+   * 确定按钮处理
+   */
   handleOk(): void;
+  /**
+   * 取消按钮处理
+   */
   handleCancel(): void;
 }
 

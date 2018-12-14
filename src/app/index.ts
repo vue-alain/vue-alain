@@ -1,4 +1,7 @@
 
+/**
+ * 集中导入app 依赖的模块和功能
+ */
 import 'rxjs/Rx';
 
 import './antdv';

@@ -1,3 +1,6 @@
+/**
+ * 导入 vue-ls模块
+ */
 import Vue from 'vue';
 import Storage from 'vue-ls';
 
