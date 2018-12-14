@@ -6,7 +6,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
  */
 class WidgetRegistry {
 
-    private widgets: { [type: string]: any } = {};
+    private widgets: Map<string, any> = new Map<string,any>();
 
     private defaultWidget: any;
 
@@ -24,7 +24,7 @@ class WidgetRegistry {
      * @param widget
      */
     public register(type: string, widget: any) {
-        this.widgets[type] = widget;
+        this.widgets.set(type, widget);
     }
 
     /**
@@ -32,7 +32,7 @@ class WidgetRegistry {
      * @param type
      */
     public has(type: string) {
-        return this.widgets.hasOwnProperty(type);
+        return this.widgets.has(type);
     }
 
     /**
@@ -41,7 +41,7 @@ class WidgetRegistry {
      */
     public getType(type: string): any {
         if (this.has(type)) {
-            return this.widgets[type];
+            return this.widgets.get(type);
         }
         return this.defaultWidget;
     }
