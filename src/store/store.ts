@@ -7,7 +7,10 @@ import reuseTabState from './modules/routerTabs';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export interface RootState {
+}
+
+export default new Vuex.Store<RootState>({
   state: {
 
   },
