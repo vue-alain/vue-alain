@@ -133,7 +133,6 @@ export default class CardList extends Vue {
             },
         }).then((res: any) => {
             this.list = res.data;
-            // console.log(this.list);
         });
     }
 

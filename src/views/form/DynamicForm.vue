@@ -272,8 +272,6 @@ export default class DynamicForm extends Vue {
   private submiting: boolean = false;
 
   private handleSuccess(values: any) {
-    // tslint:disable-next-line:no-console
-    console.log(values);
 
     this.submiting = true;
     setTimeout(() => {

@@ -120,7 +120,6 @@ function getFakeList(opt: any) {
 
   const result = fakeList(count);
   sourceData = result;
-  // console.log(result);
   return sourceData;
 }
 

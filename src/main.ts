@@ -112,7 +112,6 @@ Startup.bootstrap().then(
 
     // 从storage中初始化token，以便登录后刷新token丢失
     const initToken = app.$ss.get('token');
-    console.log('initToken',initToken);
     if ( initToken != null) {
       store.commit('user/loginSuccess', {token: initToken});
     }

@@ -142,19 +142,15 @@ export default class PrimaryList extends Vue {
             },
         }).then((res: any) => {
             this.list = res.data;
-            // console.log(this.list);
         });
     }
 
     private handleEditClick(e: any, item: any): void {
       e.preventDefault();
-      // console.log(item);
       this.showEditModal(item);
     }
 
     private handleEditAndDelete(key: any, item: any): void {
-      // console.log(key);
-      // console.log(item);
       this.showEditModal(item);
     }
 
@@ -166,16 +162,13 @@ export default class PrimaryList extends Vue {
     private showEditModal(item: any): void {
       this.baselistmodal = true;
       this.newRecoard = item;
-      // console.log(item);
     }
 
     private handleSearch(value: any) {
-      // console.log(value);
+
     }
 
     private handleListModalClose(isok: any) {
-      // console.log('handleListModalClose');
-      // console.log('isok', isok);
     }
 }
 </script>

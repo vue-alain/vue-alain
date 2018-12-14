@@ -182,7 +182,6 @@ export default class BasicDetail extends Vue {
             const data = res.data;
             this.basicProgress = data.basicProgress;
             this.goodsData = data.basicGoods;
-            // console.log(this.goodsData);
 
             if (data.basicGoods.length) {
                 let num = 0;

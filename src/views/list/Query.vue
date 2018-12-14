@@ -307,9 +307,7 @@ export default class QueryList extends Vue {
         /* webpackChunkName: "list.testmodal" */
         /*
         const ComponentClass: any = () => import(  './components/TestModal.vue');
-        console.log(typeof ComponentClass);
         const instance = new ComponentClass();
-        console.log(instance);
         instance.then((comp: any) => {
             const modalInstance = new comp.default({
                     propsData: {
