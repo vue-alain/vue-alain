@@ -154,7 +154,12 @@ export default class PassportLayout extends Vue {
     }
 
     private getRedirect() {
-        return this.$route.query.redirect;
+        let redirect=this.$route.query.redirect;
+
+        if(redirect&&Array.isArray(redirect)){
+            return redirect[0];
+        }
+        return null;
     }
 
     @userModule.Mutation('loginSuccess')
