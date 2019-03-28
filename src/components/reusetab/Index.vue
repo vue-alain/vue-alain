@@ -5,7 +5,7 @@
             <template slot="tab">
                 <!--[reuse-tab-context-menu]="i" -->
                 <span @click="to($event, i)" class="name">{{i.title}}</span>
-                <i v-if="i.closable" class="anticon anticon-close op" @click="close($event, i, false)"></i>
+                <i v-if="i.closable&&list.length!==0" class="anticon anticon-close op" @click="close($event, i, false)"></i>
             </template>
             <!--
             <ng-template #titleTemplate>
