@@ -157,8 +157,12 @@ export default class PassportLayout extends Vue {
     private mounted() {
     }
 
-    private getRedirect() {
-        return this.$route.query.redirect;
+    private getRedirect(): string {
+        if(!this.$route.query.redirect){
+            return '/';
+        }
+        const redirect: any = this.$route.query.redirect;
+        return redirect;
     }
 
 
@@ -175,7 +179,7 @@ export default class PassportLayout extends Vue {
                     }
                     this.loginSuccess({token: resData.token});
                     this.$ss.set('token', resData.token);
-                    const redirect = this.getRedirect();
+                    const redirect: string = this.getRedirect();
                     if (redirect != null) {
                         this.$router.push(redirect);
                     } else {
