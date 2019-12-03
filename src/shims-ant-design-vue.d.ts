@@ -13,11 +13,13 @@ declare module 'ant-design-vue' {
     export default Antd;
 }*/
 
-/**/
+
+/*
 declare module 'ant-design-vue/lib/LocaleProvider' {
     const LocaleProvider : any;
     export default LocaleProvider;
 }
+*/
 
 
 
@@ -30,3 +32,4 @@ declare module 'ant-design-vue/lib/locale-provider/en_US' {
     const enUS : any;
     export default enUS;
 }
+/**/
