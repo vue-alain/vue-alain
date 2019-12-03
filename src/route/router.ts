@@ -36,7 +36,7 @@ router.beforeResolve((to: Route, from: Route, next: any) => {
   // 路由信息设置了需要守卫，跳转路由时需要先登录
   if (to.meta && to.meta.routerGuard) {
     // 需要路由守护
-    if (user.token == undefined) {
+    if (user.token === undefined) {
       next({name: '/passport/login', query: {
         redirect: to.path,
       }});

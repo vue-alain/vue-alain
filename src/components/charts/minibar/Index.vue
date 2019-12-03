@@ -1,11 +1,11 @@
 <template>
   <div class="mini-chart">
     <div class="chart-content">
-      <ve-histogram 
+      <ve-histogram
         :height="chartHeight"
-        :data="chartData" 
-        :legend-visible="false" 
-        :colors="[color]" 
+        :data="chartData"
+        :legend-visible="false"
+        :colors="[color]"
         :extend="extendSettings"></ve-histogram>
     </div>
   </div>

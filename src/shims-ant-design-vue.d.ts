@@ -4,7 +4,7 @@ declare module 'ant-design-vue' {
     export default Antd;
 }
 */
-declare module 'ant-design-vue';
+//declare module 'ant-design-vue';
 /*
 declare module 'ant-design-vue' {
     // import * as AntdVue from '@/ant-desgin-vue/index';
@@ -13,6 +13,7 @@ declare module 'ant-design-vue' {
     export default Antd;
 }*/
 
+/**/
 declare module 'ant-design-vue/lib/LocaleProvider' {
     const LocaleProvider : any;
     export default LocaleProvider;

@@ -158,7 +158,7 @@ export default class PassportLayout extends Vue {
     }
 
     private getRedirect(): string {
-        if(!this.$route.query.redirect){
+        if (!this.$route.query.redirect) {
             return '/';
         }
         const redirect: any = this.$route.query.redirect;

@@ -18,7 +18,6 @@
     </av-page-header>
     <a-form layout="vertical" hideRequiredMark :autoFormCreate="handlerFormCreate">
       <a-card title="仓库管理" class="card" :bordered="false">
-          
             <a-row :gutter="16">
               <a-col :lg="6" :md="12" :sm="24">
                 <a-form-item label="仓库名"
@@ -71,7 +70,6 @@
                   :fieldDecoratorOptions="{rules: [{ required: true, message: '请选择生效日期' }]}"
                 >
                   <a-range-picker :placeholder="['开始日期', '结束日期']" :style="{ width: '100%' }" />
-                  
                 </a-form-item>
               </a-col>
               <a-col :xl="{ span: 8, offset: 2 }" :lg="{ span: 10 }" :md="{ span: 24 }" :sm="24">
@@ -86,10 +84,7 @@
                 </a-form-item>
               </a-col>
             </a-row>
-         
         </a-card>
-
-  
     <a-card title="任务管理" class="card" :bordered="false">
       <a-row :gutter="16">
           <a-col :lg="6" :md="12" :sm="24">
@@ -172,7 +167,6 @@
           <template slot="content">
             <li v-for="(item,index) in errors" :key="index" class="errorListItem" @click="scrollToField(item.key)">
               <a-icon type="cross-circle-o" class="errorIcon" />
-              
               <div class="errorMessage">{{item.msg}}</div>
               <div class="errorField">{{item.label}}</div>
             </li>
@@ -182,16 +176,14 @@
           {{errorCount}}
         </a-popover>
       </span>
-       
-         <a-button type="primary" slot="children"
+        <a-button type="primary" slot="children"
           @click="validate"
           >
           提交
         </a-button>
       </div>
-     
     </av-footer-toolbar>
-     </a-form>
+    </a-form>
   </div>
 </template>
 

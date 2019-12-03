@@ -10,11 +10,13 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.149",
     "@types/mockjs": "^1.0.1",
     "@types/numeral": "^0.0.26",
     "@types/qs": "^6.9.0",
     "ant-design-vue": "^1.4.8",
     "axios": "^0.19.0",
+    "core-js": "^3.4.3",
     "date-fns": "^2.8.1",
     "echarts": "^4.5.0",
     "font-awesome": "^4.7.0",

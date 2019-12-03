@@ -6,7 +6,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
  */
 class WidgetRegistry {
 
-    private widgets: Map<string, any> = new Map<string,any>();
+    private widgets: Map<string, any> = new Map<string, any>();
 
     private defaultWidget: any;
 
