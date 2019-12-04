@@ -36,7 +36,7 @@ import {
     Component,
     Prop,
     Vue,
-Watch,
+    Watch,
 } from 'vue-property-decorator';
 import {
     State,
@@ -46,9 +46,11 @@ import {
 
 import VueRouter from 'vue-router';
 
-import {appModule,aclModule,IAclState} from '@/store';
+import { appModule, aclModule, IAclState} from '@/store';
 
 import * as _ from 'lodash';
+
+import aclService from '@/core/AclService';
 
 @Component({
     components: {},
@@ -73,8 +75,40 @@ export default class AdminSidebar extends Vue {
     get menuData() {
         // todo: 排除不在权限的路由
         const router: any = this.$router;
-        console.log('router.options.routes',router.options.routes);
-        return router.options.routes;
+        return this.handleMenu([...router.options.routes]);
+    }
+
+    /**
+     * 通过 meta.acl配置判断权限
+     */
+    private handleMenu(menuList: any[]) {
+        const result: any[] = [];
+
+        menuList.forEach((menuitem: any) => {
+
+            const child: any[] = [];
+            menuitem.children.forEach((menuChildItem: any) => {
+                if (menuChildItem.meta !== undefined && menuChildItem.meta.acl !== undefined) {
+                    if (aclService.canPermission(this.permission, menuChildItem.meta.acl.ability)) {
+                        child.push(menuChildItem);
+                    }
+                } else {
+                    child.push(menuChildItem);
+                }
+            });
+
+            menuitem.children = child;
+
+            if (menuitem.meta !== undefined && menuitem.meta.acl !==  undefined)  {
+                if (aclService.canPermission(this.permission, menuitem.meta.acl.ability)) {
+                    result.push(menuitem);
+                }
+            } else {
+                result.push(menuitem);
+            }
+        });
+
+        return result;
     }
 
     private parentMenuName(name: any): string {

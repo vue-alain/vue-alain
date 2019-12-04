@@ -41,6 +41,8 @@ Startup.bootstrap().then(
     const initToken = app.$ss.get('token');
     if ( initToken != null) {
       store.commit('user/loginSuccess', {token: initToken});
+      // 获取acl权限
+      store.dispatch('acl/login', {username: initToken});
     }
   },
 );

@@ -5,28 +5,25 @@ import * as _ from 'lodash';
 
 class AclService {
 
-  public can(aclSource:any,acl:string):boolean{
-    if(!aclSource){
+  public can(aclSource: any, acl: string): boolean {
+    if (!aclSource) {
       return true;
     }
-    if(aclSource.permission){
-      return _.includes(aclSource.permission,acl);
+    if (aclSource.permission) {
+      return _.includes(aclSource.permission, acl);
     }
     return true;
   }
 
-  public canPermission(aclSource:any,acl:string):boolean{
-    if(!aclSource){
+  public canPermission(permissionSource: string[], acl: string[]): boolean {
+    if (!permissionSource) {
       return true;
     }
-    if(aclSource.permission){
-      return _.includes(aclSource.permission,acl);
-    }
-    return true;
+    return _.intersection(permissionSource, acl).length > 0;
   }
 
 }
 
-const localeService = new AclService();
+const aclService = new AclService();
 
-export default localeService;
+export default aclService;

@@ -8,6 +8,7 @@ import aclState from './modules/acl';
 
 Vue.use(Vuex);
 
+// tslint:disable-next-line
 export interface RootState {
 }
 

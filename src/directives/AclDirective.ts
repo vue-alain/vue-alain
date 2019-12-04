@@ -4,7 +4,7 @@ import Vue from 'vue';
 // document title 指令
 Vue.directive('acl', {
   // inserted: (el, binding) => document.title = binding.value,
-  update: (el, binding, vnode) =>{
+  update: (el, binding, vnode) => {
     document.title = binding.value;
-  }
+  },
 });
