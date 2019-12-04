@@ -33,6 +33,8 @@ router.beforeResolve((to: Route, from: Route, next: any) => {
   const state: any = store.state;
   const user: any = state.user;
 
+  // todo: 如何将权限访问跳转到403
+
   // 路由信息设置了需要守卫，跳转路由时需要先登录
   if (to.meta && to.meta.routerGuard) {
     // 需要路由守护
