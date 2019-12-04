@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import appState from './modules/app';
 import userState from './modules/user';
 import reuseTabState from './modules/routerTabs';
+import aclState from './modules/acl';
 
 Vue.use(Vuex);
 
@@ -24,5 +25,6 @@ export default new Vuex.Store<RootState>({
     app: appState,
     reuseTab: reuseTabState,
     user: userState,
+    acl: aclState,
   },
 });

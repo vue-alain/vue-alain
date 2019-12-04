@@ -41,6 +41,9 @@ const router = {
         title: '工作台',
         routerGuard: true,
         i18n: `menu.dashboard.workplace`,
+        acl:{
+          ability:['dashboard.workplace']
+        }
       },
     }],
   };

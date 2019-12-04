@@ -1,7 +1,7 @@
 <template>
 <div class="aside">
-    <a-menu mode="inline" :inlineCollapsed="isCollapse" 
-    v-model="currentRouteName" 
+    <a-menu mode="inline" :inlineCollapsed="isCollapse"
+    v-model="currentRouteName"
     @openChange="handleOpenChange"
     :openKeys="openMenus">
         <template v-for="menuitem in menuData">
@@ -43,7 +43,10 @@ import {
     Mutation,
     namespace,
 } from 'vuex-class';
-const appModule = namespace('app');
+
+import VueRouter from 'vue-router';
+
+import {appModule,aclModule,IAclState} from '@/store';
 
 import * as _ from 'lodash';
 
@@ -55,6 +58,9 @@ export default class AdminSidebar extends Vue {
     @appModule.State('isCollapse')
     private isCollapse!: boolean;
 
+    @aclModule.State('permission')
+    private permission!: string[];
+
     private rootSubmenuKeys: any[] = [];
 
     private currentRouteName: any[] = [];
@@ -65,11 +71,13 @@ export default class AdminSidebar extends Vue {
     }
 
     get menuData() {
+        // todo: 排除不在权限的路由
         const router: any = this.$router;
+        console.log('router.options.routes',router.options.routes);
         return router.options.routes;
     }
 
-    private parentMenuName(name: any) {
+    private parentMenuName(name: any): string {
         const menuList = this.menuData;
         const childList = _.map(menuList, (item: any) => {
             return _.map(item.children, (citem: any) => {
