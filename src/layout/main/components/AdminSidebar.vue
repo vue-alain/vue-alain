@@ -75,54 +75,10 @@ export default class AdminSidebar extends Vue {
 
     get menuData() {
         const router: any = this.$router;
-        const menu = menuPemission([...router.options.routes], this.permission);
-        return menu;//this.handleMenu([...router.options.routes]);
+        const routeList = _.cloneDeep(router.options.routes);
+        const menu = menuPemission(routeList, this.permission);
+        return menu;
     }
-
-    /**
-     * 通过 meta.acl配置判断权限
-     */
-    private handleMenu(menuList: any[]) {
-        const result: any[] = [];
-
-        menuList.forEach((menuitem: any) => {
-
-            const child: any[] = [];
-            menuitem.children.forEach((menuChildItem: any) => {
-                if (menuChildItem.meta !== undefined && menuChildItem.meta.acl !== undefined) {
-                    if (aclService.canPermission(this.permission, menuChildItem.meta.acl.ability)) {
-                        child.push(menuChildItem);
-                    }
-                } else {
-                    child.push(menuChildItem);
-                }
-            });
-
-            menuitem.children = child;
-
-            if (menuitem.meta !== undefined && menuitem.meta.acl !==  undefined)  {
-                if (aclService.canPermission(this.permission, menuitem.meta.acl.ability)) {
-                    result.push(menuitem);
-                }
-            } else {
-                result.push(menuitem);
-            }
-        });
-
-        return result;
-    }
-
-    private menuHide(menulist:any[]){
-        const result:any[]=[];
-        menulist.forEach(item=>{
-            if(item.children && item.children.length>0){
-                item.children = this.menuHide(item.children);
-            }
-            result.push(item);
-        });
-        return result;
-    }
-
     private parentMenuName(name: any): string {
         const menuList = this.menuData;
         const childList = _.map(menuList, (item: any) => {
@@ -172,6 +128,7 @@ export default class AdminSidebar extends Vue {
 
     @Watch('isCollapse')
     private watchisCollapse(newVal: any, oldVal: any) {
+        console.log('watchisCollapse',newVal,oldVal);
         if (newVal === true) {
             this.openMenus = [];
         } else {
