@@ -18,8 +18,10 @@ describe('menuHide', () => {
     expect(resultMenu.length).toBe(1);
     const menu1 = resultMenu[0];
     expect(menu1.children.length).toBe(1);
+    // tslint:disable-next-line
     const menu1_1 = menu1.children[0];
     expect(menu1_1.children.length).toBe(1);
+    // tslint:disable-next-line
     const menu1_1_1 = menu1_1.children[0];
     expect(menu1_1_1.children.length).toBe(0);
   });
@@ -46,8 +48,10 @@ describe('menuHide', () => {
     expect(resultMenu.length).toBe(1);
     const menu1 = resultMenu[0];
     expect(menu1.children.length).toBe(1);
+    // tslint:disable-next-line
     const menu1_1 = menu1.children[0];
     expect(menu1_1.children.length).toBe(1);
+    // tslint:disable-next-line
     const menu1_1_1 = menu1_1.children[0];
     expect(menu1_1_1.children.length).toBe(0);
   });

@@ -128,7 +128,6 @@ export default class AdminSidebar extends Vue {
 
     @Watch('isCollapse')
     private watchisCollapse(newVal: any, oldVal: any) {
-        console.log('watchisCollapse',newVal,oldVal);
         if (newVal === true) {
             this.openMenus = [];
         } else {

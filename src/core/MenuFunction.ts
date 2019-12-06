@@ -15,7 +15,7 @@ export function menuPemission(menulist: any[], permissionSource: any[]): any[] {
         item.children = [];
       }
 
-      if (item.meta !== undefined && item.meta.acl !== undefined){
+      if (item.meta !== undefined && item.meta.acl !== undefined) {
         if (aclService.canPermission(permissionSource, item.meta.acl.ability)) {
           result.push(item);
         }
