@@ -46,11 +46,12 @@ import {
 
 import VueRouter from 'vue-router';
 
-import { appModule, aclModule, IAclState} from '@/store';
+import { appModule, aclModule} from '@/store';
 
 import * as _ from 'lodash';
 
 import aclService from '@/core/AclService';
+import { menuPemission } from '@/core';
 
 @Component({
     components: {},
@@ -73,9 +74,9 @@ export default class AdminSidebar extends Vue {
     }
 
     get menuData() {
-        // todo: 排除不在权限的路由
         const router: any = this.$router;
-        return this.handleMenu([...router.options.routes]);
+        const menu = menuPemission([...router.options.routes], this.permission);
+        return menu;//this.handleMenu([...router.options.routes]);
     }
 
     /**
@@ -108,6 +109,17 @@ export default class AdminSidebar extends Vue {
             }
         });
 
+        return result;
+    }
+
+    private menuHide(menulist:any[]){
+        const result:any[]=[];
+        menulist.forEach(item=>{
+            if(item.children && item.children.length>0){
+                item.children = this.menuHide(item.children);
+            }
+            result.push(item);
+        });
         return result;
     }
 
@@ -172,7 +184,6 @@ export default class AdminSidebar extends Vue {
 <style lang="less">
 .ant-menu-submenu-selected{
     background-color:#fafafa;
-    
     /*
     &:after{
         border-right: 3px solid #1890ff;
